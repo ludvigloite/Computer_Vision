@@ -12,7 +12,9 @@ def pre_process_images(X: np.ndarray):
     """
     assert X.shape[1] == 784,\
         f"X.shape[1]: {X.shape[1]}, should be 784"
-    # TODO implement this function (Task 2a)
+
+    X = X / 127.5 - 1 #Normalize from [0,255] to [-1,1]
+    X = np.insert(X,1)
     return X
 
 
