@@ -12,10 +12,10 @@ def pre_process_images(X: np.ndarray):
     """
     assert X.shape[1] == 784,\
         f"X.shape[1]: {X.shape[1]}, should be 784"
-
-    X = X / 127.5 - 1 #Normalize from [0,255] to [-1,1]
-    X = np.insert(X,1)
-    return X
+    
+    X_cpy = X / 127.5 - 1 #Normalize from [0,255] to [-1,1]
+    X_cpy = np.insert(X_cpy,X_cpy.shape[1],1,axis=1) #bias trick #May not work. 
+    return X_cpy
 
 
 def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray) -> float:
@@ -29,14 +29,18 @@ def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray) -> float:
     # TODO implement this function (Task 2a)
     assert targets.shape == outputs.shape,\
         f"Targets shape: {targets.shape}, outputs: {outputs.shape}"
-    return 0
+
+    C_n = -(targets * np.log(outputs)+ (1-targets) * np.log(1-outputs))
+    C = np.mean(C_n)
+
+    return C
 
 
 class BinaryModel:
 
     def __init__(self):
         # Define number of input nodes
-        self.I = None
+        self.I = 785
         self.w = np.zeros((self.I, 1))
         self.grad = None
 
@@ -47,8 +51,9 @@ class BinaryModel:
         Returns:
             y: output of model with shape [batch size, 1]
         """
-        # TODO implement this function (Task 2a)
-        return None
+        sig = 1/(1 + np.exp(-X.dot(self.w)))
+
+        return sig
 
     def backward(self, X: np.ndarray, outputs: np.ndarray, targets: np.ndarray) -> None:
         """
@@ -58,10 +63,13 @@ class BinaryModel:
             outputs: outputs of model of shape: [batch size, 1]
             targets: labels/targets of each image of shape: [batch size, 1]
         """
-        # TODO implement this function (Task 2a)
+    
+        gradient = np.dot(-X.T, (targets - outputs)) #using example in assignmnet text
+        avg_grad = gradient / X.shape[0]
+
         assert targets.shape == outputs.shape,\
             f"Output shape: {outputs.shape}, targets: {targets.shape}"
-        self.grad = np.zeros_like(self.w)
+        self.grad = avg_grad
         assert self.grad.shape == self.w.shape,\
             f"Grad shape: {self.grad.shape}, w: {self.w.shape}"
 
