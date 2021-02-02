@@ -51,7 +51,7 @@ class BinaryModel:
         Returns:
             y: output of model with shape [batch size, 1]
         """
-        sig = 1/(1 + np.exp(-X.dot(self.w)))
+        sig = 1/(1 + np.exp(np.dot(-X, self.w)))
 
         return sig
 
