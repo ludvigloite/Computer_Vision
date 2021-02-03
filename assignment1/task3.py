@@ -17,21 +17,15 @@ def calculate_accuracy(X: np.ndarray, targets: np.ndarray, model: SoftmaxModel) 
         Accuracy (float)
     """
     
+    # Get prediction vector from a forward pass through model
     Y_predict = model.forward(X)
-    #print(np.shape(Y_predict))
-    #print(np.shape(targets))
 
-    #compare and count the correct predictions.
-    #boolPredict = 
-
-    correctArray = (np.argmax(Y_predict,axis=1))  == np.argmax(targets,axis=1)
+    # Fill correctArray with boolean values corresponding to correct model predictions
+    correctArray = (np.argmax(Y_predict,axis=1)) == np.argmax(targets,axis=1)
     correctCount = np.count_nonzero(correctArray)
 
-    accuracy = correctCount/(X.shape[0])
-
-    #print("acc: ",accuracy)
-
-    return accuracy
+    # Accuracy is the mean of the number of correct predictions over the batch size
+    return correctCount/(X.shape[0])
 
 
 class SoftmaxTrainer(BaseTrainer):
@@ -49,15 +43,14 @@ class SoftmaxTrainer(BaseTrainer):
             loss value (float) on batch
         """
         
+        # Perform forward and backward pass through model
         Y_predict = self.model.forward(X_batch)
         self.model.backward(X_batch,Y_predict,Y_batch)
 
-        #gradient descent step
-        self.model.w -= learning_rate * self.model.grad  #update weights
+        # Update model weights according to internal gradient vector
+        self.model.w -= learning_rate * self.model.grad
 
-        avgLoss = cross_entropy_loss(Y_batch,Y_predict)
-        
-        return avgLoss
+        return cross_entropy_loss(Y_batch,Y_predict)
 
     def validation_step(self):
         """
@@ -144,7 +137,7 @@ if __name__ == "__main__":
     # You can finish the rest of task 4 below this point.
 
     # Plotting of softmax weights (Task 4b)
-    #plt.imsave("task4b_softmax_weight.png", weight, cmap="gray")
+    # plt.imsave("task4b_softmax_weight.png", weight, cmap="gray")
 
     # Plotting of accuracy for difference values of lambdas (task 4c)
     l2_lambdas = [1, .1, .01, .001]

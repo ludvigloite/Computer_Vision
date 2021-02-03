@@ -16,16 +16,15 @@ def calculate_accuracy(X: np.ndarray, targets: np.ndarray, model: BinaryModel) -
         Accuracy (float)
     """
 
+    # Get prediction vector from a forward pass through model
     Y_predict = model.forward(X)
 
-    #compare and count the correct predictions.
-
+    # Fill boolArray with boolean values corresponding to correct model predictions
     boolArray = (Y_predict >= 0.5) == targets
     correctCount = np.count_nonzero(boolArray)
 
-    accuracy = correctCount/X.shape[0]
-
-    return accuracy
+    # Accuracy is the mean of the number of correct predictions over the batch size
+    return correctCount/X.shape[0]
 
 
 class LogisticTrainer(BaseTrainer):
@@ -42,17 +41,15 @@ class LogisticTrainer(BaseTrainer):
         Returns:
             loss value (float) on batch
         """
-        #X_batch = pre_process_images(X_batch)
 
+        # Perform forward and backward pass through model
         Y_predict = self.model.forward(X_batch)
         self.model.backward(X_batch,Y_predict,Y_batch)
 
-        #gradient descent step
-        self.model.w -= learning_rate * self.model.grad  #update weights
+        # Update model weights according to internal gradient vector
+        self.model.w -= learning_rate * self.model.grad
 
-        avgLoss = cross_entropy_loss(Y_batch,Y_predict)
-
-        return avgLoss
+        return cross_entropy_loss(Y_batch,Y_predict)
 
     def validation_step(self):
         """

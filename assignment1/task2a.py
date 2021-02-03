@@ -10,12 +10,13 @@ def pre_process_images(X: np.ndarray):
     Returns:
         X: images of shape [batch size, 785] in the range (-1, 1)
     """
+
     assert X.shape[1] == 784,\
         f"X.shape[1]: {X.shape[1]}, should be 784"
-    
-    X_cpy = X / 127.5 - 1 #Normalize from [0,255] to [-1,1]
-    X_cpy = np.insert(X_cpy,X_cpy.shape[1],1,axis=1) #bias trick #May not work. 
-    return X_cpy
+
+    # Normalize and add bias trick
+    X_cpy = X / 127.5 - 1
+    return np.insert(X_cpy,X_cpy.shape[1],1,axis=1)
 
 
 def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray) -> float:
@@ -26,14 +27,13 @@ def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray) -> float:
     Returns:
         Cross entropy error (float)
     """
-    # TODO implement this function (Task 2a)
+    
     assert targets.shape == outputs.shape,\
         f"Targets shape: {targets.shape}, outputs: {outputs.shape}"
 
+    # Calculate cross entropy loss and return mean over batch size
     C_n = -(targets * np.log(outputs)+ (1-targets) * np.log(1-outputs))
-    C = np.mean(C_n)
-
-    return C
+    return np.mean(C_n)
 
 
 class BinaryModel:
@@ -51,9 +51,9 @@ class BinaryModel:
         Returns:
             y: output of model with shape [batch size, 1]
         """
-        sig = 1/(1 + np.exp(np.dot(-X, self.w)))
-
-        return sig
+        
+        # Return input-output relation according to equation 1
+        return 1/(1 + np.exp(np.dot(-X, self.w)))
 
     def backward(self, X: np.ndarray, outputs: np.ndarray, targets: np.ndarray) -> None:
         """
@@ -64,12 +64,15 @@ class BinaryModel:
             targets: labels/targets of each image of shape: [batch size, 1]
         """
     
-        gradient = np.dot(-X.T, (targets - outputs)) #using example in assignmnet text
-        avg_grad = gradient / X.shape[0]
-
         assert targets.shape == outputs.shape,\
             f"Output shape: {outputs.shape}, targets: {targets.shape}"
-        self.grad = avg_grad
+        
+        # Calculate gradient according to equation 4
+        gradient = np.dot(-X.T, (targets - outputs))
+
+        # Set internal gradient vector to mean over batch size
+        self.grad = gradient / X.shape[0]
+
         assert self.grad.shape == self.w.shape,\
             f"Grad shape: {self.grad.shape}, w: {self.w.shape}"
 

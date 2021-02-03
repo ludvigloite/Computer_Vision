@@ -92,14 +92,14 @@ class BaseTrainer:
                     val_history["loss"][global_step] = val_loss
                     val_history["accuracy"][global_step] = accuracy_val
 
-                    # TODO (Task 2d): Implement early stopping here.
-
+                    # Check if validation loss has decreased
                     if val_loss < lowest_val_loss:
                         nonimprovement_count = 0
                         lowest_val_loss = val_loss
                     else:
                         nonimprovement_count += 1
 
+                    # If validation loss has not increaded in 10 steps, return
                     if nonimprovement_count > 10:
                         print("Stopped early at val_loss ", val_loss)
                         print("Minimum val_loss was ", lowest_val_loss)

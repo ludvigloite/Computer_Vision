@@ -12,17 +12,13 @@ def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray):
     Returns:
         Cross entropy error (float)
     """
-    # TODO implement this function (Task 3a)
-
-    C_n = -np.sum(targets*np.log(outputs), axis=1)
-    C = np.mean(C_n)
-
-
-
 
     assert targets.shape == outputs.shape,\
         f"Targets shape: {targets.shape}, outputs: {outputs.shape}"
-    return C
+
+    # Calculate cross entropy loss and return mean over batch size
+    C_n = -np.sum(targets*np.log(outputs), axis=1)
+    return np.mean(C_n)
 
 
 class SoftmaxModel:
@@ -46,12 +42,7 @@ class SoftmaxModel:
             y: output of model with shape [batch size, num_outputs]
         """
 
-        #sig = 1/(1 + np.exp(-X.dot(self.w))) #2a    
-
-        # TODO implement this function (Task 3a)
-        #print("here we go")
-        #print(np.sum(np.exp(np.dot(X, self.w)),axis=1)[:,None])
-        #print(np.shape(np.sum(np.exp(np.dot(X, self.w)),axis=1)[:,np.newaxis]))
+        # Return input-output relation according to equation 6
         return np.exp(np.dot(X, self.w)) / np.sum(np.exp(np.dot(X, self.w)),axis=1)[:,np.newaxis]
 
     def backward(self, X: np.ndarray, outputs: np.ndarray, targets: np.ndarray) -> None:
@@ -63,18 +54,16 @@ class SoftmaxModel:
             outputs: outputs of model of shape: [batch size, num_outputs]
             targets: labels/targets of each image of shape: [batch size, num_classes]
         """
-        # TODO implement this function (Task 3a)
 
-        gradient = np.dot(-X.T, (targets - outputs)) #using example in assignmnet text
-        gradient = gradient + 2*self.l2_reg_lambda*self.w #4b
-        avg_grad = gradient / X.shape[0]        
-        
-
-        # To implement L2 regularization task (4b) you can get the lambda value in self.l2_reg_lambda 
-        # which is defined in the constructor.
         assert targets.shape == outputs.shape,\
             f"Output shape: {outputs.shape}, targets: {targets.shape}"
-        self.grad = avg_grad
+
+        # Calculate gradient according to equation 8, taking regularization into account
+        gradient = np.dot(-X.T, (targets - outputs)) + 2*self.l2_reg_lambda*self.w
+
+        # Set internal gradient vector to mean over batch size
+        self.grad = gradient / X.shape[0]        
+        
         assert self.grad.shape == self.w.shape,\
              f"Grad shape: {self.grad.shape}, w: {self.w.shape}"
 
