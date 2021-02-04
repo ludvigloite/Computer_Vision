@@ -75,7 +75,7 @@ class SoftmaxTrainer(BaseTrainer):
 
 if __name__ == "__main__":
     # hyperparameters DO NOT CHANGE IF NOT SPECIFIED IN ASSIGNMENT TEXT
-    num_epochs = 50
+    num_epochs = 500
     learning_rate = 0.01
     batch_size = 128
     l2_reg_lambda = 0
@@ -89,10 +89,11 @@ if __name__ == "__main__":
     Y_val = one_hot_encode(Y_val, 10)
 
     # ANY PARTS OF THE CODE BELOW THIS CAN BE CHANGED.
-
+    
     # Intialize model
     model = SoftmaxModel(l2_reg_lambda)
     # Train model
+    
     trainer = SoftmaxTrainer(
         model, learning_rate, batch_size, shuffle_dataset,
         X_train, Y_train, X_val, Y_val,
@@ -136,13 +137,61 @@ if __name__ == "__main__":
     train_history_reg01, val_history_reg01 = trainer.train(num_epochs)
     # You can finish the rest of task 4 below this point.
 
+
+
     # Plotting of softmax weights (Task 4b)
-    # plt.imsave("task4b_softmax_weight.png", weight, cmap="gray")
+
+    for number in range(10):
+        image_0 = model.w[:-1,number].reshape((28,28))
+        image_1 = model1.w[:-1,number].reshape((28,28)) #lambda = 1
+
+        if number == 0:
+            #Initialize the image
+            weights_0 = image_0
+            weights_1 = image_1
+
+        else:
+            #stack the rest of the images horizontally
+            weights_0 = np.hstack((weights_0,image_0))
+            weights_1 = np.hstack((weights_1,image_1))
+
+
+    weights_0 = (weights_0 - np.min(weights_0))/(np.max(weights_0 - np.min(weights_0)))
+    weights_1 = (weights_1 - np.min(weights_1))/(np.max(weights_1 - np.min(weights_1)))
+    weights = np.vstack((weights_0, weights_1))
+
+    plt.imsave("task4b_softmax_weight.png", weights, cmap="gray")
+
 
     # Plotting of accuracy for difference values of lambdas (task 4c)
     l2_lambdas = [1, .1, .01, .001]
+
+    l2_weights = [] #4e
+
+    plt.ylim([.7, .92])
+
+    for l2_lambda in l2_lambdas: 
+        l2_model = SoftmaxModel(l2_lambda)
+        trainer = SoftmaxTrainer(
+        l2_model, learning_rate, batch_size, shuffle_dataset,
+        X_train, Y_train, X_val, Y_val,
+        )
+        _, l2_val_history = trainer.train(num_epochs)
+        utils.plot_loss(l2_val_history["accuracy"], 'Lambda = %.3f' %l2_lambda)
+
+        #4e
+        l2_weights.append(np.sum(l2_model.w*l2_model.w))
+
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Accuracy")
+    plt.legend()
     plt.savefig("task4c_l2_reg_accuracy.png")
+    plt.show()
 
     # Task 4d - Plotting of the l2 norm for each weight
 
+    plt.plot(l2_lambdas, l2_weights)
+    plt.xlabel("Lambda")
+    plt.ylabel("||w||^2")
     plt.savefig("task4d_l2_reg_norms.png")
+    plt.show()

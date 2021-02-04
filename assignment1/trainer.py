@@ -87,11 +87,12 @@ class BaseTrainer:
 
                 # Track validation loss / accuracy every time we progress 20% through the dataset
                 if global_step % num_steps_per_val == 0:
+                    
                     val_loss, accuracy_train, accuracy_val = self.validation_step()
                     train_history["accuracy"][global_step] = accuracy_train
                     val_history["loss"][global_step] = val_loss
                     val_history["accuracy"][global_step] = accuracy_val
-
+                    
                     # Check if validation loss has decreased
                     if val_loss < lowest_val_loss:
                         nonimprovement_count = 0
@@ -101,11 +102,12 @@ class BaseTrainer:
 
                     # If validation loss has not increaded in 10 steps, return
                     if nonimprovement_count > 10:
+                        print("Finished after epoch nr: ",epoch)
                         print("Stopped early at val_loss ", val_loss)
                         print("Minimum val_loss was ", lowest_val_loss)
                         return train_history,val_history
 
-
-                    # You can access the validation loss in val_history["loss"]
                 global_step += 1
+
+        print("Finished after epoch nr: ",epoch)
         return train_history, val_history

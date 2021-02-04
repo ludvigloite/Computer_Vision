@@ -45,6 +45,8 @@ class SoftmaxModel:
         # Return input-output relation according to equation 6
         return np.exp(np.dot(X, self.w)) / np.sum(np.exp(np.dot(X, self.w)),axis=1)[:,np.newaxis]
 
+
+
     def backward(self, X: np.ndarray, outputs: np.ndarray, targets: np.ndarray) -> None:
         """
         Computes the gradient and saves it to the variable self.grad
@@ -59,13 +61,12 @@ class SoftmaxModel:
             f"Output shape: {outputs.shape}, targets: {targets.shape}"
 
         # Calculate gradient according to equation 8, taking regularization into account
-        gradient = np.dot(-X.T, (targets - outputs)) + 2*self.l2_reg_lambda*self.w
-
-        # Set internal gradient vector to mean over batch size
-        self.grad = gradient / X.shape[0]        
+        self.grad = np.dot(-X.T, (targets - outputs)) / X.shape[0] + 2*self.l2_reg_lambda*self.w       
         
         assert self.grad.shape == self.w.shape,\
              f"Grad shape: {self.grad.shape}, w: {self.w.shape}"
+
+
 
     def zero_grad(self) -> None:
         self.grad = None
@@ -81,6 +82,7 @@ def one_hot_encode(Y: np.ndarray, num_classes: int):
     """
     
     return np.eye(num_classes)[Y.reshape(-1)]
+    
 
 
 def gradient_approximation_test(model: SoftmaxModel, X: np.ndarray, Y: np.ndarray):
