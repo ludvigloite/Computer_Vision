@@ -103,8 +103,6 @@ class BaseTrainer:
                     # If validation loss has not increaded in 10 steps, return
                     if nonimprovement_count > 10:
                         print("Finished after epoch nr: ",epoch)
-                        print("Stopped early at val_loss ", val_loss)
-                        print("Minimum val_loss was ", lowest_val_loss)
                         return train_history,val_history
 
                 global_step += 1
