@@ -4,6 +4,7 @@ Group 200
 
 ## Status
 Assignment 1: :white_check_mark:
+
 Assignment 2: :x: Deadline 21.02
 
 ## Other
