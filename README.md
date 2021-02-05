@@ -3,7 +3,7 @@
 Group 200
 
 ## Status
-Assignment 1: [x]
+Assignment 1: :heavy_check_mark:
 Assignment 2: [] Deadline 21.02
 
 ## Other
