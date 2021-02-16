@@ -67,6 +67,7 @@ class SoftmaxModel:
         self.neurons_per_layer = neurons_per_layer
         print("n_p_l: ", neurons_per_layer)
         print("n_p_l_len: ", len(neurons_per_layer))
+        self.num_layers = len(neurons_per_layer)
 
         # Initialize the weights
         self.ws = []
