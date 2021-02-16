@@ -64,9 +64,9 @@ class SoftmaxModel:
         # neurons_per_layer = [64, 10] indicates that we will have two layers:
         # A hidden layer with 64 neurons and a output layer with 10 neurons.
         self.neurons_per_layer = neurons_per_layer
+        self.num_layers = len(neurons_per_layer)
         print("n_p_l: ", neurons_per_layer)
         print("n_p_l_len: ", len(neurons_per_layer))
-        self.num_layers = len(neurons_per_layer)
 
         # Initialize the weights
         self.ws = []
@@ -81,6 +81,7 @@ class SoftmaxModel:
             self.ws.append(w)
             prev = size
         self.grads = [None for i in range(len(self.ws))]
+        self.hidden_layer_outputs = [None for i in range(self.num_layers)]
 
     # Mathematical functions for forward and backward propagation
     def sigmoid(self, x):
@@ -126,13 +127,16 @@ class SoftmaxModel:
 
         # Calculate gradients for output layer
         delta_k = (outputs - targets)
-        self.grads[1] = (self.hidden_layer_output.T @ delta_k) / targets.shape[0]
+        self.grads[self.num_layers] = \
+            (self.hidden_layer_outputs[self.num_layers].T @ delta_k) / targets.shape[0]
 
-        # Calculate gradients for hidden layer
-        z = X @ self.ws[0]
-        delta_j = self.sigmoid_dot(z) * (delta_k @ self.ws[1].T)
-        
-        self.grads[0] = (X.T @ delta_j) / targets.shape[0]
+        # Calculate gradients for all hidden layers, starting on output layer - 1
+        delta_j = delta_k
+        for layer in range(self.num_layers - 1, 0, -1):
+            z = self.hidden_layer_outputs[layer - 1] @ self.ws[layer - 1]
+            delta_j = self.sigmoid_dot(z) * (delta_j @ self.ws[layer].T)
+            self.grads[layer - 1] = \
+                (self.hidden_layer_outputs[layer - 1].T @ delta_j) / targets.shape[0]
 
         for grad, w in zip(self.grads, self.ws):
             assert grad.shape == w.shape,\
