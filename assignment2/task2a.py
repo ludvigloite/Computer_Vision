@@ -40,12 +40,7 @@ def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray):
     C_n = -np.sum(targets*np.log(outputs), axis=1)
     return np.mean(C_n)
 
-# Mathematical functions for forward and backward propagation
-def sigmoid(x):
-    return 1/(1 + np.exp(-x))
 
-def sigmoid_dot(x):
-    return sigmoid(x) * (1 - sigmoid(x))
 
 def softmax(x):
     return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
@@ -79,10 +74,24 @@ class SoftmaxModel:
         for size in self.neurons_per_layer:
             w_shape = (prev, size)
             print("Initializing weight to shape:", w_shape)
-            w = np.zeros(w_shape)
+            if use_improved_weight_init:
+                w = np.random.normal(0,1/np.sqrt(size), w_shape)
+            else:
+                w = np.random.uniform(-1,1, w_shape)
             self.ws.append(w)
             prev = size
         self.grads = [None for i in range(len(self.ws))]
+
+    # Mathematical functions for forward and backward propagation
+    def sigmoid(self, x):
+        if self.use_improved_sigmoid:
+            return 1.7159 * np.tanh(2/3 * x)
+        return 1/(1 + np.exp(-x))
+
+    def sigmoid_dot(self, x):
+        if self.use_improved_sigmoid:
+            return 1.14939 / (np.cosh(2/3 * x) ** 2) #1.14393 * np.sech(2/3 * x)**2
+        return self.sigmoid(x) * (1 - self.sigmoid(x))
 
     def forward(self, X: np.ndarray) -> np.ndarray:
         """
@@ -94,12 +103,8 @@ class SoftmaxModel:
         # TODO implement this function (Task 2b)
         # HINT: For peforming the backward pass, you can save intermediate activations in varialbes in the forward pass.
         # such as self.hidden_layer_ouput = ...
-
-        #a_j = np.exp(np.dot(X, self.w)) / np.sum(np.exp(np.dot(X, self.w)),axis=1)[:,np.newaxis]
         
-        # print("shape ws: ",self.ws.shape())
-        
-        self.hidden_layer_output = sigmoid(X @ self.ws[0])
+        self.hidden_layer_output = self.sigmoid(X @ self.ws[0])
 
         return softmax(self.hidden_layer_output @ self.ws[1])
 
@@ -125,7 +130,7 @@ class SoftmaxModel:
 
         # Calculate gradients for hidden layer
         z = X @ self.ws[0]
-        delta_j = sigmoid_dot(z) * (delta_k @ self.ws[1].T)
+        delta_j = self.sigmoid_dot(z) * (delta_k @ self.ws[1].T)
         
         self.grads[0] = (X.T @ delta_j) / targets.shape[0]
 
