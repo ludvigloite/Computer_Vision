@@ -15,9 +15,15 @@ def calculate_accuracy(X: np.ndarray, targets: np.ndarray, model: SoftmaxModel) 
     Returns:
         Accuracy (float)
     """
-    # TODO: Implement this function (copy from last assignment)
-    accuracy = 0
-    return accuracy
+    # Get prediction vector from a forward pass through model
+    Y_predict = model.forward(X)
+
+    # Fill correctArray with boolean values corresponding to correct model predictions
+    correctArray = (np.argmax(Y_predict,axis=1)) == np.argmax(targets,axis=1)
+    correctCount = np.count_nonzero(correctArray)
+
+    # Accuracy is the mean of the number of correct predictions over the batch size
+    return correctCount/(X.shape[0])
 
 
 class SoftmaxTrainer(BaseTrainer):
@@ -46,13 +52,15 @@ class SoftmaxTrainer(BaseTrainer):
         Returns:
             loss value (float) on batch
         """
-        # TODO: Implement this function (task 2c)
+        
+        # Perform forward and backward pass through model
+        Y_predict = self.model.forward(X_batch)
+        self.model.backward(X_batch, Y_predict, Y_batch)
 
-        loss = 0
+        # Update model weights according to internal gradient vector
+        # TODO
 
-        loss = cross_entropy_loss(Y_batch, logits)  # sol
-
-        return loss
+        return cross_entropy_loss(Y_batch, Y_predict)
 
     def validation_step(self):
         """

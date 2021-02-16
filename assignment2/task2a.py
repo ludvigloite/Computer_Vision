@@ -40,6 +40,12 @@ def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray):
     C_n = -np.sum(targets*np.log(outputs), axis=1)
     return np.mean(C_n)
 
+# Mathematical functions for forward and backward propagation
+def sigmoid(x):
+    return 1/(1 + np.exp(-x))
+def softmax(x):
+    return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
+
 
 class SoftmaxModel:
 
@@ -86,19 +92,12 @@ class SoftmaxModel:
 
         #a_j = np.exp(np.dot(X, self.w)) / np.sum(np.exp(np.dot(X, self.w)),axis=1)[:,np.newaxis]
         
-        print("shape ws: ",self.ws.shape())
+        # print("shape ws: ",self.ws.shape())
         
-        self.hidden_layer_output = self.activation(X @ self.ws[0])
+        self.hidden_layer_output = sigmoid(X @ self.ws[0])
 
-        z = self.hidden_layer_output
+        return softmax(self.hidden_layer_output @ self.ws[1])
 
-        #def softmax(z):
-        #    return np.exp(z) / np.sum(np.exp(z), axis=1,keepdims=True)
-
-
-
-
-        return None
 
     def backward(self, X: np.ndarray, outputs: np.ndarray,
                  targets: np.ndarray) -> None:
@@ -110,16 +109,25 @@ class SoftmaxModel:
             outputs: outputs of model of shape: [batch size, num_outputs]
             targets: labels/targets of each image of shape: [batch size, num_classes]
         """
-        # TODO implement this function (Task 2b)
         assert targets.shape == outputs.shape,\
             f"Output shape: {outputs.shape}, targets: {targets.shape}"
         # A list of gradients.
         # For example, self.grads[0] will be the gradient for the first hidden layer
-        self.grads = []
+
+        # Calculate gradients for output layer
+        delta_k = (outputs - targets)
+        self.grads[1] = (self.hidden_layer_output.T @ delta_k) / targets.shape[0]
+
+        # Calculate gradients for hidden layer
+        z = X @ self.ws[0]
+        delta_j = (sigmoid(z) * (1 - sigmoid(z))) * (delta_k @ self.ws[1].T)
+        self.grads[0] = (X.T @ delta_j) / targets.shape[0]
 
         for grad, w in zip(self.grads, self.ws):
             assert grad.shape == w.shape,\
                 f"Expected the same shape. Grad shape: {grad.shape}, w: {w.shape}."
+
+
 
     def zero_grad(self) -> None:
         self.grads = [None for i in range(len(self.ws))]
