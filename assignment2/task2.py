@@ -66,7 +66,13 @@ class SoftmaxTrainer(BaseTrainer):
 
         # Update model weights for all layers according to internal gradient vector
         for layer in range(self.model.num_layers):
-            self.model.ws[layer] -= self.learning_rate * self.model.grads[layer]
+            if self.use_momentum:
+                # Implement momentum by taking previous gradients into account
+                self.previous_grads[layer] = self.model.grads[layer] + \
+                    self.momentum_gamma * self.previous_grads[layer]
+                self.model.ws[layer] -= self.learning_rate * self.previous_grads[layer]
+            else:
+                self.model.ws[layer] -= self.learning_rate * self.model.grads[layer]
 
         return cross_entropy_loss(Y_batch, Y_predict)
 
