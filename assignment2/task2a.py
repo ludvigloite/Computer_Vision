@@ -43,6 +43,10 @@ def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray):
 # Mathematical functions for forward and backward propagation
 def sigmoid(x):
     return 1/(1 + np.exp(-x))
+
+def sigmoid_dot(x):
+    return sigmoid(x) * (1 - sigmoid(x))
+
 def softmax(x):
     return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
 
@@ -120,7 +124,8 @@ class SoftmaxModel:
 
         # Calculate gradients for hidden layer
         z = X @ self.ws[0]
-        delta_j = (sigmoid(z) * (1 - sigmoid(z))) * (delta_k @ self.ws[1].T)
+        delta_j = sigmoid_dot(z) * (delta_k @ self.ws[1].T)
+        
         self.grads[0] = (X.T @ delta_j) / targets.shape[0]
 
         for grad, w in zip(self.grads, self.ws):
@@ -186,10 +191,6 @@ if __name__ == "__main__":
         f"Expected the vector to be [0,0,0,1,0,0,0,0,0,0], but got {Y}"
 
     X_train, Y_train, *_ = utils.load_full_mnist()
-
-    print(X_train.mean())
-    print(X_train.max())
-    print(X_train.min())
 
     X_train = pre_process_images(X_train)
     Y_train = one_hot_encode(Y_train, 10)
