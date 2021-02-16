@@ -81,6 +81,7 @@ class SoftmaxModel:
             self.ws.append(w)
             prev = size
         self.grads = [None for i in range(len(self.ws))]
+        self.hidden_layer_outputs = [None for i in range(self.num_layers)]
 
     # Mathematical functions for forward and backward propagation
     def sigmoid(self, x):
@@ -103,10 +104,12 @@ class SoftmaxModel:
         # TODO implement this function (Task 2b)
         # HINT: For peforming the backward pass, you can save intermediate activations in varialbes in the forward pass.
         # such as self.hidden_layer_ouput = ...
-        
-        self.hidden_layer_output = self.sigmoid(X @ self.ws[0])
 
-        return softmax(self.hidden_layer_output @ self.ws[1])
+        self.hidden_layer_outputs[0] = X
+        for n in range(self.num_layers-1):
+            self.hidden_layer_outputs[n+1] = self.sigmoid(self.hidden_layer_outputs[n] @ self.ws[n])
+
+        return softmax(self.hidden_layer_outputs[-1] @ self.ws[-1])
 
 
     def backward(self, X: np.ndarray, outputs: np.ndarray,
