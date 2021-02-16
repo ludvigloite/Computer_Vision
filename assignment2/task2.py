@@ -64,8 +64,9 @@ class SoftmaxTrainer(BaseTrainer):
         Y_predict = self.model.forward(X_batch)
         self.model.backward(X_batch, Y_predict, Y_batch)
 
-        # Update model weights according to internal gradient vector
-        # TODO
+        # Update model weights for all layers according to internal gradient vector
+        for layer in range(self.model.num_layers):
+            self.model.ws[layer] -= self.learning_rate * self.model.grads[layer]
 
         return cross_entropy_loss(Y_batch, Y_predict)
 
