@@ -13,7 +13,14 @@ def pre_process_images(X: np.ndarray):
     """
     assert X.shape[1] == 784,\
         f"X.shape[1]: {X.shape[1]}, should be 784"
-    # TODO implement this function (Task 2a)
+    
+    mean = X.mean()
+    std = X.std()
+
+    X = (X - mean) / std
+
+    X = np.insert(X,X.shape[1],1,axis=1)
+
     return X
 
 
@@ -45,13 +52,15 @@ class SoftmaxModel:
         # Always reset random seed before weight init to get comparable results.
         np.random.seed(1)
         # Define number of input nodes
-        self.I = None
+        self.I = 785
         self.use_improved_sigmoid = use_improved_sigmoid
 
         # Define number of output nodes
         # neurons_per_layer = [64, 10] indicates that we will have two layers:
         # A hidden layer with 64 neurons and a output layer with 10 neurons.
         self.neurons_per_layer = neurons_per_layer
+        print("n_p_l: ", neurons_per_layer)
+        print("n_p_l_len: ", len(neurons_per_layer))
 
         # Initialize the weights
         self.ws = []
@@ -74,6 +83,21 @@ class SoftmaxModel:
         # TODO implement this function (Task 2b)
         # HINT: For peforming the backward pass, you can save intermediate activations in varialbes in the forward pass.
         # such as self.hidden_layer_ouput = ...
+
+        #a_j = np.exp(np.dot(X, self.w)) / np.sum(np.exp(np.dot(X, self.w)),axis=1)[:,np.newaxis]
+        
+        print("shape ws: ",self.ws.shape())
+        
+        self.hidden_layer_output = self.activation(X @ self.ws[0])
+
+        z = self.hidden_layer_output
+
+        #def softmax(z):
+        #    return np.exp(z) / np.sum(np.exp(z), axis=1,keepdims=True)
+
+
+
+
         return None
 
     def backward(self, X: np.ndarray, outputs: np.ndarray,
@@ -154,6 +178,11 @@ if __name__ == "__main__":
         f"Expected the vector to be [0,0,0,1,0,0,0,0,0,0], but got {Y}"
 
     X_train, Y_train, *_ = utils.load_full_mnist()
+
+    print(X_train.mean())
+    print(X_train.max())
+    print(X_train.min())
+
     X_train = pre_process_images(X_train)
     Y_train = one_hot_encode(Y_train, 10)
     assert X_train.shape[1] == 785,\
