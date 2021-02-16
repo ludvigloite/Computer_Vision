@@ -9,7 +9,7 @@ if __name__ == "__main__":
     num_epochs = 50
     learning_rate = .1
     batch_size = 32
-    neurons_per_layer = [64, 10]
+    neurons_per_layer = [64, 10] # ENDRE DENNE I 4A OG 4B
     momentum_gamma = .9  # Task 3 hyperparameter
     shuffle_data = True
 
