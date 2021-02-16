@@ -25,10 +25,13 @@ def cross_entropy_loss(targets: np.ndarray, outputs: np.ndarray):
     Returns:
         Cross entropy error (float)
     """
+
     assert targets.shape == outputs.shape,\
         f"Targets shape: {targets.shape}, outputs: {outputs.shape}"
-    # TODO: Implement this function (copy from last assignment)
-    raise NotImplementedError
+
+    # Calculate cross entropy loss and return mean over batch size
+    C_n = -np.sum(targets*np.log(outputs), axis=1)
+    return np.mean(C_n)
 
 
 class SoftmaxModel:
@@ -106,8 +109,8 @@ def one_hot_encode(Y: np.ndarray, num_classes: int):
     Returns:
         Y: shape [Num examples, num classes]
     """
-    # TODO: Implement this function (copy from last assignment)
-    raise NotImplementedError
+    
+    return np.eye(num_classes)[Y.reshape(-1)]
 
 
 def gradient_approximation_test(
