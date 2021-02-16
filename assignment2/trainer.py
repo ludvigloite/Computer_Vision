@@ -72,6 +72,10 @@ class BaseTrainer:
             accuracy={}
         )
 
+        nonimprovement_count = 0
+        lowest_val_loss = np.inf
+        limit_nonimprovement_count = 50
+
         global_step = 0
         for epoch in range(num_epochs):
             train_loader = utils.batch_loader(
@@ -87,6 +91,18 @@ class BaseTrainer:
                     train_history["accuracy"][global_step] = accuracy_train
                     val_history["loss"][global_step] = val_loss
                     val_history["accuracy"][global_step] = accuracy_val
-                    # TODO: Implement early stopping (copy from last assignment)
+
+                    # Check if validation loss has decreased
+                    if val_loss < lowest_val_loss:
+                        nonimprovement_count = 0
+                        lowest_val_loss = val_loss
+                    else:
+                        nonimprovement_count += 1
+
+                    # If validation loss has not increaded in 10 steps, return
+                    if nonimprovement_count > limit_nonimprovement_count:
+                        print("Finished after epoch nr: ",epoch)
+                        return train_history,val_history
+
                 global_step += 1
         return train_history, val_history
