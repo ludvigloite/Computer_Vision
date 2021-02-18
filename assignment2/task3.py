@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from task2a import pre_process_images, one_hot_encode, SoftmaxModel
 from task2 import SoftmaxTrainer
 import time
+import numpy as np
 
 
 if __name__ == "__main__":
@@ -17,18 +18,19 @@ if __name__ == "__main__":
     use_improved_sigmoid = False
     use_improved_weight_init = False
     use_momentum = False
-
-    runImprovedWeight = False
-    runImprovedSigmoid = True
-    runMomentum = False
+    
 
     # Load dataset
     X_train, Y_train, X_val, Y_val = utils.load_full_mnist()
-    X_train = pre_process_images(X_train)
-    X_val = pre_process_images(X_val)
+
+    mean = np.mean(X_train)
+    std = np.std(X_train)
+
+    X_train = pre_process_images(X_train, mean, std)
+    X_val = pre_process_images(X_val, mean, std)
     Y_train = one_hot_encode(Y_train, 10)
     Y_val = one_hot_encode(Y_val, 10)
-    """
+    
     t0 = time.time()
 
     model = SoftmaxModel(
@@ -43,7 +45,8 @@ if __name__ == "__main__":
     train_history, val_history = trainer.train(num_epochs)
 
     t1 = time.time()
-    print("Time Original: ", t1-t0)
+    time_orig = t1-t0
+    print("Time Original: ", time_orig)
 
     use_improved_weight_init = True
 
@@ -64,8 +67,9 @@ if __name__ == "__main__":
         num_epochs)
 
     t3 = time.time()
+    time_weight = t3-t2
 
-    print("Time Improved weight: ", t3-t2)
+    print("Time Improved weight: ", time_weight)
     plt.figure(figsize=(20, 12))
     plt.subplot(1, 2, 1)
     utils.plot_loss(train_history["loss"],
@@ -78,9 +82,9 @@ if __name__ == "__main__":
     plt.legend()
     plt.subplot(1, 2, 2)
     plt.ylim([0.85, 1])
-    utils.plot_loss(val_history["accuracy"], f"Task 2 Model - Without improved weights T = {round(t1-t0,2)} sec")
+    utils.plot_loss(val_history["accuracy"], f"Task 2 Model - Without improved weights T = {round(time_orig,2)} sec")
     utils.plot_loss(
-        val_history_improved_weight["accuracy"], f"Task 3a Model - With improved weights. T = {round(t3-t2,2)} sec")
+        val_history_improved_weight["accuracy"], f"Task 3a Model - With improved weights. T = {round(time_weight,2)} sec")
     plt.ylabel("Validation Accuracy")
     plt.xlabel("Number of Training Steps")
 
@@ -108,8 +112,9 @@ if __name__ == "__main__":
         num_epochs)
 
     t5 = time.time()
+    time_sigmoid = t5-t4
 
-    print("Time Improved sigmoid: ", t5-t4)
+    print("Time Improved sigmoid: ", time_sigmoid)
     plt.figure(figsize=(20, 12))
     plt.subplot(1, 2, 1)
     utils.plot_loss(
@@ -124,9 +129,9 @@ if __name__ == "__main__":
     plt.ylim([0.85, 1])
 
     utils.plot_loss(
-        val_history_improved_weight["accuracy"], f"Task 3a Model - Without improved sigmoid. T = {round(t3-t2,2)} sec")
+        val_history_improved_weight["accuracy"], f"Task 3a Model - Without improved sigmoid. T = {round(time_weight,2)} sec")
 
-    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - With improved sigmoid. T = {round(t5-t4,2)} sec")
+    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - With improved sigmoid. T = {round(time_sigmoid,2)} sec")
     
     plt.ylabel("Validation Accuracy")
     plt.xlabel("Number of Training Steps")
@@ -155,9 +160,10 @@ if __name__ == "__main__":
         num_epochs)
 
     t7 = time.time()
+    time_momentum = t7-t6
 
-    print("Time Momentum: ", t7-t6)
-
+    print("Time Momentum: ", time_momentum)
+    plt.figure(figsize=(20, 12))
     plt.subplot(1, 2, 1)
 
     utils.plot_loss(train_history_improved_sigmoid["loss"],
@@ -174,88 +180,10 @@ if __name__ == "__main__":
     plt.subplot(1, 2, 2)
     plt.ylim([0.85, 1])
 
-    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - Without Momentum. T = {round(t5-t4,2)} sec")
+    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - Without Momentum. T = {round(time_sigmoid,2)} sec")
 
     utils.plot_loss(
-        val_history_momentum["accuracy"], f"Task 3c Model - With Momentum. T = {round(t7-t6,2)} sec")
-    
-    plt.xlabel("Number of Training Steps")
-    plt.ylabel("Validation Accuracy")
-    plt.legend()
-    plt.savefig("task3c_train_loss.png")
-    plt.show()
-
-    """
-
-    use_momentum = True
-    learning_rate = 0.02
-    use_improved_weight_init = True
-    use_improved_sigmoid = True
-
-    t6 = time.time()
-
-    model_64 = SoftmaxModel(
-        neurons_per_layer,
-        use_improved_sigmoid,
-        use_improved_weight_init)
-        
-    trainer_64 = SoftmaxTrainer(
-        momentum_gamma, use_momentum,
-        model_64, learning_rate, batch_size, shuffle_data,
-        X_train, Y_train, X_val, Y_val,
-    )
-
-    train_history_64, val_history_momentum = trainer_momentum.train(
-        num_epochs)
-
-    t7 = time.time()
-
-    print("Time 64 hidden units: ", t7-t6)
-
-    t8 = time.time()
-
-    model_32 = SoftmaxModel(
-        neurons_per_layer,
-        use_improved_sigmoid,
-        use_improved_weight_init)
-        
-    trainer_32 = SoftmaxTrainer(
-        momentum_gamma, use_momentum,
-        model_32, learning_rate, batch_size, shuffle_data,
-        X_train, Y_train, X_val, Y_val,
-    )
-
-    train_history_32, val_history_32 = trainer_32.train(
-        num_epochs)
-
-    t9 = time.time()
-
-    print("Time 32 hidden units: ", t9-t8)
-
-
-
-
-
-    plt.subplot(1, 2, 1)
-
-    utils.plot_loss(train_history_improved_sigmoid["loss"],
-                    "Task 3b Model - Without momentum", npoints_to_average=10)
-
-    utils.plot_loss(
-        train_history_momentum["loss"], "Task 3c Model - With Momentum", npoints_to_average=10)
-    
-
-    plt.ylim([0, .4])
-    plt.xlabel("Number of Training Steps")
-    plt.ylabel("Cross Entropy Loss - Average")
-    plt.legend()
-    plt.subplot(1, 2, 2)
-    plt.ylim([0.85, 1])
-
-    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - Without Momentum. T = {round(t5-t4,2)} sec")
-
-    utils.plot_loss(
-        val_history_momentum["accuracy"], f"Task 3c Model - With Momentum. T = {round(t7-t6,2)} sec")
+        val_history_momentum["accuracy"], f"Task 3c Model - With Momentum. T = {round(time_momentum,2)} sec")
     
     plt.xlabel("Number of Training Steps")
     plt.ylabel("Validation Accuracy")
