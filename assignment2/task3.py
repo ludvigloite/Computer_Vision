@@ -2,6 +2,7 @@ import utils
 import matplotlib.pyplot as plt
 from task2a import pre_process_images, one_hot_encode, SoftmaxModel
 from task2 import SoftmaxTrainer
+import time
 
 
 if __name__ == "__main__":
@@ -17,12 +18,18 @@ if __name__ == "__main__":
     use_improved_weight_init = False
     use_momentum = False
 
+    runImprovedWeight = False
+    runImprovedSigmoid = True
+    runMomentum = False
+
     # Load dataset
     X_train, Y_train, X_val, Y_val = utils.load_full_mnist()
     X_train = pre_process_images(X_train)
     X_val = pre_process_images(X_val)
     Y_train = one_hot_encode(Y_train, 10)
     Y_val = one_hot_encode(Y_val, 10)
+    """
+    t0 = time.time()
 
     model = SoftmaxModel(
         neurons_per_layer,
@@ -35,33 +42,223 @@ if __name__ == "__main__":
     )
     train_history, val_history = trainer.train(num_epochs)
 
-    # Example created in assignment text - Comparing with and without shuffling.
-    # YOU CAN DELETE EVERYTHING BELOW!
-    shuffle_data = False
-    model_no_shuffle = SoftmaxModel(
+    t1 = time.time()
+    print("Time Original: ", t1-t0)
+
+    use_improved_weight_init = True
+
+    t2 = time.time()
+
+    model_improved_weight = SoftmaxModel(
         neurons_per_layer,
         use_improved_sigmoid,
         use_improved_weight_init)
-    trainer_shuffle = SoftmaxTrainer(
+        
+    trainer_improved_weight = SoftmaxTrainer(
         momentum_gamma, use_momentum,
-        model_no_shuffle, learning_rate, batch_size, shuffle_data,
+        model_improved_weight, learning_rate, batch_size, shuffle_data,
         X_train, Y_train, X_val, Y_val,
     )
-    train_history_no_shuffle, val_history_no_shuffle = trainer_shuffle.train(
-        num_epochs)
-    shuffle_data = True
 
+    train_history_improved_weight, val_history_improved_weight = trainer_improved_weight.train(
+        num_epochs)
+
+    t3 = time.time()
+
+    print("Time Improved weight: ", t3-t2)
+    plt.figure(figsize=(20, 12))
     plt.subplot(1, 2, 1)
     utils.plot_loss(train_history["loss"],
-                    "Task 2 Model", npoints_to_average=10)
+                    "Task 2 Model - Without improved weights", npoints_to_average=10)
     utils.plot_loss(
-        train_history_no_shuffle["loss"], "Task 2 Model - No dataset shuffling", npoints_to_average=10)
+        train_history_improved_weight["loss"], f"Task 3a Model - With improved weights.", npoints_to_average=10)
     plt.ylim([0, .4])
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Cross Entropy Loss - Average")
+    plt.legend()
     plt.subplot(1, 2, 2)
-    plt.ylim([0.85, .95])
-    utils.plot_loss(val_history["accuracy"], "Task 2 Model")
+    plt.ylim([0.85, 1])
+    utils.plot_loss(val_history["accuracy"], f"Task 2 Model - Without improved weights T = {round(t1-t0,2)} sec")
     utils.plot_loss(
-        val_history_no_shuffle["accuracy"], "Task 2 Model - No Dataset Shuffling")
+        val_history_improved_weight["accuracy"], f"Task 3a Model - With improved weights. T = {round(t3-t2,2)} sec")
+    plt.ylabel("Validation Accuracy")
+    plt.xlabel("Number of Training Steps")
+
+    plt.legend()
+    plt.savefig("task3a_train_loss.png")
+    plt.show()
+
+
+    use_improved_sigmoid = True
+
+    t4 = time.time()
+
+    model_improved_sigmoid = SoftmaxModel(
+        neurons_per_layer,
+        use_improved_sigmoid,
+        use_improved_weight_init)
+        
+    trainer_improved_sigmoid = SoftmaxTrainer(
+        momentum_gamma, use_momentum,
+        model_improved_sigmoid, learning_rate, batch_size, shuffle_data,
+        X_train, Y_train, X_val, Y_val,
+    )
+
+    train_history_improved_sigmoid, val_history_improved_sigmoid = trainer_improved_sigmoid.train(
+        num_epochs)
+
+    t5 = time.time()
+
+    print("Time Improved sigmoid: ", t5-t4)
+    plt.figure(figsize=(20, 12))
+    plt.subplot(1, 2, 1)
+    utils.plot_loss(
+        train_history_improved_weight["loss"], "Task 3a Model - Without improved sigmoid", npoints_to_average=10)
+    utils.plot_loss(train_history_improved_sigmoid["loss"],
+                    "Task 3b Model - With improved sigmoid", npoints_to_average=10)
+    plt.ylim([0, .4])
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Cross Entropy Loss - Average")
+    plt.legend()
+    plt.subplot(1, 2, 2)
+    plt.ylim([0.85, 1])
+
+    utils.plot_loss(
+        val_history_improved_weight["accuracy"], f"Task 3a Model - Without improved sigmoid. T = {round(t3-t2,2)} sec")
+
+    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - With improved sigmoid. T = {round(t5-t4,2)} sec")
+    
+    plt.ylabel("Validation Accuracy")
+    plt.xlabel("Number of Training Steps")
+
+    plt.legend()
+    plt.savefig("task3b_train_loss.png")
+    plt.show()
+
+    use_momentum = True
+    learning_rate = 0.02
+
+    t6 = time.time()
+
+    model_momentum = SoftmaxModel(
+        neurons_per_layer,
+        use_improved_sigmoid,
+        use_improved_weight_init)
+        
+    trainer_momentum = SoftmaxTrainer(
+        momentum_gamma, use_momentum,
+        model_momentum, learning_rate, batch_size, shuffle_data,
+        X_train, Y_train, X_val, Y_val,
+    )
+
+    train_history_momentum, val_history_momentum = trainer_momentum.train(
+        num_epochs)
+
+    t7 = time.time()
+
+    print("Time Momentum: ", t7-t6)
+
+    plt.subplot(1, 2, 1)
+
+    utils.plot_loss(train_history_improved_sigmoid["loss"],
+                    "Task 3b Model - Without momentum", npoints_to_average=10)
+
+    utils.plot_loss(
+        train_history_momentum["loss"], "Task 3c Model - With Momentum", npoints_to_average=10)
+    
+
+    plt.ylim([0, .4])
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Cross Entropy Loss - Average")
+    plt.legend()
+    plt.subplot(1, 2, 2)
+    plt.ylim([0.85, 1])
+
+    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - Without Momentum. T = {round(t5-t4,2)} sec")
+
+    utils.plot_loss(
+        val_history_momentum["accuracy"], f"Task 3c Model - With Momentum. T = {round(t7-t6,2)} sec")
+    
+    plt.xlabel("Number of Training Steps")
     plt.ylabel("Validation Accuracy")
     plt.legend()
+    plt.savefig("task3c_train_loss.png")
+    plt.show()
+
+    """
+
+    use_momentum = True
+    learning_rate = 0.02
+    use_improved_weight_init = True
+    use_improved_sigmoid = True
+
+    t6 = time.time()
+
+    model_64 = SoftmaxModel(
+        neurons_per_layer,
+        use_improved_sigmoid,
+        use_improved_weight_init)
+        
+    trainer_64 = SoftmaxTrainer(
+        momentum_gamma, use_momentum,
+        model_64, learning_rate, batch_size, shuffle_data,
+        X_train, Y_train, X_val, Y_val,
+    )
+
+    train_history_64, val_history_momentum = trainer_momentum.train(
+        num_epochs)
+
+    t7 = time.time()
+
+    print("Time 64 hidden units: ", t7-t6)
+
+    t8 = time.time()
+
+    model_32 = SoftmaxModel(
+        neurons_per_layer,
+        use_improved_sigmoid,
+        use_improved_weight_init)
+        
+    trainer_32 = SoftmaxTrainer(
+        momentum_gamma, use_momentum,
+        model_32, learning_rate, batch_size, shuffle_data,
+        X_train, Y_train, X_val, Y_val,
+    )
+
+    train_history_32, val_history_32 = trainer_32.train(
+        num_epochs)
+
+    t9 = time.time()
+
+    print("Time 32 hidden units: ", t9-t8)
+
+
+
+
+
+    plt.subplot(1, 2, 1)
+
+    utils.plot_loss(train_history_improved_sigmoid["loss"],
+                    "Task 3b Model - Without momentum", npoints_to_average=10)
+
+    utils.plot_loss(
+        train_history_momentum["loss"], "Task 3c Model - With Momentum", npoints_to_average=10)
+    
+
+    plt.ylim([0, .4])
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Cross Entropy Loss - Average")
+    plt.legend()
+    plt.subplot(1, 2, 2)
+    plt.ylim([0.85, 1])
+
+    utils.plot_loss(val_history_improved_sigmoid["accuracy"], f"Task 3b Model - Without Momentum. T = {round(t5-t4,2)} sec")
+
+    utils.plot_loss(
+        val_history_momentum["accuracy"], f"Task 3c Model - With Momentum. T = {round(t7-t6,2)} sec")
+    
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Validation Accuracy")
+    plt.legend()
+    plt.savefig("task3c_train_loss.png")
     plt.show()
