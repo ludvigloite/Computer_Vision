@@ -4,7 +4,7 @@ import typing
 np.random.seed(1)
 
 
-def pre_process_images(X: np.ndarray):
+def pre_process_images(X: np.ndarray, mean: int, std: int):
     """
     Args:
         X: images of shape [batch size, 784] in the range (0, 255)
@@ -14,12 +14,12 @@ def pre_process_images(X: np.ndarray):
     assert X.shape[1] == 784,\
         f"X.shape[1]: {X.shape[1]}, should be 784"
     
-    mean = X.mean()
-    std = X.std()
+    #mean = X.mean()
+    #std = X.std()
 
     X = (X - mean) / std
 
-    X = np.insert(X,X.shape[1],1,axis=1)
+    X = np.insert(X,X.shape[1],1,axis=1) # bias trick
 
     return X
 
@@ -202,7 +202,10 @@ if __name__ == "__main__":
 
     X_train, Y_train, *_ = utils.load_full_mnist()
 
-    X_train = pre_process_images(X_train)
+    mean = np.mean(X_train)
+    std = np.std(X_train)
+
+    X_train = pre_process_images(X_train, mean, std)
     Y_train = one_hot_encode(Y_train, 10)
     assert X_train.shape[1] == 785,\
         f"Expected X_train to have 785 elements per image. Shape was: {X_train.shape}"

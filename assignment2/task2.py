@@ -115,8 +115,12 @@ if __name__ == "__main__":
 
     # Load dataset
     X_train, Y_train, X_val, Y_val = utils.load_full_mnist()
-    X_train = pre_process_images(X_train)
-    X_val = pre_process_images(X_val)
+
+    mean = np.mean(X_train)
+    std = np.std(X_train)
+
+    X_train = pre_process_images(X_train, mean, std)
+    X_val = pre_process_images(X_val, mean, std)
     Y_train = one_hot_encode(Y_train, 10)
     Y_val = one_hot_encode(Y_val, 10)
     # Hyperparameters
