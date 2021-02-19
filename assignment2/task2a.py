@@ -19,7 +19,7 @@ def pre_process_images(X: np.ndarray, mean: int, std: int):
 
     X = (X - mean) / std
 
-    X = np.insert(X,X.shape[1],1,axis=1) # bias trick
+    X = np.insert(X,X.shape[1],1,axis=1) #bias trick
 
     return X
 
@@ -73,7 +73,7 @@ class SoftmaxModel:
             w_shape = (prev, size)
             print("Initializing weight to shape:", w_shape)
             if use_improved_weight_init:
-                w = np.random.normal(0,1/np.sqrt(size), w_shape)
+                w = np.random.normal(0,1/np.sqrt(prev), w_shape)
             else:
                 w = np.random.uniform(-1,1, w_shape)
             self.ws.append(w)

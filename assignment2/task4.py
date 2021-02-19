@@ -7,10 +7,10 @@ import time
 
 if __name__ == "__main__":
 
-    run4ab = True
+    run4ab = False
     run4de = True
 
-    run4e = True
+    run4e = False
 
     num_epochs = 50
     learning_rate = .1

@@ -39,10 +39,7 @@ class SoftmaxTrainer(BaseTrainer):
         self.use_momentum = use_momentum
         # Init a history of previous gradients to use for implementing momentum
         self.previous_grads = [np.zeros_like(w) for w in self.model.ws]
-        #self.model.ws[0] = np.random.uniform(-1,1, (785,64))
-        #self.model.ws[1] = np.random.uniform(-1,1, (64,10))
-        #print("ws[0]: ",self.model.ws[0].shape)
-        #print("ws[1]: ",self.model.ws[1].shape)
+
 
 
 
