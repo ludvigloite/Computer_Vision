@@ -256,7 +256,6 @@ if __name__ == "__main__":
             utils.plot_loss(val_history_c["accuracy"], "Validation accuracy - 10 layers")
 
 
-
         plt.xlabel("Number of Training Steps")
         plt.ylabel("Accuracy")
         plt.legend()
@@ -265,6 +264,3 @@ if __name__ == "__main__":
         else:
             plt.savefig("task4d.png")
         plt.show()
-
-
-    
