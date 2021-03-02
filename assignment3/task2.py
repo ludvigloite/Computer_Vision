@@ -37,30 +37,12 @@ class ExampleModel(nn.Module):
                 kernel_size=2,
                 stride=2
             ),
-            nn.Conv2d(
-                in_channels=32,
-                out_channels=64,
-                kernel_size=5,
-                stride=1,
-                padding=2
-            ),
+            nn.Conv2d(32, 64, 5, padding=2),
             nn.ReLU(),
-            nn.MaxPool2d(
-                kernel_size=2,
-                stride=2
-            ),
-            nn.Conv2d(
-                in_channels=64,
-                out_channels=128,
-                kernel_size=5,
-                stride=1,
-                padding=2
-            ),
+            nn.MaxPool2d(2,2),
+            nn.Conv2d(64, 128, 5, padding=2),
             nn.ReLU(),
-            nn.MaxPool2d(
-                kernel_size=2,
-                stride=2
-            )
+            nn.MaxPool2d(2,2),
         )
         # The output of feature_extractor will be [batch_size, num_filters, 16, 16]
         self.num_output_features = 4*4*128
@@ -132,4 +114,19 @@ if __name__ == "__main__":
         dataloaders
     )
     trainer.train()
+    
+    trainer.model.eval()
+    train_loss, train_acc = compute_loss_and_accuracy(
+        trainer.dataloader_train, model, trainer.loss_criterion)
+    val_loss, val_acc = compute_loss_and_accuracy(
+        trainer.dataloader_val, model, trainer.loss_criterion)
+    test_loss, test_acc = compute_loss_and_accuracy(
+        trainer.dataloader_test, model, trainer.loss_criterion)
+    
+    print("\nAccuracies: \n")
+    
+    print(f"Train accuracy: \t {train_acc:.3f}")
+    print(f"Validation accuracy: \t {val_acc:.3f}")
+    print(f"Test accuracy: \t {test_acc:.3f}\n")
+    
     create_plots(trainer, "task2")
