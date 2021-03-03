@@ -2,7 +2,7 @@ import pathlib
 import matplotlib.pyplot as plt
 import utils
 from torch import nn
-from dataloaders import load_cifar10
+from dataloaders import load_cifar10, load_cifar10_augmented, load_cifar10_augmented_lite
 from trainer import Trainer, compute_loss_and_accuracy
 
 
@@ -21,44 +21,57 @@ class Model1(nn.Module):
         
         self.num_classes = num_classes
         
-        kernel_size_conv = 5
-        padding_conv = kernel_size_conv // 2
-        print(padding_conv)
+        kernel = 3
+        pad = 1
+        
+        num_filters_l1 = 64
+        num_filters_l2 = 128
+        num_filters_l3 = 256
         
         # Define the convolutional layers
         self.feature_extractor = nn.Sequential(
             nn.Conv2d(
                 in_channels=image_channels,
-                out_channels=32,
-                kernel_size=5,
+                out_channels=num_filters_l1,
+                kernel_size=kernel,
                 stride=1,
-                padding=2
+                padding=pad
             ),
+            nn.BatchNorm2d(num_filters_l1),
             nn.ReLU(),
-            nn.Conv2d(32, 32, 5, padding=2),
+            nn.Conv2d(num_filters_l1, num_filters_l1, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l1),
             nn.ReLU(),
             nn.MaxPool2d(
                 kernel_size=2,
                 stride=2
             ),
-            nn.Conv2d(32, 64, 5, padding=2),
+            nn.Conv2d(num_filters_l1, num_filters_l2, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l2),
             nn.ReLU(),
-            nn.Conv2d(64, 64, 5, padding=2),
+            nn.Conv2d(num_filters_l2, num_filters_l2, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l2),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
-            nn.Conv2d(64, 128, 5, padding=2),
+            nn.Conv2d(num_filters_l2, num_filters_l3, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l3),
+            nn.ReLU(),
+            nn.Conv2d(num_filters_l3, num_filters_l3, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l3),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
         )
         # The output of feature_extractor will be [batch_size, num_filters, 16, 16]
         
-        self.num_output_features = 4*4*128
+        self.num_output_features = 4*4*num_filters_l3
         
         self.classifier = nn.Sequential(
             nn.Flatten(),
             nn.Linear(self.num_output_features, 64),
+            nn.BatchNorm1d(64),
             nn.ReLU(),
-            nn.Linear(64, num_classes)
+            nn.Linear(64, num_classes),
+            nn.BatchNorm1d(num_classes),
         )
 
     def forward(self, x):
@@ -77,11 +90,11 @@ class Model1(nn.Module):
         assert out.shape == (batch_size, self.num_classes),\
             f"Expected output of forward pass to be: {expected_shape}, but got: {out.shape}"
         return out
+
     
+
     
-    
-    
-    
+
 class Model2(nn.Module):
 
     def __init__(self,
@@ -97,38 +110,57 @@ class Model2(nn.Module):
         
         self.num_classes = num_classes
         
+        kernel = 3
+        pad = 1
+        
+        num_filters_l1 = 64
+        num_filters_l2 = 128
+        num_filters_l3 = 256
         
         # Define the convolutional layers
         self.feature_extractor = nn.Sequential(
             nn.Conv2d(
                 in_channels=image_channels,
-                out_channels=32,
-                kernel_size=5,
+                out_channels=num_filters_l1,
+                kernel_size=kernel,
                 stride=1,
-                padding=2
+                padding=pad
             ),
-            #using relu as activation func
+            nn.BatchNorm2d(num_filters_l1),
+            nn.ReLU(),
+            nn.Conv2d(num_filters_l1, num_filters_l1, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l1),
             nn.ReLU(),
             nn.MaxPool2d(
                 kernel_size=2,
                 stride=2
             ),
-            nn.Conv2d(32, 64, 5, padding=2),
+            nn.Conv2d(num_filters_l1, num_filters_l2, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l2),
+            nn.ReLU(),
+            nn.Conv2d(num_filters_l2, num_filters_l2, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l2),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
-            nn.Conv2d(64, 128, 5, padding=2),
+            nn.Conv2d(num_filters_l2, num_filters_l3, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l3),
+            nn.ReLU(),
+            nn.Conv2d(num_filters_l3, num_filters_l3, kernel, padding=pad),
+            nn.BatchNorm2d(num_filters_l3),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
         )
         # The output of feature_extractor will be [batch_size, num_filters, 16, 16]
         
-        self.num_output_features = 4*4*128
+        self.num_output_features = 4*4*num_filters_l3
         
         self.classifier = nn.Sequential(
             nn.Flatten(),
             nn.Linear(self.num_output_features, 64),
+            nn.BatchNorm1d(64),
             nn.ReLU(),
-            nn.Linear(64, num_classes)
+            nn.Linear(64, num_classes),
+            nn.BatchNorm1d(num_classes),
         )
 
     def forward(self, x):
@@ -172,14 +204,14 @@ if __name__ == "__main__":
     # You can try to change this and check if you still get the same result! 
     utils.set_seed(0)
     
-    modelnr = 1
+    modelnr = 2
     
     if modelnr == 1:
         epochs = 10
         batch_size = 64
         learning_rate = 5e-2
         early_stop_count = 4
-        dataloaders = load_cifar10(batch_size)
+        dataloaders = load_cifar10_augmented_lite(batch_size)
         
         model = Model1(image_channels=3, num_classes=10)
         trainer = Trainer(
@@ -212,7 +244,7 @@ if __name__ == "__main__":
         batch_size = 64
         learning_rate = 5e-2
         early_stop_count = 4
-        dataloaders = load_cifar10(batch_size)
+        dataloaders = load_cifar10_augmented(batch_size)
         
         model = Model2(image_channels=3, num_classes=10)
         trainer = Trainer(
