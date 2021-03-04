@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import utils
 import torchvision
 from torch import nn
-from dataloaders import load_cifar10, load_cifar10_augmented, load_cifar10_augmented_lite
+from dataloaders import load_cifar10, load_cifar10_augmented
 from trainer import Trainer, compute_loss_and_accuracy
 
-class Model2(nn.Module):
+class Model(nn.Module):
 
     def __init__(self,
                  image_channels,
@@ -101,7 +101,7 @@ class Model2(nn.Module):
         # return out
         x = self.model(x)
         return x
-    
+
 
 # -
 
@@ -114,10 +114,13 @@ def create_plots(trainer: Trainer, name: str):
     plt.title("Cross Entropy Loss")
     utils.plot_loss(trainer.train_history["loss"], label="Training loss", npoints_to_average=10)
     utils.plot_loss(trainer.validation_history["loss"], label="Validation loss")
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Cross Entropy Loss")
     plt.legend()
     plt.subplot(1, 2, 2)
     plt.title("Accuracy")
     utils.plot_loss(trainer.validation_history["accuracy"], label="Validation Accuracy")
+    plt.xlabel("Number of Training Steps")
     plt.legend()
     plt.savefig(plot_path.joinpath(f"{name}_plot.png"))
     plt.show()
@@ -129,12 +132,13 @@ if __name__ == "__main__":
     utils.set_seed(0)
         
     epochs = 10
-    batch_size = 64
-    learning_rate = 5e-2
+    batch_size = 32
+    learning_rate = 5e-4
     early_stop_count = 4
+    #dataloaders = load_cifar10(batch_size)
     dataloaders = load_cifar10_augmented(batch_size)
     
-    model = Model2(image_channels=3, num_classes=10)
+    model = Model(image_channels=3, num_classes=10)
     trainer = Trainer(
         batch_size,
         learning_rate,

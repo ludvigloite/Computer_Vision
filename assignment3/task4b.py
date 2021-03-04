@@ -47,3 +47,24 @@ def torch_image_to_numpy(image: torch.Tensor):
 
 
 indices = [14, 26, 32, 49, 52]
+
+
+
+if __name__ == "__main__":
+    # Task 4b filter images
+    plt.figure(figsize=(15, 6))
+    for i in range(len(indices)):
+        # Extract and plot filter
+        plt.subplot(2,len(indices), i + 1)
+        filter = torch_image_to_numpy(first_conv_layer.weight[indices[i],:,:,:])
+        plt.imshow(filter)
+        plt.title(f"Filter {indices[i]}")
+
+        # Extract and plot corresponding activations
+        plt.subplot(2,len(indices),i+len(indices) + 1)
+        activation_image = torch_image_to_numpy(activation[0,indices[i],:,:])
+        plt.imshow(activation_image, cmap='gray')
+        plt.title(f"Activation {indices[i]}")
+    
+    plt.savefig(f"plots/task4b.png")
+    plt.show()
