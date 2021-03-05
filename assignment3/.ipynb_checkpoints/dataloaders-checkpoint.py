@@ -124,7 +124,7 @@ def load_cifar10_augmented(batch_size: int, validation_fraction: float = 0.1
                                                   batch_size=batch_size,
                                                   shuffle=False,
                                                   num_workers=2)
-
+    print("size: ", size)
     return dataloader_train, dataloader_val, dataloader_test
 
 def load_cifar10_augmented_lite(batch_size: int, validation_fraction: float = 0.1
