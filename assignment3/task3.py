@@ -509,7 +509,6 @@ if __name__ == "__main__":
         print()
         
     if compare:
-        
 
         epochs = 10
         batch_size = 64

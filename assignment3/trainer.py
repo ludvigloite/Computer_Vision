@@ -85,7 +85,7 @@ class Trainer:
         # Define our optimizer. SGD = Stochastich Gradient Descent 
         
         # Use Adam only for transfer learning model in task 4, else SGD
-        useAdam = False
+        useAdam = True
         
         if useAdam:
             self.optimizer = torch.optim.Adam(self.model.parameters(),

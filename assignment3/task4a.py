@@ -28,60 +28,7 @@ class Model(nn.Module):
         for param in self.model.layer4.parameters(): # Unfreeze the last 5 convolutional
             param.requires_grad = True # layers
         
-        # self.num_classes = num_classes
         
-        # kernel = 3
-        # pad = 1
-        
-        # num_filters_l1 = 64
-        # num_filters_l2 = 128
-        # num_filters_l3 = 256
-        
-        # # Define the convolutional layers
-        # self.feature_extractor = nn.Sequential(
-        #     nn.Conv2d(
-        #         in_channels=image_channels,
-        #         out_channels=num_filters_l1,
-        #         kernel_size=kernel,
-        #         stride=1,
-        #         padding=pad
-        #     ),
-        #     nn.BatchNorm2d(num_filters_l1),
-        #     nn.ReLU(),
-        #     nn.Conv2d(num_filters_l1, num_filters_l1, kernel, padding=pad),
-        #     nn.BatchNorm2d(num_filters_l1),
-        #     nn.ReLU(),
-        #     nn.MaxPool2d(
-        #         kernel_size=2,
-        #         stride=2
-        #     ),
-        #     nn.Conv2d(num_filters_l1, num_filters_l2, kernel, padding=pad),
-        #     nn.BatchNorm2d(num_filters_l2),
-        #     nn.ReLU(),
-        #     nn.Conv2d(num_filters_l2, num_filters_l2, kernel, padding=pad),
-        #     nn.BatchNorm2d(num_filters_l2),
-        #     nn.ReLU(),
-        #     nn.MaxPool2d(2,2),
-        #     nn.Conv2d(num_filters_l2, num_filters_l3, kernel, padding=pad),
-        #     nn.BatchNorm2d(num_filters_l3),
-        #     nn.ReLU(),
-        #     nn.Conv2d(num_filters_l3, num_filters_l3, kernel, padding=pad),
-        #     nn.BatchNorm2d(num_filters_l3),
-        #     nn.ReLU(),
-        #     nn.MaxPool2d(2,2),
-        # )
-        # # The output of feature_extractor will be [batch_size, num_filters, 16, 16]
-        
-        # self.num_output_features = 4*4*num_filters_l3
-        
-        # self.classifier = nn.Sequential(
-        #     nn.Flatten(),
-        #     nn.Linear(self.num_output_features, 64),
-        #     nn.BatchNorm1d(64),
-        #     nn.ReLU(),
-        #     nn.Linear(64, num_classes),
-        #     nn.BatchNorm1d(num_classes),
-        # )
 
     def forward(self, x):
         """
@@ -89,16 +36,6 @@ class Model(nn.Module):
         Args:
             x: Input image, shape: [batch_size, 3, 32, 32]
         """
-        
-        # batch_size = x.shape[0]
-        # feature = self.feature_extractor(x)
-        # out = self.classifier(feature)
-        
-        
-        # expected_shape = (batch_size, self.num_classes)
-        # assert out.shape == (batch_size, self.num_classes),\
-        #     f"Expected output of forward pass to be: {expected_shape}, but got: {out.shape}"
-        # return out
         x = self.model(x)
         return x
 
@@ -134,7 +71,7 @@ if __name__ == "__main__":
     epochs = 10
     batch_size = 32
     learning_rate = 5e-4
-    early_stop_count = 4
+    early_stop_count = 5
     #dataloaders = load_cifar10(batch_size)
     dataloaders = load_cifar10_resized(batch_size)
     
@@ -157,12 +94,23 @@ if __name__ == "__main__":
     test_loss, test_acc = compute_loss_and_accuracy(
         trainer.dataloader_test, model, trainer.loss_criterion)
     
-    trainer_model2 = trainer
-
     print("\nAccuracies: \n")
 
     print(f"Train accuracy: \t {train_acc:.3f}")
     print(f"Validation accuracy: \t {val_acc:.3f}")
     print(f"Test accuracy: \t {test_acc:.3f}\n")
-    create_plots(trainer, "task4a")
+    
+    #create_plots(trainer, "task4a")
+    
+    
+    plot_path = pathlib.Path("plots")
+    plot_path.mkdir(exist_ok=True)
 
+    plt.figure(figsize=(20, 8))
+    plt.title("Cross Entropy Loss")
+    utils.plot_loss(trainer.train_history["loss"], label="Training loss", npoints_to_average=10)
+    utils.plot_loss(trainer.validation_history["loss"], label="Validation loss")
+    plt.xlabel("Number of Training Steps")
+    plt.ylabel("Cross Entropy Loss - Average")
+    plt.legend()
+    plt.savefig(plot_path.joinpath(f"task4a_loss_plot.png"))
