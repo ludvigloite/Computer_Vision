@@ -83,11 +83,16 @@ class Trainer:
         print(self.model)
 
         # Define our optimizer. SGD = Stochastich Gradient Descent
-        #self.optimizer = torch.optim.SGD(self.model.parameters(),
-        #                                 self.learning_rate)
-        self.optimizer = torch.optim.Adam(self.model.parameters(),
-                                          self.learning_rate)
-        print("Optimizer: Adam")
+        # Use Adam only for transfer learning model in task 4, else SGD
+        useAdam = False
+        if useAdam:
+            self.optimizer = torch.optim.Adam(self.model.parameters(),
+                                              self.learning_rate)
+            print("Optimizer: Adam")
+        else:
+            self.optimizer = torch.optim.SGD(self.model.parameters(),
+                                             self.learning_rate)
+            print("Optimizer: SGD")
 
         # Load our dataset
         self.dataloader_train, self.dataloader_val, self.dataloader_test = dataloaders

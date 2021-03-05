@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import utils
 import torchvision
 from torch import nn
-from dataloaders import load_cifar10, load_cifar10_augmented
+from dataloaders import load_cifar10, load_cifar10_augmented, load_cifar10_resized
 from trainer import Trainer, compute_loss_and_accuracy
 
 class Model(nn.Module):
@@ -135,8 +135,7 @@ if __name__ == "__main__":
     batch_size = 32
     learning_rate = 5e-4
     early_stop_count = 4
-    #dataloaders = load_cifar10(batch_size)
-    dataloaders = load_cifar10_augmented(batch_size)
+    dataloaders = load_cifar10_resized(batch_size)
     
     model = Model(image_channels=3, num_classes=10)
     trainer = Trainer(
