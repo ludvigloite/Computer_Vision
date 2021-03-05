@@ -45,7 +45,7 @@ def task4b():
         plt.imshow(activation_image, cmap='gray')
         plt.title(f"Activation {indices[i]}")
     
-    plt.savefig(f"plots/task4b2.png")
+    plt.savefig(f"plots/task4b.png")
     plt.show()
     
     
@@ -64,52 +64,19 @@ def task4c(image):
     image = model.layer3(image)
     image = model.layer4(image)
     
+    
+    
+    
     plt.figure(figsize=(15, 6))
-    
-    """  # THIS WILL PLOT BOTH ACTIVATION AND FILTER
-    
-    plt.figure(figsize=(15, 12))
-    
-    for i in range(5):
-        
-        # Extract and plot filter
-        plt.subplot(4,5, i + 1)
-        filter = torch_image_to_numpy(image[0,i,:,:])
-        plt.imshow(filter)
-        plt.title(f"Filter {i}")
-        
-        
-        # Extract and plot corresponding activations
-        plt.subplot(4,5,i+5 + 1)
-        activation_image = torch_image_to_numpy(activation[0,i,:,:])
-        plt.imshow(activation_image, cmap='gray')
-        plt.title(f"Activation {i}")
-        
-    for j in range(5):
-        i = j+10
-        
-        # Extract and plot filter
-        plt.subplot(4,5, i + 1)
-        filter = torch_image_to_numpy(image[0,i,:,:])
-        plt.imshow(filter)
-        plt.title(f"Filter {i}")
-        
-        
-        # Extract and plot corresponding activations
-        plt.subplot(4,5,i+5 + 1)
-        activation_image = torch_image_to_numpy(activation[0,i,:,:])
-        plt.imshow(activation_image, cmap='gray')
-        plt.title(f"Activation {i}")
-        
-    """
     
     for i in range(nrFilters):
         
         # Extract and plot corresponding activations
         plt.subplot(2,5,i + 1)
-        activation_image = torch_image_to_numpy(activation[0,i,:,:])
+        activation_image = torch_image_to_numpy(image[0,i,:,:])
         plt.imshow(activation_image, cmap='gray')
         plt.title(f"Activation {i}")
+        #print(f"i: {i} , shape: {activation_image.shape}")
     
     plt.savefig(f"plots/task4c.png")
     plt.show()
@@ -139,5 +106,7 @@ if __name__ == "__main__":
     activation = first_conv_layer(image)
     print("Activation shape:", activation.shape)
     
-    #task4b()
+    
+    
+    task4b()
     task4c(image)
