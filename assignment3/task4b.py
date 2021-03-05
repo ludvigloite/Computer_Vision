@@ -107,6 +107,5 @@ if __name__ == "__main__":
     print("Activation shape:", activation.shape)
     
     
-    
     task4b()
     task4c(image)

@@ -136,7 +136,6 @@ class Model1_improved(nn.Module):
                 kernel_size=2,
                 stride=2
             ),
-            #nn.Dropout(p=0.1),
             nn.Conv2d(num_filters_l1, num_filters_l2, kernel, padding=pad),
             nn.BatchNorm2d(num_filters_l2),
             nn.ReLU(),
@@ -144,7 +143,6 @@ class Model1_improved(nn.Module):
             nn.BatchNorm2d(num_filters_l2),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
-            #nn.Dropout(p=0.1),
             nn.Conv2d(num_filters_l2, num_filters_l3, kernel, padding=pad),
             nn.BatchNorm2d(num_filters_l3),
             nn.ReLU(),
@@ -152,7 +150,6 @@ class Model1_improved(nn.Module):
             nn.BatchNorm2d(num_filters_l3),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
-            #nn.Dropout(p=0.1),
         )
         # The output of feature_extractor will be [batch_size, num_filters, 16, 16]
         
@@ -217,10 +214,6 @@ class Model2(nn.Module):
                 stride=1,
                 padding=pad
             ),
-            #nn.BatchNorm2d(num_filters_l1),
-            #nn.ReLU(),
-            #nn.Conv2d(num_filters_l1, num_filters_l1, kernel, padding=pad),
-            #nn.BatchNorm2d(num_filters_l1),
             nn.ReLU(),
             nn.MaxPool2d(
                 kernel_size=2,
@@ -228,18 +221,10 @@ class Model2(nn.Module):
             ),
             nn.Dropout(p=0.1),
             nn.Conv2d(num_filters_l1, num_filters_l2, kernel, padding=pad),
-            #nn.BatchNorm2d(num_filters_l2),
-            #nn.ReLU(),
-            #nn.Conv2d(num_filters_l2, num_filters_l2, kernel, padding=pad),
-            #nn.BatchNorm2d(num_filters_l2),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
             nn.Dropout(p=0.1),
             nn.Conv2d(num_filters_l2, num_filters_l3, kernel, padding=pad),
-            #nn.BatchNorm2d(num_filters_l3),
-            #nn.ReLU(),
-            #nn.Conv2d(num_filters_l3, num_filters_l3, kernel, padding=pad),
-            #nn.BatchNorm2d(num_filters_l3),
             nn.ReLU(),
             nn.MaxPool2d(2,2),
             nn.Dropout(p=0.1),
@@ -251,10 +236,8 @@ class Model2(nn.Module):
         self.classifier = nn.Sequential(
             nn.Flatten(),
             nn.Linear(self.num_output_features, 64),
-            nn.BatchNorm1d(64),
             nn.ReLU(),
             nn.Linear(64, num_classes),
-            nn.BatchNorm1d(num_classes),
         )
 
     def forward(self, x):
@@ -273,7 +256,6 @@ class Model2(nn.Module):
         assert out.shape == (batch_size, self.num_classes),\
             f"Expected output of forward pass to be: {expected_shape}, but got: {out.shape}"
         return out
-    
     
     
     
@@ -389,6 +371,11 @@ if __name__ == "__main__":
     # You can try to change this and check if you still get the same result! 
     utils.set_seed(0)
     
+    # modelnr:
+    # 1: Model 1
+    # 2: Model 1 improved
+    # 3: Model 2
+
     modelnr = 1
     compare = True
     
@@ -453,8 +440,6 @@ if __name__ == "__main__":
         test_loss, test_acc = compute_loss_and_accuracy(
             trainer.dataloader_test, model, trainer.loss_criterion)
         
-        #trainer_model2 = trainer
-
         print("\nAccuracies: \n")
 
         print(f"Train accuracy: \t {train_acc:.3f}")
@@ -505,8 +490,6 @@ if __name__ == "__main__":
         print(f"Test accuracy: \t {test_acc:.3f}\n")
         create_plots(trainer, "task3_model2")
         
-    else:
-        print()
         
     if compare:
 

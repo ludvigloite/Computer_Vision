@@ -7,9 +7,9 @@ Group 200
 
 :white_check_mark:  Assignment 2
 
-:x:  Assignment 3   (Deadline 05.03.21)
+:white_check_mark:  Assignment 3
 
-:x:  Assignment 4
+:x:  Assignment 4   (Deadline 19.03.21)
 
 ## Other
 [Starting code](https://github.com/hukkelas/TDT4265-StarterCode)

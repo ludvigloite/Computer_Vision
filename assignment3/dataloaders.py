@@ -125,7 +125,6 @@ def load_cifar10_augmented(batch_size: int, validation_fraction: float = 0.1
     transform_train = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean, std),
-        #transforms.Resize(size),
         transforms.RandomHorizontalFlip(0.5),
         transforms.RandomApply(torch.nn.ModuleList([
             transforms.ColorJitter(hue=.1, saturation=.3, contrast=.3),
@@ -134,7 +133,6 @@ def load_cifar10_augmented(batch_size: int, validation_fraction: float = 0.1
     transform_test = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean, std),
-        #transforms.Resize(size),
     ])
     data_train = datasets.CIFAR10('data/cifar10',
                                   train=True,
@@ -175,7 +173,6 @@ def load_cifar10_augmented(batch_size: int, validation_fraction: float = 0.1
                                                   batch_size=batch_size,
                                                   shuffle=False,
                                                   num_workers=2)
-    #print("size: ", size)
     return dataloader_train, dataloader_val, dataloader_test
 
 def load_cifar10_augmented_lite(batch_size: int, validation_fraction: float = 0.1
