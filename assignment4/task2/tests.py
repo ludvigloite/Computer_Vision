@@ -47,6 +47,7 @@ def test_iou():
     res = round(calculate_iou(b1, b2), 5)
     ans = 0.82265
     assert res == ans, "Expected {}, got: {}".format(ans, res)
+    print("IoU works good")
 
 
 def test_precision():
@@ -59,7 +60,7 @@ def test_precision():
     res = calculate_precision(10, 20, 0)
     ans = 1/3
     assert res == ans, "Expected {}, got: {}".format(ans, res)
-
+    print("precision working!")
 
 def test_recall():
     print("="*80)
@@ -71,7 +72,7 @@ def test_recall():
     res = calculate_recall(10, 0, 30)
     ans = 1/4
     assert res == ans, "Expected {}, got: {}".format(ans, res)
-
+    print("recall working!")
 
 def test_get_all_box_matches():
     print("="*80)
@@ -108,6 +109,7 @@ def test_get_all_box_matches():
     res1, res2 = get_all_box_matches(np.array([]), np.array([]), 0.5)
     assert res1.size == 0
     assert res2.size == 0
+    print("finished testing all boxes")
 
 
 def test_calculate_individual_image_result():
@@ -138,6 +140,7 @@ def test_calculate_individual_image_result():
         ans2, res["false_pos"])
     assert res["false_neg"] == ans3, "Expected {}, got: {}".format(
         ans3, res["false_neg"])
+    print("finished test_Calc_ind_image_result")
 
 
 def test_calculate_precision_recall_all_images():
@@ -162,6 +165,7 @@ def test_calculate_precision_recall_all_images():
     res1, res2 = calculate_precision_recall_all_images([b1, b2], [b2, b2], 0.5)
     assert res1 == ans1, "Expected {}, got: {}".format(ans1, res1)
     assert res2 == ans2, "Expected {}, got: {}".format(ans2, res2)
+    print("finished precision and recall all images")
 
 
 def test_get_precision_recall_curve():

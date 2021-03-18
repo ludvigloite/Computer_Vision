@@ -15,13 +15,31 @@ def calculate_iou(prediction_box, gt_box):
         returns:
             float: value of the intersection of union for the two boxes.
     """
-    # YOUR CODE HERE
 
     # Compute intersection
+    x_min_point = np.maximum(prediction_box[0],gt_box[0])
+    x_max_point = np.minimum(prediction_box[2],gt_box[2])
+    y_min_point = np.maximum(prediction_box[1],gt_box[1])
+    y_max_point = np.minimum(prediction_box[3],gt_box[3])
+
+    x_len = x_max_point - x_min_point
+    y_len = y_max_point - y_min_point
+
+    intersection = x_len*y_len
+    if x_len<0 or y_len<0:
+        intersection = 0
 
     # Compute union
-    iou = 0
+    #union = predicted - gt - intersection
+    predicted_area = (prediction_box[2]-prediction_box[0])*(prediction_box[3]-prediction_box[1])
+    gt_area = (gt_box[2]-gt_box[0])*(gt_box[3]-gt_box[1])
+
+    union = predicted_area + gt_area - intersection
+
+    iou = intersection / union
+
     assert iou >= 0 and iou <= 1
+
     return iou
 
 
@@ -36,7 +54,11 @@ def calculate_precision(num_tp, num_fp, num_fn):
     Returns:
         float: value of precision
     """
-    raise NotImplementedError
+    if num_tp+num_fp==0:
+        return 1
+    return num_tp/(num_tp+num_fp)
+
+    
 
 
 def calculate_recall(num_tp, num_fp, num_fn):
@@ -49,7 +71,9 @@ def calculate_recall(num_tp, num_fp, num_fn):
     Returns:
         float: value of recall
     """
-    raise NotImplementedError
+    if num_tp+num_fp==0:
+        return 0
+    return num_tp/(num_tp+num_fn)
 
 
 def get_all_box_matches(prediction_boxes, gt_boxes, iou_threshold):
@@ -72,16 +96,39 @@ def get_all_box_matches(prediction_boxes, gt_boxes, iou_threshold):
             objects with shape: [number of box matches, 4].
             Each row includes [xmin, ymin, xmax, ymax]
     """
-    # Find all possible matches with a IoU >= iou threshold
+    
+    nuPredBoxes = prediction_boxes.shape[0]
+    nuGTBoxes = gt_boxes.shape[0]
 
+    allMatches = np.zeros(shape=(nuPredBoxes*nuGTBoxes, 3)) #predBoxNR, GTBoxNR, iou
+
+    # Find all possible matches with a IoU >= iou threshold
+    k = 0
+    for i in range(nuPredBoxes):
+        for j in range(nuGTBoxes):
+            iou = calculate_iou(prediction_boxes[i],gt_boxes[j])
+            if iou >= iou_threshold:
+                allMatches[k] = [i, j, iou]
+                k+=1
 
     # Sort all matches on IoU in descending order
+    sortedMatches = allMatches[allMatches[:,2].argsort()[::-1]]
 
     # Find all matches with the highest IoU threshold
+    returnPredArray = []
+    returnGtArray = []
+    predIndicesTaken = []
+    gtIndicesTaken = []
 
-
-
-    return np.array([]), np.array([])
+    for l in range(sortedMatches.shape[0]):
+        match = allMatches[l]
+        if match[0] not in predIndicesTaken and match[1] not in gtIndicesTaken and match[2]>=iou_threshold:
+            returnPredArray.append(prediction_boxes[int(match[0])])
+            returnGtArray.append(gt_boxes[int(match[1])])
+            predIndicesTaken.append([match[0]])
+            gtIndicesTaken.append([match[1]])
+    #print(f"predArray= {returnPredArray}. GtArray= {returnGtArray}")
+    return np.array(returnPredArray), np.array(returnGtArray)
 
 
 def calculate_individual_image_result(prediction_boxes, gt_boxes, iou_threshold):
@@ -101,8 +148,22 @@ def calculate_individual_image_result(prediction_boxes, gt_boxes, iou_threshold)
         dict: containing true positives, false positives, true negatives, false negatives
             {"true_pos": int, "false_pos": int, false_neg": int}
     """
+    
+    _, alignedGtBoxes = get_all_box_matches(prediction_boxes,gt_boxes,iou_threshold)
+    
+    nuTruePos = np.unique(alignedGtBoxes, axis = 0).shape[0]
+    nuFalsePos = prediction_boxes.shape[0]-nuTruePos
+    nuFalseNeg = gt_boxes.shape[0]-nuTruePos
 
-    raise NotImplementedError
+    result = {}
+    result["true_pos"] = nuTruePos
+    result["false_pos"] = nuFalsePos
+    result["false_neg"] = nuFalseNeg
+
+    #print(result)
+
+    return result
+    
 
 
 def calculate_precision_recall_all_images(
@@ -124,7 +185,20 @@ def calculate_precision_recall_all_images(
     Returns:
         tuple: (precision, recall). Both float.
     """
-    raise NotImplementedError
+
+    tp = 0
+    fp = 0
+    fn = 0
+    for i in range(len(all_prediction_boxes)):
+        result = calculate_individual_image_result(all_prediction_boxes[i], all_gt_boxes[i], iou_threshold)
+        tp += result["true_pos"]
+        fp += result["false_pos"]
+        fn += result["false_neg"]
+
+    precision = calculate_precision(tp,fp,fn)
+    recall = calculate_recall(tp,fp,fn)
+    #print(precision,recall)
+    return (precision, recall)
 
 
 def get_precision_recall_curve(
@@ -156,10 +230,22 @@ def get_precision_recall_curve(
     # Instead of going over every possible confidence score threshold to compute the PR
     # curve, we will use an approximation
     confidence_thresholds = np.linspace(0, 1, 500)
-    # YOUR CODE HERE
 
     precisions = [] 
     recalls = []
+
+    #go though the iterations of conf_thres and check precision and recalls at this steps
+    for conf_threshold in confidence_thresholds:
+        pred_boxes_inside_conf = []
+        for i in range(len(confidence_scores)):
+            boxes_inside_conf_bool = confidence_scores[i] >= conf_threshold
+            pred_boxes_inside_conf.append(all_prediction_boxes[i][boxes_inside_conf_bool,:])
+
+        prec_and_recalls = calculate_precision_recall_all_images(pred_boxes_inside_conf,all_gt_boxes,iou_threshold)
+
+        precisions.append(prec_and_recalls[0])
+        recalls.append(prec_and_recalls[1])
+
     return np.array(precisions), np.array(recalls)
 
 
@@ -178,8 +264,8 @@ def plot_precision_recall_curve(precisions, recalls):
     plt.plot(recalls, precisions)
     plt.xlabel("Recall")
     plt.ylabel("Precision")
-    plt.xlim([0.8, 1.0])
-    plt.ylim([0.8, 1.0])
+    plt.xlim([0.8, 1.0]) #var 0.8,1.0
+    plt.ylim([0.8, 1.0]) #var 0.8,1.0
     plt.savefig("precision_recall_curve.png")
 
 
@@ -195,8 +281,20 @@ def calculate_mean_average_precision(precisions, recalls):
     """
     # Calculate the mean average precision given these recall levels.
     recall_levels = np.linspace(0, 1.0, 11)
-    # YOUR CODE HERE
-    average_precision = 0
+    plot_precision_recall_curve(precisions,recalls)
+    
+    precision_vals = []
+    for recall_level in recall_levels:
+        precs = []
+        for precicion, recall in zip(precisions,recalls):
+            if recall >= recall_level:
+                precs.append(precicion)
+        if len(precs)>0:
+            precision_vals.append(max(precs))
+        else:
+            precision_vals.append(0)
+
+    average_precision = np.mean(precision_vals)
     return average_precision
 
 
