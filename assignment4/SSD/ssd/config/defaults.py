@@ -70,7 +70,7 @@ cfg.DATA_LOADER.PIN_MEMORY = True
 # ---------------------------------------------------------------------------- #
 cfg.SOLVER = CN()
 # train configs
-cfg.SOLVER.MAX_ITER = 120000
+cfg.SOLVER.MAX_ITER = 6000 #120000
 cfg.SOLVER.GAMMA = 0.1
 cfg.SOLVER.BATCH_SIZE = 32
 cfg.SOLVER.LR = 1e-3
