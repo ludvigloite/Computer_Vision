@@ -212,7 +212,7 @@ class BasicModel(torch.nn.Module):
                     stride=1,
                     padding=1
                 ),
-                #torch.nn.BatchNorm2d(32),
+                torch.nn.BatchNorm2d(32),
                 torch.nn.MaxPool2d(
                     kernel_size=2,
                     stride=2
@@ -282,20 +282,12 @@ class BasicModel(torch.nn.Module):
                 torch.nn.BatchNorm2d(128),
 
                 torch.nn.ReLU(),
-                torch.nn.Conv2d(128, 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
-
-                torch.nn.ReLU(),
                 torch.nn.Conv2d(128, output_channels[4], 3, 2, 1),
                 #torch.nn.BatchNorm2d(output_channels[4]),
             )
             self.feature_extractor_6 = torch.nn.Sequential(
                 torch.nn.ReLU(),
                 torch.nn.Conv2d(output_channels[4], 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
-
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, 128, 3, 1, 1),
                 torch.nn.BatchNorm2d(128),
 
                 torch.nn.ReLU(),
