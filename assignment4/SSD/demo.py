@@ -69,7 +69,7 @@ def main():
         help="path to config file",
         type=str,
     )
-    parser.add_argument("--ckpt", type=str, default="./outputs/basic/model_014500.pth", help="Trained weights.")
+    parser.add_argument("--ckpt", type=str, default=None, help="Trained weights.") # "./outputs/basic/model_014500.pth"
     parser.add_argument("--score_threshold", type=float, default=0.7)
     parser.add_argument("--images_dir", default='demo/voc', type=str, help='Specify a image dir to do prediction.')
     parser.add_argument("--dataset_type", default="voc", type=str, help='Specify dataset type. Currently support voc and coco.')
