@@ -1,8 +1,8 @@
 MODEL:
     NUM_CLASSES: 5
     BACKBONE:
-        NAME: 'basic'
-        PRETRAINED: False
+        NAME: 'resNet'
+        PRETRAINED: True
         OUT_CHANNELS: [128, 256, 128, 128, 64, 64]
         INPUT_CHANNELS: 3
 INPUT:
@@ -15,5 +15,5 @@ SOLVER:
     GAMMA: 0.1
     BATCH_SIZE: 16
     LR: 1e-3
-OUTPUT_DIR: 'outputs/rdd2020'
+OUTPUT_DIR: 'outputs/rdd2020_resnet'
 DATASET_DIR: "/work/datasets"
