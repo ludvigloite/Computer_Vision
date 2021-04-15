@@ -9,7 +9,7 @@ INPUT:
     IMAGE_SIZE: [300, 300]
 DATASETS:
     TRAIN: ("rdd2020_train",)
-    TEST: ("rdd2020_val", )
+    TEST: ("rdd2020_val", ) #ENDRE DENNE TIL ET MINDRE DATASETT?
 SOLVER:
     MAX_ITER: 120000
     GAMMA: 0.1

@@ -2462,3 +2462,97 @@ TEST:
 8               : 0.9020
 9               : 0.9018
 
+2021-04-12 15:56:54,464 SSD INFO: Namespace(config_file='configs/mnist_tdt4265_server.yaml', opts=[])
+2021-04-12 15:56:54,464 SSD INFO: Loaded configuration file configs/mnist_tdt4265_server.yaml
+2021-04-12 15:56:54,464 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 11
+    THRESHOLD : 0.6 #0.5
+    
+    PRIORS:
+        MIN_SIZES : [[20, 20], [40, 40], [111, 111], [162, 162], [213, 213], [264, 264]] #[[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+        MAX_SIZES : [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    BACKBONE:
+        NAME: 'basic'
+        PRETRAINED: False
+        OUT_CHANNELS: [128, 256, 128, 128, 64, 64]
+        INPUT_CHANNELS: 3
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("mnist_detection_train", "mnist_detection_val")
+    TEST: ("mnist_detection_val", )
+SOLVER:
+    MAX_ITER: 6000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 2e-3
+OUTPUT_DIR: 'outputs/basic'
+DATASET_DIR: "/work/datasets"
+2021-04-12 15:56:54,465 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('mnist_detection_val',)
+  TRAIN: ('mnist_detection_train', 'mnist_detection_val')
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 500
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: basic
+    OUT_CHANNELS: (128, 256, 128, 128, 64, 64)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 11
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[20, 20], [40, 40], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.6
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/basic
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.002
+  MAX_ITER: 6000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-12 15:56:56,515 SSD.trainer INFO: Loading checkpoint from outputs/basic/model_final.pth
+2021-04-12 15:56:56,551 SSD.trainer INFO: Loading optimizer from outputs/basic/model_final.pth
+2021-04-12 15:56:58,488 SSD.trainer INFO: Start training ...
+2021-04-12 15:57:01,921 SSD.trainer INFO: Saving checkpoint to outputs/basic/model_final.pth
+2021-04-12 15:57:02,630 SSD.trainer INFO: Total training time: 0:00:02 (0.0003 s / it)
+2021-04-12 15:57:02,630 SSD INFO: Start evaluating...
+2021-04-12 15:57:02,799 SSD.inference INFO: Evaluating mnist_detection_val dataset(1000 images):
+2021-04-12 15:57:08,495 SSD.inference INFO: mAP: 0.9030
+0               : 0.9050
+1               : 0.9003
+2               : 0.9015
+3               : 0.9034
+4               : 0.9053
+5               : 0.9038
+6               : 0.9026
+7               : 0.9042
+8               : 0.9020
+9               : 0.9018
+
