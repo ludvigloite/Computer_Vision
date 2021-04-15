@@ -3,7 +3,7 @@ import torch
 from torchvision.models import resnet18
 from torchvision.models import resnext50_32x4d as resnext
 
-class resNetModel(torch.nn.Module):
+class Model(torch.nn.Module):
     """
     This is a basic backbone for SSD.
     The feature extractor outputs a list of 6 feature maps, with the sizes:
