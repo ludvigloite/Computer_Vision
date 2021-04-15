@@ -20,170 +20,106 @@ class resNetModel(torch.nn.Module):
         image_channels = cfg.MODEL.BACKBONE.INPUT_CHANNELS
         self.output_feature_shape = cfg.MODEL.PRIORS.FEATURE_MAPS
         
-        #model = 1 #Start CNN. Task 4a and 4b
-        model = 2 #Improved CNN. Task 4c and 4d
+       
         
-        if model == 1:
-            self.feature_extractor_1 = torch.nn.Sequential(
-                torch.nn.Conv2d(
-                    in_channels=image_channels,
-                    out_channels=32,
-                    kernel_size=3,
-                    stride=1,
-                    padding=1
-                ),
-                torch.nn.MaxPool2d(
-                    kernel_size=2,
-                    stride=2
-                ),
-                torch.nn.ReLU(),
+                    self.feature_extractor_1 = torch.nn.Sequential(
+                        torch.nn.Conv2d(
+                            in_channels=image_channels,
+                            out_channels=32,
+                            kernel_size=3,
+                            stride=1,
+                            padding=1
+                        ),
+                        #torch.nn.BatchNorm2d(32),
+                        torch.nn.MaxPool2d(
+                            kernel_size=2,
+                            stride=2
+                        ),
+                        torch.nn.ReLU(),
 
-                torch.nn.Conv2d(32, 64, 3, 1, 1),
-                torch.nn.MaxPool2d(2,2),
-                torch.nn.ReLU(),
-
-
-                torch.nn.Conv2d(64, 64, 3, 1, 1),
-                torch.nn.ReLU(),
-
-                torch.nn.Conv2d(64, output_channels[0], 3, 2, 1),
-            )
-
-            self.feature_extractor_2 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[0], 128, 3, 1, 1),
-
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[1], 3, 2, 1),
-            )
-            self.feature_extractor_3 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[1], 256, 3, 1, 1),
-
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(256, output_channels[2], 3, 2, 1),
-            )
-            self.feature_extractor_4 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[2], 128, 3, 1, 1),
-
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[3], 3, 2, 1),
-            )
-            self.feature_extractor_5 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[3], 128, 3, 1, 1),
-
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[4], 3, 2, 1),
-            )
-            self.feature_extractor_6 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[4], 128, 3, 1, 1),
-
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[5], 3, 1, 0),
-            )
-            
-        elif model == 2:
-            self.feature_extractor_1 = torch.nn.Sequential(
-                torch.nn.Conv2d(
-                    in_channels=image_channels,
-                    out_channels=32,
-                    kernel_size=3,
-                    stride=1,
-                    padding=1
-                ),
-                #torch.nn.BatchNorm2d(32),
-                torch.nn.MaxPool2d(
-                    kernel_size=2,
-                    stride=2
-                ),
-                torch.nn.ReLU(),
-
-                torch.nn.Conv2d(32, 64, 3, 1, 1),
-                torch.nn.BatchNorm2d(64),
-                torch.nn.MaxPool2d(2,2),
-                torch.nn.ReLU(),
+                        torch.nn.Conv2d(32, 64, 3, 1, 1),
+                        torch.nn.BatchNorm2d(64),
+                        torch.nn.MaxPool2d(2,2),
+                        torch.nn.ReLU(),
 
 
-                torch.nn.Conv2d(64, 64, 3, 1, 1),
-                torch.nn.BatchNorm2d(64),
-                torch.nn.ReLU(),
+                        torch.nn.Conv2d(64, 64, 3, 1, 1),
+                        torch.nn.BatchNorm2d(64),
+                        torch.nn.ReLU(),
 
-                torch.nn.Conv2d(64, 64, 3, 1, 1),
-                torch.nn.BatchNorm2d(64),
-                torch.nn.ReLU(),
+                        torch.nn.Conv2d(64, 64, 3, 1, 1),
+                        torch.nn.BatchNorm2d(64),
+                        torch.nn.ReLU(),
 
-                torch.nn.Conv2d(64, output_channels[0], 3, 2, 1),
-                #torch.nn.BatchNorm2d(output_channels[0]),
-            )
+                        torch.nn.Conv2d(64, output_channels[0], 3, 2, 1),
+                        #torch.nn.BatchNorm2d(output_channels[0]),
+                    )
 
-            self.feature_extractor_2 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[0], 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                    self.feature_extractor_2 = torch.nn.Sequential(
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(output_channels[0], 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[1], 3, 2, 1),
-                #torch.nn.BatchNorm2d(output_channels[1]),
-            )
-            self.feature_extractor_3 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[1], 256, 3, 1, 1),
-                torch.nn.BatchNorm2d(256),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, output_channels[1], 3, 2, 1),
+                        #torch.nn.BatchNorm2d(output_channels[1]),
+                    )
+                    self.feature_extractor_3 = torch.nn.Sequential(
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(output_channels[1], 256, 3, 1, 1),
+                        torch.nn.BatchNorm2d(256),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(256, 256, 3, 1, 1),
-                torch.nn.BatchNorm2d(256),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(256, 256, 3, 1, 1),
+                        torch.nn.BatchNorm2d(256),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(256, output_channels[2], 3, 2, 1),
-                #torch.nn.BatchNorm2d(output_channels[2]),
-            )
-            self.feature_extractor_4 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[2], 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(256, output_channels[2], 3, 2, 1),
+                        #torch.nn.BatchNorm2d(output_channels[2]),
+                    )
+                    self.feature_extractor_4 = torch.nn.Sequential(
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(output_channels[2], 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[3], 3, 2, 1),
-                #torch.nn.BatchNorm2d(output_channels[3]),
-            )
-            self.feature_extractor_5 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[3], 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, output_channels[3], 3, 2, 1),
+                        #torch.nn.BatchNorm2d(output_channels[3]),
+                    )
+                    self.feature_extractor_5 = torch.nn.Sequential(
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(output_channels[3], 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[4], 3, 2, 1),
-                #torch.nn.BatchNorm2d(output_channels[4]),
-            )
-            self.feature_extractor_6 = torch.nn.Sequential(
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(output_channels[4], 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, output_channels[4], 3, 2, 1),
+                        #torch.nn.BatchNorm2d(output_channels[4]),
+                    )
+                    self.feature_extractor_6 = torch.nn.Sequential(
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(output_channels[4], 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, 128, 3, 1, 1),
-                torch.nn.BatchNorm2d(128),
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, 128, 3, 1, 1),
+                        torch.nn.BatchNorm2d(128),
 
-                torch.nn.ReLU(),
-                torch.nn.Conv2d(128, output_channels[5], 3, 1, 0),
-                #torch.nn.BatchNorm2d(output_channels[5]),
-            )
+                        torch.nn.ReLU(),
+                        torch.nn.Conv2d(128, output_channels[5], 3, 1, 0),
+                        #torch.nn.BatchNorm2d(output_channels[5]),
+                    )
         
 
     def forward(self, x):
