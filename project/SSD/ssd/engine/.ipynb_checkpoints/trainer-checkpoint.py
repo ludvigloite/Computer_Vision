@@ -41,8 +41,16 @@ def do_train(cfg, model,
     for iteration, (images, targets, _) in enumerate(data_loader, start_iter):
         iteration = iteration + 1
         arguments["iteration"] = iteration
+        #print("\ntarget:", targets)
         images = torch_utils.to_cuda(images)
         targets = torch_utils.to_cuda(targets)
+        
+        #print("\nstart iter:", start_iter)
+        
+        #print("\n\nimages:", images.shape)
+        #print("\n\ntargets:", targets.size)
+        
+        
         loss_dict = model(images, targets=targets)
         loss = sum(loss for loss in loss_dict.values())
 
