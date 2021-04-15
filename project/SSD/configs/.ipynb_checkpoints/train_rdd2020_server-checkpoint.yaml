@@ -1,7 +1,7 @@
 MODEL:
     NUM_CLASSES: 5
     BACKBONE:
-        NAME: 'resNet'
+        NAME: 'resNet18'
         PRETRAINED: True
         OUT_CHANNELS: [128, 256, 128, 128, 64, 64]
         INPUT_CHANNELS: 3
@@ -9,11 +9,12 @@ INPUT:
     IMAGE_SIZE: [300, 300]
 DATASETS:
     TRAIN: ("rdd2020_train",)
-    TEST: ("rdd2020_val", ) #ENDRE DENNE TIL ET MINDRE DATASETT?
+    TEST: ("rdd2020_val",)
 SOLVER:
-    MAX_ITER: 120000
+    MAX_ITER: 2000
     GAMMA: 0.1
     BATCH_SIZE: 16
     LR: 1e-3
-OUTPUT_DIR: 'outputs/rdd2020_resnet'
+OUTPUT_DIR: 'outputs/rdd2020_resnet18'
 DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
