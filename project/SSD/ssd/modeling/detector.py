@@ -39,7 +39,7 @@ def build_backbone(cfg):
         model = BasicModel(cfg)
         return model
     if backbone_name == "resNet":
-        model = resNetModel(cfg)
+        model = Model(cfg)
         return model
     if backbone_name == "resNet18":
         model = models.resnet18(cfg)

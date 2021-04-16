@@ -49,7 +49,7 @@ class Model(torch.nn.Module):
         features = self.feature_extractor[2](features)
         features = self.feature_extractor[3](features)
         features = self.feature_extractor[4](features)
-        features_out.append(features)
+        #features_out.append(features)
         features = self.feature_extractor[5](features)
         features_out.append(features)
         features = self.feature_extractor[6](features)
