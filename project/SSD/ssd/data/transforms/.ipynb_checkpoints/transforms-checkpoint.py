@@ -3,6 +3,8 @@ import torch
 import cv2
 import numpy as np
 from numpy import random
+from torchvision.transforms import functional
+
 
 
 def intersect(box_a, box_b):
@@ -271,4 +273,14 @@ class RandomMirror(object):
             image = image[:, ::-1]
             boxes = boxes.copy()
             boxes[:, 0::2] = width - boxes[:, 2::-2]
+        return image, boxes, classes
+    
+
+class RandomVerticalMirror(object):
+    def __call__(self, image, boxes, classes):
+        height, _, _ = image.shape
+        if random.randint(2):
+            image = image[::-1, :]
+            boxes = boxes.copy()
+            boxes[:, 1::2] = height - boxes[:, 3::-2]
         return image, boxes, classes
