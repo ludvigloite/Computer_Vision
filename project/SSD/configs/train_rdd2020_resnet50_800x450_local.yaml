@@ -1,7 +1,7 @@
 MODEL:
     NUM_CLASSES: 5
     BACKBONE:
-        NAME: 'resnext50_800x450'
+        NAME: 'resnett50_800x450'
         PRETRAINED: False
         OUT_CHANNELS: [256,512,512,512,1024,1024]
         INPUT_CHANNELS: 3
@@ -18,7 +18,7 @@ SOLVER:
     GAMMA: 0.1
     BATCH_SIZE: 16
     LR: 1e-3
-OUTPUT_DIR: 'outputs/rdd2020_resnext50_800x450_server'
+OUTPUT_DIR: 'outputs/rdd2020_resnet50_800x450_server'
 DATASET_DIR: "datasets"
 EVAL_STEP: 2000
 MODEL_SAVE_STEP:  1000
