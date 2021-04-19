@@ -1,2 +1,2 @@
-project/SSD/outputs/*
+*.pth
 *.pyc
