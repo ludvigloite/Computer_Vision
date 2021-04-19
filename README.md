@@ -18,8 +18,8 @@ Group 200
 :x: Educational Video Challenge (Deadline 03.05.21)
 
 ## Annotated tasks
-Finished: 300, 308, 414, 464, 466, 
-Began: 287, 475
+Finished: 300, 308, 414, 464, 466, 475
+Began: 287, 477
 
 ## Code
 
