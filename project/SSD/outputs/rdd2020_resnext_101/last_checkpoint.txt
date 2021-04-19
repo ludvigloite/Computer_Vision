@@ -1,0 +1,1 @@
+outputs/rdd2020_resnext_101/model_007500.pth

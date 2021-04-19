@@ -1,0 +1,1 @@
+outputs/rdd2020_resnet_101/model_014000.pth
