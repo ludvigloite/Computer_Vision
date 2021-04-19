@@ -3,6 +3,7 @@ from ssd.modeling.backbone.vgg import VGG
 from ssd.modeling.backbone.basic import BasicModel
 from ssd.modeling.backbone.resnet18 import Model
 from ssd.modeling.backbone.resnext50 import ResNeXt50
+from ssd.modeling.backbone.resnext50_800x450 import ResNext50_800x450
 from ssd.modeling.backbone.resnet101 import ResNet101
 from ssd.modeling.backbone.resnet18_600x600 import ResNet18_600x600
 from ssd.modeling.box_head.box_head import SSDBoxHead
@@ -49,6 +50,9 @@ def build_backbone(cfg):
         return model
     if backbone_name == "resnet18_600x600":
         model = ResNet18_600x600(cfg)
+        return model
+    if backbone_name == "resnext50_800x450":
+        model = ResNext50_800x450(cfg)
         return model
     if backbone_name == "resnext50":
         model = ResNeXt50(cfg)
