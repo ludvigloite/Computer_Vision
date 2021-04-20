@@ -1,1 +1,1 @@
-outputs/tdt4265_resnet18_600x600/model_044000.pth
+outputs/tdt4265_resnet18_600x600/model_045000.pth
