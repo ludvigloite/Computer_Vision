@@ -1,0 +1,1 @@
+outputs/rdd2020_resnext50_vrt_mrr/model_010000.pth

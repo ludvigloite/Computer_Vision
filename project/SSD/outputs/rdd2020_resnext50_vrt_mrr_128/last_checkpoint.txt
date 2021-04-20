@@ -1,0 +1,1 @@
+outputs/rdd2020_resnext50_vrt_mrr_128/model_041500.pth

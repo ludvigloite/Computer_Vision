@@ -1,0 +1,1 @@
+outputs/rdd2020_resnext50_rand_mir_512/model_004500.pth

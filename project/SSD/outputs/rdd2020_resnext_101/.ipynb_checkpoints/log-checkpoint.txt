@@ -1,0 +1,156 @@
+2021-04-18 11:08:33,613 SSD INFO: Namespace(config_file='configs/train_rdd2020_server.yaml', opts=[])
+2021-04-18 11:08:33,613 SSD INFO: Loaded configuration file configs/train_rdd2020_server.yaml
+2021-04-18 11:08:33,613 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnext101'
+        PRETRAINED: False
+        OUT_CHANNELS: [512,1024,2048, 128, 128, 128] #[128, 256, 128, 128, 64, 64]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_resnext_101'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 11:08:33,613 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnext101
+    OUT_CHANNELS: (512, 1024, 2048, 128, 128, 128)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_resnext_101
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 11:08:51,418 SSD.trainer INFO: No checkpoint found.
+2021-04-18 11:08:51,474 SSD.trainer INFO: Start training ...
+2021-04-18 11:09:22,208 SSD.trainer INFO: iter: 000010, lr: 0.00100, total_loss: 14.314 (14.314), reg_loss: 3.248 (3.248), cls_loss: 11.066 (11.066), time: 2.885 (2.885), eta: 6:24:13, mem: 12798M
+2021-04-18 11:09:40,869 SSD.trainer INFO: iter: 000020, lr: 0.00100, total_loss: 10.604 (12.459), reg_loss: 3.004 (3.126), cls_loss: 7.599 (9.333), time: 1.866 (2.376), eta: 5:15:58, mem: 12798M
+2021-04-18 11:09:59,659 SSD.trainer INFO: iter: 000030, lr: 0.00100, total_loss: 8.881 (11.266), reg_loss: 2.927 (3.060), cls_loss: 5.954 (8.206), time: 1.879 (2.210), eta: 4:53:34, mem: 12798M
+2021-04-18 11:10:18,500 SSD.trainer INFO: iter: 000040, lr: 0.00100, total_loss: 8.070 (10.467), reg_loss: 2.874 (3.013), cls_loss: 5.197 (7.454), time: 1.884 (2.129), eta: 4:42:23, mem: 12798M
+2021-04-18 11:10:37,396 SSD.trainer INFO: iter: 000050, lr: 0.00100, total_loss: 7.353 (9.844), reg_loss: 2.772 (2.965), cls_loss: 4.581 (6.879), time: 1.890 (2.081), eta: 4:35:42, mem: 12798M
+2021-04-18 11:10:56,314 SSD.trainer INFO: iter: 000060, lr: 0.00100, total_loss: 7.076 (9.383), reg_loss: 2.782 (2.934), cls_loss: 4.294 (6.449), time: 1.892 (2.049), eta: 4:31:11, mem: 12798M
+2021-04-18 11:11:34,549 SSD INFO: Namespace(config_file='configs/train_rdd2020_server.yaml', opts=[])
+2021-04-18 11:11:34,549 SSD INFO: Loaded configuration file configs/train_rdd2020_server.yaml
+2021-04-18 11:11:34,549 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnext101'
+        PRETRAINED: False
+        OUT_CHANNELS: [512,1024,2048, 64, 64, 64] #[128, 256, 128, 128, 64, 64]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_resnext_101'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 11:11:34,550 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnext101
+    OUT_CHANNELS: (512, 1024, 2048, 64, 64, 64)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_resnext_101
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 11:11:48,786 SSD.trainer INFO: No checkpoint found.
+2021-04-18 11:11:48,806 SSD.trainer INFO: Start training ...
