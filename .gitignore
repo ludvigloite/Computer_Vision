@@ -1,4 +1,4 @@
-project/SSD/outputs/*
+
 project/SSD/ssd/__pycache__/*
 project/SSD/ssd/data/__pycache__/*
 project/SSD/ssd/data/datasets/__pycache__/*
@@ -12,7 +12,7 @@ project/SSD/ssd/modeling/backbone/__pycache__/*
 project/SSD/ssd/modeling/box_head/__pycache__/*
 project/SSD/ssd/utils/__pycache__/*
 */__pycache__/*
-
+*.pth
 
 project/SSD/datasets/*
 outputs/*

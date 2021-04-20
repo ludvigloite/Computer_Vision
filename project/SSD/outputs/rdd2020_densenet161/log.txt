@@ -1,0 +1,1361 @@
+2021-04-18 12:00:52,875 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 12:00:52,875 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 12:00:52,875 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [64,128,256,512] #[128, 256, 128, 128, 64, 64]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[56, 56], [28, 28], [14, 14],[7,7],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 12:00:52,875 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (64, 128, 256, 512)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[56, 56], [28, 28], [14, 14], [7, 7]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 12:15:43,095 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 12:15:43,095 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 12:15:43,095 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [256,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 12:15:43,095 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (256, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 12:21:12,243 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 12:21:12,244 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 12:21:12,244 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [256,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 12:21:12,244 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (256, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 12:22:45,030 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 12:22:45,030 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 12:22:45,031 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [256,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 12:22:45,031 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (256, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 12:50:10,808 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 12:50:10,808 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 12:50:10,808 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [256,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 12:50:10,808 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (256, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 12:50:17,095 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 12:50:17,095 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 12:50:17,096 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [256,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 12:50:17,096 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (256, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 13:17:17,278 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 13:17:17,278 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 13:17:17,278 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [256,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 13:17:17,278 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (256, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 14:39:31,712 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 14:39:31,712 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 14:39:31,712 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [256,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 14:39:31,713 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (256, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 14:39:51,668 SSD.trainer INFO: No checkpoint found.
+2021-04-18 14:39:51,676 SSD.trainer INFO: Start training ...
+2021-04-18 14:44:44,672 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 14:44:44,672 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 14:44:44,672 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [384,896,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 14:44:44,672 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (384, 896, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 14:45:06,232 SSD.trainer INFO: No checkpoint found.
+2021-04-18 14:45:06,241 SSD.trainer INFO: Start training ...
+2021-04-18 14:45:43,008 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 14:45:43,008 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 14:45:43,008 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [384,1056,1920]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 14:45:43,008 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (384, 1056, 1920)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 14:46:03,252 SSD.trainer INFO: No checkpoint found.
+2021-04-18 14:46:03,258 SSD.trainer INFO: Start training ...
+2021-04-18 14:46:32,722 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 14:46:32,722 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 14:46:32,723 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [384,1056,2208]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 14:46:32,723 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (384, 1056, 2208)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 14:46:53,550 SSD.trainer INFO: No checkpoint found.
+2021-04-18 14:46:53,557 SSD.trainer INFO: Start training ...
+2021-04-18 14:47:16,216 SSD.trainer INFO: iter: 000010, lr: 0.00100, total_loss: 17.244 (17.244), reg_loss: 6.345 (6.345), cls_loss: 10.899 (10.899), time: 2.087 (2.087), eta: 4:37:59, mem: 12608M
+2021-04-18 14:47:22,361 SSD.trainer INFO: iter: 000020, lr: 0.00100, total_loss: 13.113 (15.178), reg_loss: 5.632 (5.988), cls_loss: 7.482 (9.190), time: 0.615 (1.351), eta: 2:59:41, mem: 12608M
+2021-04-18 14:47:28,548 SSD.trainer INFO: iter: 000030, lr: 0.00100, total_loss: 12.357 (14.238), reg_loss: 5.342 (5.773), cls_loss: 7.016 (8.466), time: 0.619 (1.107), eta: 2:27:01, mem: 12608M
+2021-04-18 14:47:34,735 SSD.trainer INFO: iter: 000040, lr: 0.00100, total_loss: 11.128 (13.461), reg_loss: 4.571 (5.472), cls_loss: 6.557 (7.988), time: 0.619 (0.985), eta: 2:10:39, mem: 12608M
+2021-04-18 14:47:40,937 SSD.trainer INFO: iter: 000050, lr: 0.00100, total_loss: 10.552 (12.879), reg_loss: 4.575 (5.293), cls_loss: 5.977 (7.586), time: 0.620 (0.912), eta: 2:00:49, mem: 12608M
+2021-04-18 14:47:47,158 SSD.trainer INFO: iter: 000060, lr: 0.00100, total_loss: 9.770 (12.361), reg_loss: 4.337 (5.133), cls_loss: 5.433 (7.227), time: 0.622 (0.864), eta: 1:54:17, mem: 12608M
+2021-04-18 14:47:53,389 SSD.trainer INFO: iter: 000070, lr: 0.00100, total_loss: 9.444 (11.944), reg_loss: 4.575 (5.054), cls_loss: 4.869 (6.890), time: 0.623 (0.829), eta: 1:49:35, mem: 12608M
+2021-04-18 14:47:59,626 SSD.trainer INFO: iter: 000080, lr: 0.00100, total_loss: 8.534 (11.518), reg_loss: 4.175 (4.944), cls_loss: 4.358 (6.574), time: 0.624 (0.804), eta: 1:46:04, mem: 12608M
+2021-04-18 14:48:05,870 SSD.trainer INFO: iter: 000090, lr: 0.00100, total_loss: 8.022 (11.129), reg_loss: 3.994 (4.838), cls_loss: 4.029 (6.291), time: 0.624 (0.784), eta: 1:43:18, mem: 12608M
+2021-04-18 14:48:12,141 SSD.trainer INFO: iter: 000100, lr: 0.00100, total_loss: 8.474 (10.864), reg_loss: 4.582 (4.813), cls_loss: 3.891 (6.051), time: 0.627 (0.768), eta: 1:41:07, mem: 12608M
+2021-04-18 14:48:18,409 SSD.trainer INFO: iter: 000110, lr: 0.00100, total_loss: 7.741 (10.580), reg_loss: 4.133 (4.751), cls_loss: 3.608 (5.829), time: 0.627 (0.755), eta: 1:39:18, mem: 12608M
+2021-04-18 14:48:24,720 SSD.trainer INFO: iter: 000120, lr: 0.00100, total_loss: 7.471 (10.321), reg_loss: 4.094 (4.696), cls_loss: 3.378 (5.625), time: 0.631 (0.745), eta: 1:37:49, mem: 12608M
+2021-04-18 14:48:31,015 SSD.trainer INFO: iter: 000130, lr: 0.00100, total_loss: 7.527 (10.106), reg_loss: 4.089 (4.649), cls_loss: 3.438 (5.457), time: 0.629 (0.736), eta: 1:36:31, mem: 12608M
+2021-04-18 14:48:37,304 SSD.trainer INFO: iter: 000140, lr: 0.00100, total_loss: 7.524 (9.922), reg_loss: 4.095 (4.610), cls_loss: 3.429 (5.312), time: 0.629 (0.728), eta: 1:35:24, mem: 12608M
+2021-04-18 14:48:43,607 SSD.trainer INFO: iter: 000150, lr: 0.00100, total_loss: 6.835 (9.716), reg_loss: 3.568 (4.540), cls_loss: 3.267 (5.175), time: 0.630 (0.722), eta: 1:34:25, mem: 12608M
+2021-04-18 14:48:49,918 SSD.trainer INFO: iter: 000160, lr: 0.00100, total_loss: 7.427 (9.573), reg_loss: 4.079 (4.512), cls_loss: 3.348 (5.061), time: 0.631 (0.716), eta: 1:33:34, mem: 12608M
+2021-04-18 14:48:56,208 SSD.trainer INFO: iter: 000170, lr: 0.00100, total_loss: 7.210 (9.434), reg_loss: 3.933 (4.477), cls_loss: 3.277 (4.956), time: 0.629 (0.711), eta: 1:32:46, mem: 12608M
+2021-04-18 14:49:02,520 SSD.trainer INFO: iter: 000180, lr: 0.00100, total_loss: 7.046 (9.301), reg_loss: 3.745 (4.437), cls_loss: 3.300 (4.864), time: 0.631 (0.707), eta: 1:32:05, mem: 12608M
+2021-04-18 14:49:08,850 SSD.trainer INFO: iter: 000190, lr: 0.00100, total_loss: 7.019 (9.181), reg_loss: 3.761 (4.401), cls_loss: 3.258 (4.780), time: 0.633 (0.703), eta: 1:31:27, mem: 12608M
+2021-04-18 14:49:15,143 SSD.trainer INFO: iter: 000200, lr: 0.00100, total_loss: 6.715 (9.058), reg_loss: 3.558 (4.359), cls_loss: 3.157 (4.699), time: 0.629 (0.699), eta: 1:30:52, mem: 12608M
+2021-04-18 14:49:21,459 SSD.trainer INFO: iter: 000210, lr: 0.00100, total_loss: 7.286 (8.973), reg_loss: 3.988 (4.341), cls_loss: 3.297 (4.632), time: 0.632 (0.696), eta: 1:30:20, mem: 12608M
+2021-04-18 14:49:27,772 SSD.trainer INFO: iter: 000220, lr: 0.00100, total_loss: 6.652 (8.868), reg_loss: 3.487 (4.303), cls_loss: 3.164 (4.565), time: 0.631 (0.693), eta: 1:29:50, mem: 12608M
+2021-04-18 14:49:34,084 SSD.trainer INFO: iter: 000230, lr: 0.00100, total_loss: 7.025 (8.788), reg_loss: 3.769 (4.279), cls_loss: 3.256 (4.508), time: 0.631 (0.690), eta: 1:29:22, mem: 12608M
+2021-04-18 14:49:40,417 SSD.trainer INFO: iter: 000240, lr: 0.00100, total_loss: 6.739 (8.702), reg_loss: 3.720 (4.256), cls_loss: 3.020 (4.446), time: 0.633 (0.688), eta: 1:28:57, mem: 12608M
+2021-04-18 14:49:46,722 SSD.trainer INFO: iter: 000250, lr: 0.00100, total_loss: 6.958 (8.633), reg_loss: 3.706 (4.234), cls_loss: 3.252 (4.398), time: 0.630 (0.686), eta: 1:28:32, mem: 12608M
+2021-04-18 14:49:53,062 SSD.trainer INFO: iter: 000260, lr: 0.00100, total_loss: 6.347 (8.545), reg_loss: 3.360 (4.200), cls_loss: 2.987 (4.344), time: 0.634 (0.684), eta: 1:28:10, mem: 12608M
+2021-04-18 14:49:59,373 SSD.trainer INFO: iter: 000270, lr: 0.00100, total_loss: 6.794 (8.480), reg_loss: 3.557 (4.177), cls_loss: 3.237 (4.303), time: 0.631 (0.682), eta: 1:27:48, mem: 12608M
+2021-04-18 14:50:05,689 SSD.trainer INFO: iter: 000280, lr: 0.00100, total_loss: 7.065 (8.429), reg_loss: 3.902 (4.167), cls_loss: 3.163 (4.262), time: 0.632 (0.680), eta: 1:27:28, mem: 12608M
+2021-04-18 14:50:12,003 SSD.trainer INFO: iter: 000290, lr: 0.00100, total_loss: 6.114 (8.349), reg_loss: 3.079 (4.129), cls_loss: 3.035 (4.220), time: 0.631 (0.678), eta: 1:27:08, mem: 12608M
+2021-04-18 14:50:18,347 SSD.trainer INFO: iter: 000300, lr: 0.00100, total_loss: 6.568 (8.290), reg_loss: 3.505 (4.109), cls_loss: 3.063 (4.182), time: 0.634 (0.677), eta: 1:26:50, mem: 12608M
+2021-04-18 14:50:24,680 SSD.trainer INFO: iter: 000310, lr: 0.00100, total_loss: 6.399 (8.229), reg_loss: 3.423 (4.086), cls_loss: 2.976 (4.143), time: 0.633 (0.675), eta: 1:26:32, mem: 12608M
+2021-04-18 14:50:31,002 SSD.trainer INFO: iter: 000320, lr: 0.00100, total_loss: 6.452 (8.174), reg_loss: 3.344 (4.063), cls_loss: 3.108 (4.110), time: 0.632 (0.674), eta: 1:26:15, mem: 12608M
+2021-04-18 14:50:37,334 SSD.trainer INFO: iter: 000330, lr: 0.00100, total_loss: 6.293 (8.117), reg_loss: 3.316 (4.041), cls_loss: 2.976 (4.076), time: 0.633 (0.673), eta: 1:25:59, mem: 12608M
+2021-04-18 14:50:43,646 SSD.trainer INFO: iter: 000340, lr: 0.00100, total_loss: 6.765 (8.077), reg_loss: 3.671 (4.030), cls_loss: 3.094 (4.047), time: 0.631 (0.671), eta: 1:25:43, mem: 12608M
+2021-04-18 14:50:49,987 SSD.trainer INFO: iter: 000350, lr: 0.00100, total_loss: 6.933 (8.044), reg_loss: 3.776 (4.022), cls_loss: 3.157 (4.022), time: 0.634 (0.670), eta: 1:25:28, mem: 12608M
+2021-04-18 14:50:56,315 SSD.trainer INFO: iter: 000360, lr: 0.00100, total_loss: 6.544 (8.002), reg_loss: 3.362 (4.004), cls_loss: 3.183 (3.998), time: 0.633 (0.669), eta: 1:25:13, mem: 12608M
+2021-04-18 14:51:02,643 SSD.trainer INFO: iter: 000370, lr: 0.00100, total_loss: 6.732 (7.968), reg_loss: 3.549 (3.992), cls_loss: 3.183 (3.976), time: 0.633 (0.668), eta: 1:24:59, mem: 12608M
+2021-04-18 14:51:08,971 SSD.trainer INFO: iter: 000380, lr: 0.00100, total_loss: 6.368 (7.926), reg_loss: 3.254 (3.972), cls_loss: 3.114 (3.954), time: 0.633 (0.667), eta: 1:24:45, mem: 12608M
+2021-04-18 14:51:15,317 SSD.trainer INFO: iter: 000390, lr: 0.00100, total_loss: 6.823 (7.898), reg_loss: 3.614 (3.963), cls_loss: 3.209 (3.935), time: 0.635 (0.667), eta: 1:24:32, mem: 12608M
+2021-04-18 14:51:21,630 SSD.trainer INFO: iter: 000400, lr: 0.00100, total_loss: 6.508 (7.863), reg_loss: 3.431 (3.950), cls_loss: 3.077 (3.913), time: 0.631 (0.666), eta: 1:24:19, mem: 12608M
+2021-04-18 14:51:27,955 SSD.trainer INFO: iter: 000410, lr: 0.00100, total_loss: 6.088 (7.820), reg_loss: 3.082 (3.929), cls_loss: 3.005 (3.891), time: 0.632 (0.665), eta: 1:24:06, mem: 12608M
+2021-04-18 14:51:34,294 SSD.trainer INFO: iter: 000420, lr: 0.00100, total_loss: 6.354 (7.785), reg_loss: 3.197 (3.911), cls_loss: 3.157 (3.873), time: 0.634 (0.664), eta: 1:23:54, mem: 12608M
+2021-04-18 14:51:40,621 SSD.trainer INFO: iter: 000430, lr: 0.00100, total_loss: 6.338 (7.751), reg_loss: 3.315 (3.897), cls_loss: 3.023 (3.854), time: 0.633 (0.663), eta: 1:23:42, mem: 12608M
+2021-04-18 14:51:46,946 SSD.trainer INFO: iter: 000440, lr: 0.00100, total_loss: 6.414 (7.721), reg_loss: 3.425 (3.887), cls_loss: 2.989 (3.834), time: 0.633 (0.663), eta: 1:23:30, mem: 12608M
+2021-04-18 14:51:53,289 SSD.trainer INFO: iter: 000450, lr: 0.00100, total_loss: 6.084 (7.684), reg_loss: 3.202 (3.872), cls_loss: 2.882 (3.813), time: 0.634 (0.662), eta: 1:23:18, mem: 12608M
+2021-04-18 14:51:59,591 SSD.trainer INFO: iter: 000460, lr: 0.00100, total_loss: 6.342 (7.655), reg_loss: 3.303 (3.859), cls_loss: 3.039 (3.796), time: 0.630 (0.661), eta: 1:23:07, mem: 12608M
+2021-04-18 14:52:05,918 SSD.trainer INFO: iter: 000470, lr: 0.00100, total_loss: 6.008 (7.620), reg_loss: 3.197 (3.845), cls_loss: 2.811 (3.775), time: 0.633 (0.661), eta: 1:22:55, mem: 12608M
+2021-04-18 14:52:12,237 SSD.trainer INFO: iter: 000480, lr: 0.00100, total_loss: 6.397 (7.595), reg_loss: 3.302 (3.834), cls_loss: 3.095 (3.761), time: 0.632 (0.660), eta: 1:22:44, mem: 12608M
+2021-04-18 14:52:18,561 SSD.trainer INFO: iter: 000490, lr: 0.00100, total_loss: 6.337 (7.569), reg_loss: 3.395 (3.825), cls_loss: 2.942 (3.744), time: 0.632 (0.660), eta: 1:22:33, mem: 12608M
+2021-04-18 14:52:24,889 SSD.trainer INFO: iter: 000500, lr: 0.00100, total_loss: 6.055 (7.539), reg_loss: 3.086 (3.810), cls_loss: 2.969 (3.729), time: 0.633 (0.659), eta: 1:22:23, mem: 12608M
+2021-04-18 14:52:24,897 SSD.trainer INFO: Saving checkpoint to outputs/rdd2020_densenet161/model_000500.pth
+2021-04-18 14:52:31,654 SSD.trainer INFO: iter: 000510, lr: 0.00100, total_loss: 6.355 (7.516), reg_loss: 3.411 (3.802), cls_loss: 2.944 (3.713), time: 0.677 (0.659), eta: 1:22:19, mem: 12608M
+2021-04-18 14:52:37,974 SSD.trainer INFO: iter: 000520, lr: 0.00100, total_loss: 5.978 (7.486), reg_loss: 3.142 (3.790), cls_loss: 2.836 (3.696), time: 0.632 (0.659), eta: 1:22:08, mem: 12608M
+2021-04-18 14:52:44,311 SSD.trainer INFO: iter: 000530, lr: 0.00100, total_loss: 6.429 (7.466), reg_loss: 3.529 (3.785), cls_loss: 2.900 (3.681), time: 0.634 (0.658), eta: 1:21:58, mem: 12608M
+2021-04-18 14:52:50,683 SSD.trainer INFO: iter: 000540, lr: 0.00100, total_loss: 6.130 (7.441), reg_loss: 3.135 (3.773), cls_loss: 2.995 (3.669), time: 0.637 (0.658), eta: 1:21:48, mem: 12608M
+2021-04-18 14:52:57,012 SSD.trainer INFO: iter: 000550, lr: 0.00100, total_loss: 5.655 (7.409), reg_loss: 2.802 (3.755), cls_loss: 2.853 (3.654), time: 0.633 (0.658), eta: 1:21:38, mem: 12608M
+2021-04-18 14:53:03,338 SSD.trainer INFO: iter: 000560, lr: 0.00100, total_loss: 5.506 (7.375), reg_loss: 2.655 (3.735), cls_loss: 2.850 (3.640), time: 0.633 (0.657), eta: 1:21:29, mem: 12608M
+2021-04-18 14:53:09,662 SSD.trainer INFO: iter: 000570, lr: 0.00100, total_loss: 5.712 (7.346), reg_loss: 2.962 (3.722), cls_loss: 2.750 (3.624), time: 0.632 (0.657), eta: 1:21:19, mem: 12608M
+2021-04-18 14:53:16,009 SSD.trainer INFO: iter: 000580, lr: 0.00100, total_loss: 5.638 (7.316), reg_loss: 2.813 (3.706), cls_loss: 2.825 (3.610), time: 0.635 (0.656), eta: 1:21:09, mem: 12608M
+2021-04-18 14:53:22,331 SSD.trainer INFO: iter: 000590, lr: 0.00100, total_loss: 5.816 (7.291), reg_loss: 2.996 (3.694), cls_loss: 2.820 (3.597), time: 0.632 (0.656), eta: 1:21:00, mem: 12608M
+2021-04-18 14:53:28,662 SSD.trainer INFO: iter: 000600, lr: 0.00100, total_loss: 6.066 (7.270), reg_loss: 3.127 (3.685), cls_loss: 2.939 (3.586), time: 0.633 (0.656), eta: 1:20:50, mem: 12608M
+2021-04-18 14:53:35,018 SSD.trainer INFO: iter: 000610, lr: 0.00100, total_loss: 5.558 (7.242), reg_loss: 2.765 (3.669), cls_loss: 2.793 (3.573), time: 0.636 (0.655), eta: 1:20:41, mem: 12608M
+2021-04-18 14:53:41,348 SSD.trainer INFO: iter: 000620, lr: 0.00100, total_loss: 5.779 (7.219), reg_loss: 2.888 (3.657), cls_loss: 2.891 (3.562), time: 0.633 (0.655), eta: 1:20:32, mem: 12608M
+2021-04-18 14:53:47,671 SSD.trainer INFO: iter: 000630, lr: 0.00100, total_loss: 5.805 (7.196), reg_loss: 2.975 (3.646), cls_loss: 2.831 (3.550), time: 0.632 (0.654), eta: 1:20:23, mem: 12608M
+2021-04-18 14:53:54,004 SSD.trainer INFO: iter: 000640, lr: 0.00100, total_loss: 5.726 (7.173), reg_loss: 2.845 (3.634), cls_loss: 2.881 (3.540), time: 0.633 (0.654), eta: 1:20:14, mem: 12608M
+2021-04-18 14:54:00,351 SSD.trainer INFO: iter: 000650, lr: 0.00100, total_loss: 5.698 (7.151), reg_loss: 2.845 (3.621), cls_loss: 2.853 (3.529), time: 0.635 (0.654), eta: 1:20:05, mem: 12608M
+2021-04-18 14:54:06,686 SSD.trainer INFO: iter: 000660, lr: 0.00100, total_loss: 5.749 (7.129), reg_loss: 2.880 (3.610), cls_loss: 2.869 (3.519), time: 0.633 (0.654), eta: 1:19:57, mem: 12608M
+2021-04-18 14:54:13,002 SSD.trainer INFO: iter: 000670, lr: 0.00100, total_loss: 5.695 (7.108), reg_loss: 2.844 (3.599), cls_loss: 2.851 (3.509), time: 0.632 (0.653), eta: 1:19:48, mem: 12608M
+2021-04-18 14:54:19,352 SSD.trainer INFO: iter: 000680, lr: 0.00100, total_loss: 5.599 (7.086), reg_loss: 2.821 (3.587), cls_loss: 2.778 (3.498), time: 0.635 (0.653), eta: 1:19:39, mem: 12608M
+2021-04-18 14:54:25,675 SSD.trainer INFO: iter: 000690, lr: 0.00100, total_loss: 5.974 (7.070), reg_loss: 3.021 (3.579), cls_loss: 2.954 (3.491), time: 0.632 (0.653), eta: 1:19:30, mem: 12608M
+2021-04-18 14:54:32,020 SSD.trainer INFO: iter: 000700, lr: 0.00100, total_loss: 5.342 (7.045), reg_loss: 2.560 (3.565), cls_loss: 2.783 (3.480), time: 0.635 (0.652), eta: 1:19:22, mem: 12608M
+2021-04-18 14:54:38,350 SSD.trainer INFO: iter: 000710, lr: 0.00100, total_loss: 5.533 (7.024), reg_loss: 2.755 (3.553), cls_loss: 2.778 (3.471), time: 0.633 (0.652), eta: 1:19:13, mem: 12608M
+2021-04-18 14:54:44,675 SSD.trainer INFO: iter: 000720, lr: 0.00100, total_loss: 6.204 (7.012), reg_loss: 3.163 (3.548), cls_loss: 3.041 (3.465), time: 0.632 (0.652), eta: 1:19:05, mem: 12608M
+2021-04-18 14:54:51,018 SSD.trainer INFO: iter: 000730, lr: 0.00100, total_loss: 6.060 (6.999), reg_loss: 3.210 (3.543), cls_loss: 2.850 (3.456), time: 0.634 (0.652), eta: 1:18:57, mem: 12608M
+2021-04-18 14:54:57,352 SSD.trainer INFO: iter: 000740, lr: 0.00100, total_loss: 5.485 (6.979), reg_loss: 2.790 (3.533), cls_loss: 2.695 (3.446), time: 0.633 (0.651), eta: 1:18:48, mem: 12608M
+2021-04-18 14:55:03,691 SSD.trainer INFO: iter: 000750, lr: 0.00100, total_loss: 6.017 (6.966), reg_loss: 3.132 (3.528), cls_loss: 2.885 (3.438), time: 0.634 (0.651), eta: 1:18:40, mem: 12608M
+2021-04-18 14:55:10,045 SSD.trainer INFO: iter: 000760, lr: 0.00100, total_loss: 5.599 (6.948), reg_loss: 2.879 (3.519), cls_loss: 2.720 (3.429), time: 0.635 (0.651), eta: 1:18:32, mem: 12608M
+2021-04-18 14:55:16,379 SSD.trainer INFO: iter: 000770, lr: 0.00100, total_loss: 5.895 (6.934), reg_loss: 3.024 (3.513), cls_loss: 2.871 (3.422), time: 0.633 (0.651), eta: 1:18:24, mem: 12608M
+2021-04-18 14:55:22,701 SSD.trainer INFO: iter: 000780, lr: 0.00100, total_loss: 5.519 (6.916), reg_loss: 2.808 (3.504), cls_loss: 2.710 (3.413), time: 0.632 (0.650), eta: 1:18:16, mem: 12608M
+2021-04-18 14:55:29,031 SSD.trainer INFO: iter: 000790, lr: 0.00100, total_loss: 5.520 (6.898), reg_loss: 2.649 (3.493), cls_loss: 2.871 (3.406), time: 0.633 (0.650), eta: 1:18:08, mem: 12608M
+2021-04-18 14:55:35,402 SSD.trainer INFO: iter: 000800, lr: 0.00100, total_loss: 5.459 (6.880), reg_loss: 2.775 (3.484), cls_loss: 2.684 (3.397), time: 0.637 (0.650), eta: 1:18:00, mem: 12608M
+2021-04-18 14:55:41,733 SSD.trainer INFO: iter: 000810, lr: 0.00100, total_loss: 5.975 (6.869), reg_loss: 3.015 (3.478), cls_loss: 2.960 (3.391), time: 0.633 (0.650), eta: 1:17:52, mem: 12608M
+2021-04-18 14:55:48,061 SSD.trainer INFO: iter: 000820, lr: 0.00100, total_loss: 5.398 (6.851), reg_loss: 2.659 (3.468), cls_loss: 2.740 (3.383), time: 0.633 (0.650), eta: 1:17:44, mem: 12608M
+2021-04-18 14:55:54,421 SSD.trainer INFO: iter: 000830, lr: 0.00100, total_loss: 5.860 (6.839), reg_loss: 3.022 (3.463), cls_loss: 2.838 (3.377), time: 0.636 (0.649), eta: 1:17:36, mem: 12608M
+2021-04-18 14:56:00,752 SSD.trainer INFO: iter: 000840, lr: 0.00100, total_loss: 5.594 (6.825), reg_loss: 2.776 (3.454), cls_loss: 2.818 (3.370), time: 0.633 (0.649), eta: 1:17:28, mem: 12608M
+2021-04-18 14:56:07,093 SSD.trainer INFO: iter: 000850, lr: 0.00100, total_loss: 5.844 (6.813), reg_loss: 2.954 (3.449), cls_loss: 2.890 (3.364), time: 0.634 (0.649), eta: 1:17:21, mem: 12608M
+2021-04-18 14:56:13,419 SSD.trainer INFO: iter: 000860, lr: 0.00100, total_loss: 5.406 (6.797), reg_loss: 2.707 (3.440), cls_loss: 2.699 (3.357), time: 0.633 (0.649), eta: 1:17:13, mem: 12608M
+2021-04-18 14:56:19,767 SSD.trainer INFO: iter: 000870, lr: 0.00100, total_loss: 6.062 (6.788), reg_loss: 3.199 (3.437), cls_loss: 2.863 (3.351), time: 0.635 (0.649), eta: 1:17:05, mem: 12608M
+2021-04-18 14:56:26,092 SSD.trainer INFO: iter: 000880, lr: 0.00100, total_loss: 5.455 (6.773), reg_loss: 2.749 (3.429), cls_loss: 2.706 (3.344), time: 0.633 (0.649), eta: 1:16:57, mem: 12608M
+2021-04-18 14:56:32,410 SSD.trainer INFO: iter: 000890, lr: 0.00100, total_loss: 5.473 (6.758), reg_loss: 2.618 (3.420), cls_loss: 2.855 (3.338), time: 0.632 (0.648), eta: 1:16:50, mem: 12608M
+2021-04-18 14:56:38,750 SSD.trainer INFO: iter: 000900, lr: 0.00100, total_loss: 5.952 (6.749), reg_loss: 3.081 (3.416), cls_loss: 2.871 (3.333), time: 0.634 (0.648), eta: 1:16:42, mem: 12608M
+2021-04-18 14:56:45,105 SSD.trainer INFO: iter: 000910, lr: 0.00100, total_loss: 5.794 (6.739), reg_loss: 3.018 (3.412), cls_loss: 2.776 (3.327), time: 0.636 (0.648), eta: 1:16:34, mem: 12608M
+2021-04-18 14:56:51,442 SSD.trainer INFO: iter: 000920, lr: 0.00100, total_loss: 5.544 (6.726), reg_loss: 2.703 (3.404), cls_loss: 2.841 (3.322), time: 0.634 (0.648), eta: 1:16:27, mem: 12608M
+2021-04-18 14:56:57,767 SSD.trainer INFO: iter: 000930, lr: 0.00100, total_loss: 5.610 (6.714), reg_loss: 2.838 (3.398), cls_loss: 2.772 (3.316), time: 0.632 (0.648), eta: 1:16:19, mem: 12608M
+2021-04-18 14:57:04,099 SSD.trainer INFO: iter: 000940, lr: 0.00100, total_loss: 5.489 (6.701), reg_loss: 2.764 (3.392), cls_loss: 2.725 (3.309), time: 0.633 (0.648), eta: 1:16:12, mem: 12608M
+2021-04-18 14:57:10,423 SSD.trainer INFO: iter: 000950, lr: 0.00100, total_loss: 5.896 (6.692), reg_loss: 2.984 (3.387), cls_loss: 2.912 (3.305), time: 0.632 (0.647), eta: 1:16:04, mem: 12608M
+2021-04-18 14:57:16,752 SSD.trainer INFO: iter: 000960, lr: 0.00100, total_loss: 5.823 (6.683), reg_loss: 2.971 (3.383), cls_loss: 2.852 (3.301), time: 0.633 (0.647), eta: 1:15:57, mem: 12608M
+2021-04-18 14:57:23,087 SSD.trainer INFO: iter: 000970, lr: 0.00100, total_loss: 5.680 (6.673), reg_loss: 2.826 (3.377), cls_loss: 2.854 (3.296), time: 0.634 (0.647), eta: 1:15:49, mem: 12608M
+2021-04-18 14:57:29,418 SSD.trainer INFO: iter: 000980, lr: 0.00100, total_loss: 5.123 (6.657), reg_loss: 2.409 (3.367), cls_loss: 2.714 (3.290), time: 0.633 (0.647), eta: 1:15:42, mem: 12608M
+2021-04-18 14:57:35,774 SSD.trainer INFO: iter: 000990, lr: 0.00100, total_loss: 5.456 (6.645), reg_loss: 2.687 (3.360), cls_loss: 2.770 (3.285), time: 0.636 (0.647), eta: 1:15:34, mem: 12608M
+2021-04-18 14:57:42,133 SSD.trainer INFO: iter: 001000, lr: 0.00100, total_loss: 5.648 (6.635), reg_loss: 2.821 (3.355), cls_loss: 2.826 (3.280), time: 0.636 (0.647), eta: 1:15:27, mem: 12608M
+2021-04-18 14:57:42,142 SSD.trainer INFO: Saving checkpoint to outputs/rdd2020_densenet161/model_001000.pth
+2021-04-18 14:57:48,967 SSD.trainer INFO: iter: 001010, lr: 0.00100, total_loss: 5.351 (6.622), reg_loss: 2.657 (3.348), cls_loss: 2.694 (3.274), time: 0.683 (0.647), eta: 1:15:23, mem: 12608M
+2021-04-18 14:57:55,349 SSD.trainer INFO: iter: 001020, lr: 0.00100, total_loss: 5.602 (6.612), reg_loss: 2.750 (3.342), cls_loss: 2.852 (3.270), time: 0.638 (0.647), eta: 1:15:16, mem: 12608M
+2021-04-18 14:58:01,710 SSD.trainer INFO: iter: 001030, lr: 0.00100, total_loss: 5.428 (6.601), reg_loss: 2.675 (3.336), cls_loss: 2.753 (3.265), time: 0.636 (0.647), eta: 1:15:09, mem: 12608M
+2021-04-18 14:58:08,035 SSD.trainer INFO: iter: 001040, lr: 0.00100, total_loss: 5.341 (6.589), reg_loss: 2.574 (3.328), cls_loss: 2.768 (3.260), time: 0.633 (0.647), eta: 1:15:01, mem: 12608M
+2021-04-18 14:58:14,369 SSD.trainer INFO: iter: 001050, lr: 0.00100, total_loss: 5.842 (6.582), reg_loss: 2.967 (3.325), cls_loss: 2.875 (3.257), time: 0.633 (0.647), eta: 1:14:54, mem: 12608M
+2021-04-18 14:58:20,704 SSD.trainer INFO: iter: 001060, lr: 0.00100, total_loss: 6.040 (6.577), reg_loss: 3.133 (3.323), cls_loss: 2.907 (3.253), time: 0.634 (0.647), eta: 1:14:47, mem: 12608M
+2021-04-18 14:58:27,032 SSD.trainer INFO: iter: 001070, lr: 0.00100, total_loss: 5.859 (6.570), reg_loss: 2.999 (3.320), cls_loss: 2.860 (3.250), time: 0.633 (0.646), eta: 1:14:39, mem: 12608M
+2021-04-18 14:58:33,369 SSD.trainer INFO: iter: 001080, lr: 0.00100, total_loss: 5.405 (6.559), reg_loss: 2.612 (3.314), cls_loss: 2.793 (3.246), time: 0.634 (0.646), eta: 1:14:32, mem: 12608M
+2021-04-18 14:58:39,718 SSD.trainer INFO: iter: 001090, lr: 0.00100, total_loss: 5.176 (6.546), reg_loss: 2.473 (3.306), cls_loss: 2.703 (3.241), time: 0.635 (0.646), eta: 1:14:25, mem: 12608M
+2021-04-18 14:58:46,059 SSD.trainer INFO: iter: 001100, lr: 0.00100, total_loss: 4.587 (6.529), reg_loss: 2.117 (3.295), cls_loss: 2.470 (3.234), time: 0.634 (0.646), eta: 1:14:18, mem: 12608M
+2021-04-18 14:58:52,391 SSD.trainer INFO: iter: 001110, lr: 0.00100, total_loss: 4.938 (6.514), reg_loss: 2.366 (3.287), cls_loss: 2.571 (3.228), time: 0.633 (0.646), eta: 1:14:10, mem: 12608M
+2021-04-18 14:58:58,791 SSD.trainer INFO: iter: 001120, lr: 0.00100, total_loss: 5.166 (6.502), reg_loss: 2.468 (3.279), cls_loss: 2.697 (3.223), time: 0.640 (0.646), eta: 1:14:04, mem: 12608M
+2021-04-18 14:59:05,140 SSD.trainer INFO: iter: 001130, lr: 0.00100, total_loss: 4.881 (6.488), reg_loss: 2.273 (3.271), cls_loss: 2.608 (3.217), time: 0.635 (0.646), eta: 1:13:56, mem: 12608M
+2021-04-18 14:59:11,514 SSD.trainer INFO: iter: 001140, lr: 0.00100, total_loss: 4.769 (6.473), reg_loss: 2.145 (3.261), cls_loss: 2.625 (3.212), time: 0.637 (0.646), eta: 1:13:49, mem: 12608M
+2021-04-18 14:59:17,870 SSD.trainer INFO: iter: 001150, lr: 0.00100, total_loss: 4.593 (6.456), reg_loss: 2.087 (3.250), cls_loss: 2.506 (3.206), time: 0.636 (0.646), eta: 1:13:42, mem: 12608M
+2021-04-18 14:59:24,222 SSD.trainer INFO: iter: 001160, lr: 0.00100, total_loss: 4.773 (6.442), reg_loss: 2.200 (3.241), cls_loss: 2.574 (3.201), time: 0.635 (0.646), eta: 1:13:35, mem: 12608M
+2021-04-18 14:59:30,597 SSD.trainer INFO: iter: 001170, lr: 0.00100, total_loss: 4.804 (6.428), reg_loss: 2.227 (3.233), cls_loss: 2.577 (3.195), time: 0.637 (0.646), eta: 1:13:28, mem: 12608M
+2021-04-18 14:59:36,958 SSD.trainer INFO: iter: 001180, lr: 0.00100, total_loss: 4.872 (6.415), reg_loss: 2.357 (3.225), cls_loss: 2.515 (3.190), time: 0.636 (0.645), eta: 1:13:21, mem: 12608M
+2021-04-18 14:59:43,321 SSD.trainer INFO: iter: 001190, lr: 0.00100, total_loss: 5.390 (6.406), reg_loss: 2.649 (3.220), cls_loss: 2.741 (3.186), time: 0.636 (0.645), eta: 1:13:14, mem: 12608M
+2021-04-18 14:59:49,674 SSD.trainer INFO: iter: 001200, lr: 0.00100, total_loss: 5.173 (6.396), reg_loss: 2.497 (3.214), cls_loss: 2.676 (3.181), time: 0.635 (0.645), eta: 1:13:07, mem: 12608M
+2021-04-18 14:59:56,048 SSD.trainer INFO: iter: 001210, lr: 0.00100, total_loss: 4.934 (6.384), reg_loss: 2.438 (3.208), cls_loss: 2.496 (3.176), time: 0.637 (0.645), eta: 1:13:00, mem: 12608M
+2021-04-18 15:00:02,414 SSD.trainer INFO: iter: 001220, lr: 0.00100, total_loss: 4.891 (6.372), reg_loss: 2.297 (3.201), cls_loss: 2.594 (3.171), time: 0.637 (0.645), eta: 1:12:54, mem: 12608M
+2021-04-18 15:00:08,798 SSD.trainer INFO: iter: 001230, lr: 0.00100, total_loss: 5.091 (6.361), reg_loss: 2.427 (3.194), cls_loss: 2.664 (3.167), time: 0.638 (0.645), eta: 1:12:47, mem: 12608M
+2021-04-18 15:00:15,145 SSD.trainer INFO: iter: 001240, lr: 0.00100, total_loss: 4.961 (6.350), reg_loss: 2.282 (3.187), cls_loss: 2.679 (3.163), time: 0.635 (0.645), eta: 1:12:40, mem: 12608M
+2021-04-18 15:00:21,529 SSD.trainer INFO: iter: 001250, lr: 0.00100, total_loss: 4.834 (6.338), reg_loss: 2.317 (3.180), cls_loss: 2.517 (3.158), time: 0.638 (0.645), eta: 1:12:33, mem: 12608M
+2021-04-18 15:00:27,886 SSD.trainer INFO: iter: 001260, lr: 0.00100, total_loss: 5.098 (6.328), reg_loss: 2.420 (3.174), cls_loss: 2.678 (3.154), time: 0.636 (0.645), eta: 1:12:26, mem: 12608M
+2021-04-18 15:00:34,266 SSD.trainer INFO: iter: 001270, lr: 0.00100, total_loss: 4.840 (6.316), reg_loss: 2.268 (3.167), cls_loss: 2.573 (3.149), time: 0.638 (0.645), eta: 1:12:19, mem: 12608M
+2021-04-18 15:00:40,621 SSD.trainer INFO: iter: 001280, lr: 0.00100, total_loss: 5.200 (6.307), reg_loss: 2.433 (3.161), cls_loss: 2.767 (3.146), time: 0.635 (0.645), eta: 1:12:12, mem: 12608M
+2021-04-18 15:00:46,969 SSD.trainer INFO: iter: 001290, lr: 0.00100, total_loss: 5.269 (6.299), reg_loss: 2.557 (3.156), cls_loss: 2.712 (3.143), time: 0.635 (0.645), eta: 1:12:05, mem: 12608M
+2021-04-18 15:00:53,307 SSD.trainer INFO: iter: 001300, lr: 0.00100, total_loss: 5.354 (6.292), reg_loss: 2.632 (3.152), cls_loss: 2.722 (3.140), time: 0.634 (0.645), eta: 1:11:58, mem: 12608M
+2021-04-18 15:00:59,656 SSD.trainer INFO: iter: 001310, lr: 0.00100, total_loss: 4.911 (6.282), reg_loss: 2.295 (3.146), cls_loss: 2.616 (3.136), time: 0.635 (0.645), eta: 1:11:51, mem: 12608M
+2021-04-18 15:01:06,024 SSD.trainer INFO: iter: 001320, lr: 0.00100, total_loss: 5.171 (6.273), reg_loss: 2.539 (3.141), cls_loss: 2.631 (3.132), time: 0.637 (0.644), eta: 1:11:44, mem: 12608M
+2021-04-18 15:01:12,355 SSD.trainer INFO: iter: 001330, lr: 0.00100, total_loss: 4.880 (6.263), reg_loss: 2.341 (3.135), cls_loss: 2.539 (3.128), time: 0.633 (0.644), eta: 1:11:37, mem: 12608M
+2021-04-18 15:01:18,687 SSD.trainer INFO: iter: 001340, lr: 0.00100, total_loss: 4.972 (6.253), reg_loss: 2.322 (3.129), cls_loss: 2.650 (3.124), time: 0.633 (0.644), eta: 1:11:30, mem: 12608M
+2021-04-18 15:01:25,028 SSD.trainer INFO: iter: 001350, lr: 0.00100, total_loss: 5.366 (6.247), reg_loss: 2.613 (3.125), cls_loss: 2.753 (3.121), time: 0.634 (0.644), eta: 1:11:24, mem: 12608M
+2021-04-18 15:01:31,365 SSD.trainer INFO: iter: 001360, lr: 0.00100, total_loss: 5.055 (6.238), reg_loss: 2.457 (3.120), cls_loss: 2.598 (3.117), time: 0.634 (0.644), eta: 1:11:17, mem: 12608M
+2021-04-18 15:01:37,694 SSD.trainer INFO: iter: 001370, lr: 0.00100, total_loss: 5.277 (6.231), reg_loss: 2.613 (3.117), cls_loss: 2.664 (3.114), time: 0.633 (0.644), eta: 1:11:10, mem: 12608M
+2021-04-18 15:01:44,078 SSD.trainer INFO: iter: 001380, lr: 0.00100, total_loss: 5.257 (6.224), reg_loss: 2.574 (3.113), cls_loss: 2.683 (3.111), time: 0.638 (0.644), eta: 1:11:03, mem: 12608M
+2021-04-18 15:01:50,415 SSD.trainer INFO: iter: 001390, lr: 0.00100, total_loss: 4.999 (6.215), reg_loss: 2.308 (3.107), cls_loss: 2.690 (3.108), time: 0.634 (0.644), eta: 1:10:56, mem: 12608M
+2021-04-18 15:01:56,747 SSD.trainer INFO: iter: 001400, lr: 0.00100, total_loss: 4.973 (6.206), reg_loss: 2.409 (3.102), cls_loss: 2.563 (3.104), time: 0.633 (0.644), eta: 1:10:49, mem: 12608M
+2021-04-18 15:02:03,112 SSD.trainer INFO: iter: 001410, lr: 0.00100, total_loss: 5.269 (6.199), reg_loss: 2.646 (3.099), cls_loss: 2.623 (3.101), time: 0.636 (0.644), eta: 1:10:42, mem: 12608M
+2021-04-18 15:02:09,451 SSD.trainer INFO: iter: 001420, lr: 0.00100, total_loss: 5.067 (6.191), reg_loss: 2.423 (3.094), cls_loss: 2.645 (3.097), time: 0.634 (0.644), eta: 1:10:35, mem: 12608M
+2021-04-18 15:02:15,796 SSD.trainer INFO: iter: 001430, lr: 0.00100, total_loss: 5.736 (6.188), reg_loss: 2.907 (3.093), cls_loss: 2.829 (3.096), time: 0.634 (0.644), eta: 1:10:28, mem: 12608M
+2021-04-18 15:02:22,127 SSD.trainer INFO: iter: 001440, lr: 0.00100, total_loss: 5.277 (6.182), reg_loss: 2.657 (3.090), cls_loss: 2.620 (3.092), time: 0.633 (0.644), eta: 1:10:22, mem: 12608M
+2021-04-18 15:02:28,449 SSD.trainer INFO: iter: 001450, lr: 0.00100, total_loss: 5.134 (6.175), reg_loss: 2.509 (3.086), cls_loss: 2.626 (3.089), time: 0.632 (0.644), eta: 1:10:15, mem: 12608M
+2021-04-18 15:02:34,809 SSD.trainer INFO: iter: 001460, lr: 0.00100, total_loss: 5.467 (6.170), reg_loss: 2.738 (3.083), cls_loss: 2.729 (3.087), time: 0.636 (0.643), eta: 1:10:08, mem: 12608M
+2021-04-18 15:02:41,151 SSD.trainer INFO: iter: 001470, lr: 0.00100, total_loss: 5.325 (6.164), reg_loss: 2.645 (3.080), cls_loss: 2.680 (3.084), time: 0.634 (0.643), eta: 1:10:01, mem: 12608M
+2021-04-18 15:02:47,489 SSD.trainer INFO: iter: 001480, lr: 0.00100, total_loss: 4.847 (6.155), reg_loss: 2.313 (3.075), cls_loss: 2.535 (3.080), time: 0.634 (0.643), eta: 1:09:54, mem: 12608M
+2021-04-18 15:02:53,819 SSD.trainer INFO: iter: 001490, lr: 0.00100, total_loss: 4.826 (6.146), reg_loss: 2.306 (3.070), cls_loss: 2.520 (3.076), time: 0.633 (0.643), eta: 1:09:47, mem: 12608M
+2021-04-18 15:03:00,159 SSD.trainer INFO: iter: 001500, lr: 0.00100, total_loss: 5.164 (6.140), reg_loss: 2.558 (3.066), cls_loss: 2.606 (3.073), time: 0.634 (0.643), eta: 1:09:40, mem: 12608M
+2021-04-18 15:03:00,166 SSD.trainer INFO: Saving checkpoint to outputs/rdd2020_densenet161/model_001500.pth
+2021-04-18 15:03:06,958 SSD.trainer INFO: iter: 001510, lr: 0.00100, total_loss: 4.757 (6.131), reg_loss: 2.201 (3.061), cls_loss: 2.556 (3.070), time: 0.680 (0.643), eta: 1:09:36, mem: 12608M
+2021-04-18 15:03:13,278 SSD.trainer INFO: iter: 001520, lr: 0.00100, total_loss: 4.725 (6.121), reg_loss: 2.127 (3.055), cls_loss: 2.597 (3.067), time: 0.632 (0.643), eta: 1:09:29, mem: 12608M
+2021-04-18 15:03:19,617 SSD.trainer INFO: iter: 001530, lr: 0.00100, total_loss: 5.145 (6.115), reg_loss: 2.510 (3.051), cls_loss: 2.634 (3.064), time: 0.634 (0.643), eta: 1:09:22, mem: 12608M
+2021-04-18 15:03:25,964 SSD.trainer INFO: iter: 001540, lr: 0.00100, total_loss: 4.954 (6.107), reg_loss: 2.446 (3.047), cls_loss: 2.508 (3.060), time: 0.635 (0.643), eta: 1:09:15, mem: 12608M
+2021-04-18 15:03:32,305 SSD.trainer INFO: iter: 001550, lr: 0.00100, total_loss: 5.082 (6.101), reg_loss: 2.374 (3.043), cls_loss: 2.708 (3.058), time: 0.634 (0.643), eta: 1:09:08, mem: 12608M
+2021-04-18 15:03:38,644 SSD.trainer INFO: iter: 001560, lr: 0.00100, total_loss: 4.824 (6.093), reg_loss: 2.239 (3.038), cls_loss: 2.585 (3.055), time: 0.634 (0.643), eta: 1:09:01, mem: 12608M
+2021-04-18 15:03:44,977 SSD.trainer INFO: iter: 001570, lr: 0.00100, total_loss: 5.251 (6.087), reg_loss: 2.598 (3.035), cls_loss: 2.654 (3.052), time: 0.633 (0.643), eta: 1:08:55, mem: 12608M
+2021-04-18 15:03:51,315 SSD.trainer INFO: iter: 001580, lr: 0.00100, total_loss: 5.259 (6.082), reg_loss: 2.642 (3.032), cls_loss: 2.617 (3.050), time: 0.634 (0.643), eta: 1:08:48, mem: 12608M
+2021-04-18 15:03:57,655 SSD.trainer INFO: iter: 001590, lr: 0.00100, total_loss: 4.835 (6.074), reg_loss: 2.276 (3.028), cls_loss: 2.559 (3.047), time: 0.634 (0.643), eta: 1:08:41, mem: 12608M
+2021-04-18 15:04:04,014 SSD.trainer INFO: iter: 001600, lr: 0.00100, total_loss: 5.281 (6.069), reg_loss: 2.633 (3.025), cls_loss: 2.648 (3.044), time: 0.636 (0.643), eta: 1:08:34, mem: 12608M
+2021-04-18 15:04:10,347 SSD.trainer INFO: iter: 001610, lr: 0.00100, total_loss: 4.446 (6.059), reg_loss: 2.037 (3.019), cls_loss: 2.409 (3.040), time: 0.633 (0.643), eta: 1:08:27, mem: 12608M
+2021-04-18 15:04:16,701 SSD.trainer INFO: iter: 001620, lr: 0.00100, total_loss: 4.646 (6.050), reg_loss: 2.088 (3.013), cls_loss: 2.559 (3.037), time: 0.635 (0.643), eta: 1:08:21, mem: 12608M
+2021-04-18 15:04:23,078 SSD.trainer INFO: iter: 001630, lr: 0.00100, total_loss: 4.113 (6.038), reg_loss: 1.712 (3.005), cls_loss: 2.401 (3.033), time: 0.638 (0.643), eta: 1:08:14, mem: 12608M
+2021-04-18 15:04:29,400 SSD.trainer INFO: iter: 001640, lr: 0.00100, total_loss: 4.526 (6.029), reg_loss: 1.994 (2.999), cls_loss: 2.532 (3.030), time: 0.632 (0.643), eta: 1:08:07, mem: 12608M
+2021-04-18 15:04:35,735 SSD.trainer INFO: iter: 001650, lr: 0.00100, total_loss: 4.102 (6.018), reg_loss: 1.814 (2.992), cls_loss: 2.289 (3.026), time: 0.633 (0.643), eta: 1:08:00, mem: 12608M
+2021-04-18 15:04:42,075 SSD.trainer INFO: iter: 001660, lr: 0.00100, total_loss: 4.650 (6.009), reg_loss: 2.240 (2.987), cls_loss: 2.411 (3.022), time: 0.634 (0.643), eta: 1:07:54, mem: 12608M
+2021-04-18 15:04:48,426 SSD.trainer INFO: iter: 001670, lr: 0.00100, total_loss: 4.679 (6.001), reg_loss: 2.196 (2.983), cls_loss: 2.483 (3.019), time: 0.635 (0.643), eta: 1:07:47, mem: 12608M
+2021-04-18 15:04:54,785 SSD.trainer INFO: iter: 001680, lr: 0.00100, total_loss: 4.188 (5.991), reg_loss: 1.853 (2.976), cls_loss: 2.335 (3.015), time: 0.636 (0.643), eta: 1:07:40, mem: 12608M
+2021-04-18 15:05:01,190 SSD.trainer INFO: iter: 001690, lr: 0.00100, total_loss: 4.219 (5.980), reg_loss: 1.964 (2.970), cls_loss: 2.254 (3.010), time: 0.641 (0.643), eta: 1:07:34, mem: 12608M
+2021-04-18 15:05:07,551 SSD.trainer INFO: iter: 001700, lr: 0.00100, total_loss: 4.605 (5.972), reg_loss: 2.137 (2.965), cls_loss: 2.468 (3.007), time: 0.636 (0.642), eta: 1:07:27, mem: 12608M
+2021-04-18 15:05:13,895 SSD.trainer INFO: iter: 001710, lr: 0.00100, total_loss: 4.475 (5.963), reg_loss: 2.119 (2.960), cls_loss: 2.356 (3.003), time: 0.634 (0.642), eta: 1:07:20, mem: 12608M
+2021-04-18 15:05:20,210 SSD.trainer INFO: iter: 001720, lr: 0.00100, total_loss: 4.642 (5.956), reg_loss: 2.210 (2.956), cls_loss: 2.432 (3.000), time: 0.631 (0.642), eta: 1:07:14, mem: 12608M
+2021-04-18 15:05:26,529 SSD.trainer INFO: iter: 001730, lr: 0.00100, total_loss: 4.511 (5.947), reg_loss: 2.124 (2.951), cls_loss: 2.387 (2.996), time: 0.632 (0.642), eta: 1:07:07, mem: 12608M
+2021-04-18 15:05:32,863 SSD.trainer INFO: iter: 001740, lr: 0.00100, total_loss: 4.672 (5.940), reg_loss: 2.206 (2.947), cls_loss: 2.466 (2.993), time: 0.633 (0.642), eta: 1:07:00, mem: 12608M
+2021-04-18 15:05:39,192 SSD.trainer INFO: iter: 001750, lr: 0.00100, total_loss: 4.576 (5.932), reg_loss: 2.124 (2.942), cls_loss: 2.452 (2.990), time: 0.633 (0.642), eta: 1:06:53, mem: 12608M
+2021-04-18 15:05:45,518 SSD.trainer INFO: iter: 001760, lr: 0.00100, total_loss: 4.618 (5.925), reg_loss: 2.074 (2.937), cls_loss: 2.543 (2.988), time: 0.633 (0.642), eta: 1:06:46, mem: 12608M
+2021-04-18 15:05:51,858 SSD.trainer INFO: iter: 001770, lr: 0.00100, total_loss: 4.707 (5.918), reg_loss: 2.166 (2.933), cls_loss: 2.541 (2.985), time: 0.634 (0.642), eta: 1:06:40, mem: 12608M
+2021-04-18 15:05:58,190 SSD.trainer INFO: iter: 001780, lr: 0.00100, total_loss: 4.567 (5.910), reg_loss: 2.129 (2.928), cls_loss: 2.438 (2.982), time: 0.633 (0.642), eta: 1:06:33, mem: 12608M
+2021-04-18 15:06:04,524 SSD.trainer INFO: iter: 001790, lr: 0.00100, total_loss: 4.741 (5.904), reg_loss: 2.191 (2.924), cls_loss: 2.551 (2.980), time: 0.633 (0.642), eta: 1:06:26, mem: 12608M
+2021-04-18 15:06:10,855 SSD.trainer INFO: iter: 001800, lr: 0.00100, total_loss: 4.550 (5.896), reg_loss: 2.080 (2.919), cls_loss: 2.470 (2.977), time: 0.633 (0.642), eta: 1:06:20, mem: 12608M
+2021-04-18 15:06:17,198 SSD.trainer INFO: iter: 001810, lr: 0.00100, total_loss: 4.274 (5.887), reg_loss: 1.877 (2.914), cls_loss: 2.397 (2.974), time: 0.634 (0.642), eta: 1:06:13, mem: 12608M
+2021-04-18 15:06:23,534 SSD.trainer INFO: iter: 001820, lr: 0.00100, total_loss: 4.142 (5.878), reg_loss: 1.763 (2.907), cls_loss: 2.379 (2.970), time: 0.634 (0.642), eta: 1:06:06, mem: 12608M
+2021-04-18 15:06:29,863 SSD.trainer INFO: iter: 001830, lr: 0.00100, total_loss: 4.801 (5.872), reg_loss: 2.240 (2.904), cls_loss: 2.561 (2.968), time: 0.633 (0.642), eta: 1:05:59, mem: 12608M
+2021-04-18 15:06:36,222 SSD.trainer INFO: iter: 001840, lr: 0.00100, total_loss: 4.573 (5.865), reg_loss: 2.072 (2.899), cls_loss: 2.502 (2.966), time: 0.636 (0.642), eta: 1:05:53, mem: 12608M
+2021-04-18 15:06:42,579 SSD.trainer INFO: iter: 001850, lr: 0.00100, total_loss: 4.486 (5.857), reg_loss: 1.996 (2.894), cls_loss: 2.490 (2.963), time: 0.636 (0.642), eta: 1:05:46, mem: 12608M
+2021-04-18 15:06:48,910 SSD.trainer INFO: iter: 001860, lr: 0.00100, total_loss: 4.551 (5.850), reg_loss: 2.089 (2.890), cls_loss: 2.462 (2.960), time: 0.633 (0.642), eta: 1:05:40, mem: 12608M
+2021-04-18 15:06:55,270 SSD.trainer INFO: iter: 001870, lr: 0.00100, total_loss: 4.630 (5.844), reg_loss: 2.195 (2.886), cls_loss: 2.436 (2.958), time: 0.636 (0.642), eta: 1:05:33, mem: 12608M
+2021-04-18 15:07:01,622 SSD.trainer INFO: iter: 001880, lr: 0.00100, total_loss: 4.151 (5.835), reg_loss: 1.824 (2.880), cls_loss: 2.327 (2.954), time: 0.635 (0.642), eta: 1:05:26, mem: 12608M
+2021-04-18 15:07:07,966 SSD.trainer INFO: iter: 001890, lr: 0.00100, total_loss: 4.656 (5.828), reg_loss: 2.186 (2.877), cls_loss: 2.470 (2.952), time: 0.634 (0.642), eta: 1:05:20, mem: 12608M
+2021-04-18 15:07:14,309 SSD.trainer INFO: iter: 001900, lr: 0.00100, total_loss: 4.448 (5.821), reg_loss: 1.962 (2.872), cls_loss: 2.486 (2.949), time: 0.634 (0.642), eta: 1:05:13, mem: 12608M
+2021-04-18 15:07:20,653 SSD.trainer INFO: iter: 001910, lr: 0.00100, total_loss: 4.982 (5.817), reg_loss: 2.355 (2.869), cls_loss: 2.627 (2.947), time: 0.634 (0.642), eta: 1:05:06, mem: 12608M
+2021-04-18 15:07:27,006 SSD.trainer INFO: iter: 001920, lr: 0.00100, total_loss: 4.814 (5.812), reg_loss: 2.242 (2.866), cls_loss: 2.572 (2.946), time: 0.635 (0.641), eta: 1:05:00, mem: 12608M
+2021-04-18 15:07:33,353 SSD.trainer INFO: iter: 001930, lr: 0.00100, total_loss: 4.524 (5.805), reg_loss: 2.076 (2.862), cls_loss: 2.448 (2.943), time: 0.635 (0.641), eta: 1:04:53, mem: 12608M
+2021-04-18 15:07:39,688 SSD.trainer INFO: iter: 001940, lr: 0.00100, total_loss: 4.474 (5.798), reg_loss: 2.156 (2.858), cls_loss: 2.318 (2.940), time: 0.633 (0.641), eta: 1:04:46, mem: 12608M
+2021-04-18 15:07:46,008 SSD.trainer INFO: iter: 001950, lr: 0.00100, total_loss: 4.544 (5.792), reg_loss: 2.065 (2.854), cls_loss: 2.480 (2.937), time: 0.632 (0.641), eta: 1:04:40, mem: 12608M
+2021-04-18 15:07:52,356 SSD.trainer INFO: iter: 001960, lr: 0.00100, total_loss: 4.502 (5.785), reg_loss: 2.083 (2.850), cls_loss: 2.418 (2.935), time: 0.635 (0.641), eta: 1:04:33, mem: 12608M
+2021-04-18 15:07:58,699 SSD.trainer INFO: iter: 001970, lr: 0.00100, total_loss: 4.426 (5.778), reg_loss: 1.938 (2.846), cls_loss: 2.487 (2.932), time: 0.634 (0.641), eta: 1:04:27, mem: 12608M
+2021-04-18 15:08:05,038 SSD.trainer INFO: iter: 001980, lr: 0.00100, total_loss: 4.333 (5.771), reg_loss: 1.975 (2.841), cls_loss: 2.358 (2.930), time: 0.634 (0.641), eta: 1:04:20, mem: 12608M
+2021-04-18 15:08:11,373 SSD.trainer INFO: iter: 001990, lr: 0.00100, total_loss: 4.425 (5.764), reg_loss: 2.036 (2.837), cls_loss: 2.389 (2.927), time: 0.634 (0.641), eta: 1:04:13, mem: 12608M
+2021-04-18 15:08:17,703 SSD.trainer INFO: iter: 002000, lr: 0.00100, total_loss: 4.615 (5.758), reg_loss: 2.044 (2.833), cls_loss: 2.570 (2.925), time: 0.633 (0.641), eta: 1:04:07, mem: 12608M
+2021-04-18 15:08:17,711 SSD.trainer INFO: Saving checkpoint to outputs/rdd2020_densenet161/model_002000.pth
+2021-04-18 15:08:18,196 SSD.inference INFO: Evaluating rdd2020_val dataset(3659 images):
+2021-04-18 15:09:21,780 SSD.inference INFO: mAP: 0.1580
+D00             : 0.1113
+D10             : 0.0938
+D20             : 0.4159
+D40             : 0.0110
+
+2021-04-18 15:09:28,199 SSD.trainer INFO: iter: 002010, lr: 0.00100, total_loss: 4.693 (5.753), reg_loss: 2.182 (2.830), cls_loss: 2.511 (2.923), time: 7.049 (0.673), eta: 1:07:11, mem: 12608M
+2021-04-18 15:09:34,580 SSD.trainer INFO: iter: 002020, lr: 0.00100, total_loss: 4.778 (5.748), reg_loss: 2.306 (2.827), cls_loss: 2.472 (2.921), time: 0.638 (0.673), eta: 1:07:03, mem: 12608M
+2021-04-18 15:09:41,004 SSD.trainer INFO: iter: 002030, lr: 0.00100, total_loss: 4.748 (5.743), reg_loss: 2.179 (2.824), cls_loss: 2.569 (2.919), time: 0.642 (0.673), eta: 1:06:56, mem: 12608M
+2021-04-18 15:09:47,752 SSD.trainer INFO: iter: 002040, lr: 0.00100, total_loss: 4.542 (5.737), reg_loss: 2.171 (2.821), cls_loss: 2.371 (2.916), time: 0.675 (0.673), eta: 1:06:49, mem: 12608M
+2021-04-18 15:09:54,318 SSD.trainer INFO: iter: 002050, lr: 0.00100, total_loss: 4.271 (5.730), reg_loss: 1.881 (2.816), cls_loss: 2.390 (2.914), time: 0.657 (0.673), eta: 1:06:42, mem: 12608M
+2021-04-18 15:10:01,364 SSD.trainer INFO: iter: 002060, lr: 0.00100, total_loss: 4.565 (5.725), reg_loss: 2.019 (2.813), cls_loss: 2.546 (2.912), time: 0.705 (0.673), eta: 1:06:36, mem: 12608M
+2021-04-18 15:10:08,847 SSD.trainer INFO: iter: 002070, lr: 0.00100, total_loss: 4.625 (5.719), reg_loss: 2.157 (2.809), cls_loss: 2.467 (2.910), time: 0.748 (0.673), eta: 1:06:32, mem: 12608M
+2021-04-18 15:10:15,223 SSD.trainer INFO: iter: 002080, lr: 0.00100, total_loss: 4.700 (5.714), reg_loss: 2.187 (2.806), cls_loss: 2.513 (2.908), time: 0.638 (0.673), eta: 1:06:24, mem: 12608M
+2021-04-18 15:10:21,557 SSD.trainer INFO: iter: 002090, lr: 0.00100, total_loss: 4.434 (5.708), reg_loss: 2.035 (2.803), cls_loss: 2.399 (2.905), time: 0.633 (0.673), eta: 1:06:16, mem: 12608M
+2021-04-18 15:10:28,113 SSD.trainer INFO: iter: 002100, lr: 0.00100, total_loss: 4.530 (5.703), reg_loss: 2.087 (2.799), cls_loss: 2.442 (2.903), time: 0.656 (0.673), eta: 1:06:09, mem: 12608M
+2021-04-18 15:10:34,461 SSD.trainer INFO: iter: 002110, lr: 0.00100, total_loss: 4.772 (5.698), reg_loss: 2.207 (2.796), cls_loss: 2.566 (2.902), time: 0.635 (0.673), eta: 1:06:01, mem: 12608M
+2021-04-18 15:10:40,858 SSD.trainer INFO: iter: 002120, lr: 0.00100, total_loss: 4.618 (5.693), reg_loss: 2.096 (2.793), cls_loss: 2.522 (2.900), time: 0.640 (0.672), eta: 1:05:53, mem: 12608M
+2021-04-18 15:10:47,648 SSD.trainer INFO: iter: 002130, lr: 0.00100, total_loss: 4.520 (5.688), reg_loss: 1.995 (2.789), cls_loss: 2.525 (2.898), time: 0.679 (0.672), eta: 1:05:47, mem: 12608M
+2021-04-18 15:10:53,982 SSD.trainer INFO: iter: 002140, lr: 0.00100, total_loss: 4.069 (5.680), reg_loss: 1.774 (2.785), cls_loss: 2.295 (2.895), time: 0.633 (0.672), eta: 1:05:39, mem: 12608M
+2021-04-18 15:11:00,321 SSD.trainer INFO: iter: 002150, lr: 0.00100, total_loss: 3.716 (5.671), reg_loss: 1.564 (2.779), cls_loss: 2.152 (2.892), time: 0.634 (0.672), eta: 1:05:31, mem: 12608M
+2021-04-18 15:11:06,669 SSD.trainer INFO: iter: 002160, lr: 0.00100, total_loss: 4.240 (5.664), reg_loss: 1.850 (2.775), cls_loss: 2.390 (2.890), time: 0.635 (0.672), eta: 1:05:23, mem: 12608M
+2021-04-18 15:11:13,062 SSD.trainer INFO: iter: 002170, lr: 0.00100, total_loss: 3.941 (5.656), reg_loss: 1.736 (2.770), cls_loss: 2.205 (2.886), time: 0.639 (0.672), eta: 1:05:16, mem: 12608M
+2021-04-18 15:11:19,426 SSD.trainer INFO: iter: 002180, lr: 0.00100, total_loss: 3.841 (5.648), reg_loss: 1.669 (2.765), cls_loss: 2.172 (2.883), time: 0.636 (0.672), eta: 1:05:08, mem: 12608M
+2021-04-18 15:11:26,010 SSD.trainer INFO: iter: 002190, lr: 0.00100, total_loss: 4.017 (5.641), reg_loss: 1.732 (2.760), cls_loss: 2.285 (2.880), time: 0.658 (0.672), eta: 1:05:01, mem: 12608M
+2021-04-18 15:11:32,533 SSD.trainer INFO: iter: 002200, lr: 0.00100, total_loss: 3.758 (5.632), reg_loss: 1.560 (2.755), cls_loss: 2.198 (2.877), time: 0.653 (0.671), eta: 1:04:54, mem: 12608M
+2021-04-18 15:11:38,880 SSD.trainer INFO: iter: 002210, lr: 0.00100, total_loss: 3.714 (5.623), reg_loss: 1.653 (2.750), cls_loss: 2.061 (2.874), time: 0.635 (0.671), eta: 1:04:46, mem: 12608M
+2021-04-18 15:11:45,221 SSD.trainer INFO: iter: 002220, lr: 0.00100, total_loss: 3.992 (5.616), reg_loss: 1.743 (2.745), cls_loss: 2.249 (2.871), time: 0.634 (0.671), eta: 1:04:39, mem: 12608M
+2021-04-18 15:11:51,560 SSD.trainer INFO: iter: 002230, lr: 0.00100, total_loss: 4.071 (5.609), reg_loss: 1.823 (2.741), cls_loss: 2.248 (2.868), time: 0.634 (0.671), eta: 1:04:31, mem: 12608M
+2021-04-18 15:11:57,930 SSD.trainer INFO: iter: 002240, lr: 0.00100, total_loss: 4.017 (5.602), reg_loss: 1.795 (2.737), cls_loss: 2.223 (2.865), time: 0.637 (0.671), eta: 1:04:23, mem: 12608M
+2021-04-18 15:12:04,308 SSD.trainer INFO: iter: 002250, lr: 0.00100, total_loss: 3.782 (5.594), reg_loss: 1.621 (2.732), cls_loss: 2.161 (2.862), time: 0.638 (0.671), eta: 1:04:16, mem: 12608M
+2021-04-18 15:12:10,666 SSD.trainer INFO: iter: 002260, lr: 0.00100, total_loss: 4.315 (5.588), reg_loss: 1.987 (2.729), cls_loss: 2.328 (2.860), time: 0.636 (0.670), eta: 1:04:08, mem: 12608M
+2021-04-18 15:12:17,022 SSD.trainer INFO: iter: 002270, lr: 0.00100, total_loss: 3.674 (5.580), reg_loss: 1.620 (2.724), cls_loss: 2.054 (2.856), time: 0.636 (0.670), eta: 1:04:01, mem: 12608M
+2021-04-18 15:12:23,431 SSD.trainer INFO: iter: 002280, lr: 0.00100, total_loss: 4.030 (5.573), reg_loss: 1.806 (2.720), cls_loss: 2.224 (2.853), time: 0.641 (0.670), eta: 1:03:53, mem: 12608M
+2021-04-18 15:12:29,850 SSD.trainer INFO: iter: 002290, lr: 0.00100, total_loss: 4.046 (5.566), reg_loss: 1.783 (2.716), cls_loss: 2.263 (2.851), time: 0.642 (0.670), eta: 1:03:46, mem: 12608M
+2021-04-18 15:12:36,205 SSD.trainer INFO: iter: 002300, lr: 0.00100, total_loss: 4.143 (5.560), reg_loss: 1.795 (2.712), cls_loss: 2.348 (2.848), time: 0.636 (0.670), eta: 1:03:38, mem: 12608M
+2021-04-18 15:12:42,668 SSD.trainer INFO: iter: 002310, lr: 0.00100, total_loss: 4.224 (5.554), reg_loss: 1.955 (2.708), cls_loss: 2.269 (2.846), time: 0.646 (0.670), eta: 1:03:31, mem: 12608M
+2021-04-18 15:12:49,028 SSD.trainer INFO: iter: 002320, lr: 0.00100, total_loss: 4.089 (5.548), reg_loss: 1.856 (2.705), cls_loss: 2.233 (2.843), time: 0.636 (0.670), eta: 1:03:23, mem: 12608M
+2021-04-18 15:12:55,406 SSD.trainer INFO: iter: 002330, lr: 0.00100, total_loss: 4.439 (5.543), reg_loss: 2.073 (2.702), cls_loss: 2.366 (2.841), time: 0.638 (0.670), eta: 1:03:16, mem: 12608M
+2021-04-18 15:13:01,796 SSD.trainer INFO: iter: 002340, lr: 0.00100, total_loss: 4.251 (5.538), reg_loss: 1.968 (2.699), cls_loss: 2.283 (2.839), time: 0.639 (0.669), eta: 1:03:08, mem: 12608M
+2021-04-18 15:13:08,222 SSD.trainer INFO: iter: 002350, lr: 0.00100, total_loss: 4.098 (5.532), reg_loss: 1.775 (2.695), cls_loss: 2.324 (2.837), time: 0.643 (0.669), eta: 1:03:01, mem: 12608M
+2021-04-18 15:13:14,556 SSD.trainer INFO: iter: 002360, lr: 0.00100, total_loss: 4.206 (5.526), reg_loss: 1.924 (2.692), cls_loss: 2.282 (2.834), time: 0.634 (0.669), eta: 1:02:54, mem: 12608M
+2021-04-18 15:13:20,905 SSD.trainer INFO: iter: 002370, lr: 0.00100, total_loss: 3.718 (5.518), reg_loss: 1.632 (2.687), cls_loss: 2.087 (2.831), time: 0.635 (0.669), eta: 1:02:46, mem: 12608M
+2021-04-18 15:13:27,265 SSD.trainer INFO: iter: 002380, lr: 0.00100, total_loss: 3.927 (5.512), reg_loss: 1.738 (2.683), cls_loss: 2.189 (2.829), time: 0.636 (0.669), eta: 1:02:39, mem: 12608M
+2021-04-18 15:13:33,618 SSD.trainer INFO: iter: 002390, lr: 0.00100, total_loss: 4.146 (5.506), reg_loss: 1.802 (2.679), cls_loss: 2.345 (2.826), time: 0.635 (0.669), eta: 1:02:31, mem: 12608M
+2021-04-18 15:13:39,981 SSD.trainer INFO: iter: 002400, lr: 0.00100, total_loss: 4.120 (5.500), reg_loss: 1.802 (2.676), cls_loss: 2.318 (2.824), time: 0.636 (0.669), eta: 1:02:24, mem: 12608M
+2021-04-18 15:13:46,331 SSD.trainer INFO: iter: 002410, lr: 0.00100, total_loss: 4.107 (5.494), reg_loss: 1.781 (2.672), cls_loss: 2.326 (2.822), time: 0.635 (0.668), eta: 1:02:16, mem: 12608M
+2021-04-18 15:13:52,670 SSD.trainer INFO: iter: 002420, lr: 0.00100, total_loss: 3.937 (5.488), reg_loss: 1.706 (2.668), cls_loss: 2.231 (2.820), time: 0.634 (0.668), eta: 1:02:09, mem: 12608M
+2021-04-18 15:13:59,008 SSD.trainer INFO: iter: 002430, lr: 0.00100, total_loss: 3.971 (5.482), reg_loss: 1.728 (2.664), cls_loss: 2.244 (2.817), time: 0.634 (0.668), eta: 1:02:01, mem: 12608M
+2021-04-18 15:14:05,380 SSD.trainer INFO: iter: 002440, lr: 0.00100, total_loss: 3.878 (5.475), reg_loss: 1.630 (2.660), cls_loss: 2.248 (2.815), time: 0.637 (0.668), eta: 1:01:54, mem: 12608M
+2021-04-18 15:35:52,095 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 15:35:52,095 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 15:35:52,095 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [384,1056,2208]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 15:35:52,095 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (384, 1056, 2208)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 15:36:45,932 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 15:36:45,932 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 15:36:45,932 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [384,1056,2208]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 15:36:45,932 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (384, 1056, 2208)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 15:37:04,877 SSD.trainer INFO: Loading checkpoint from outputs/rdd2020_densenet161/model_002000.pth
+2021-04-18 15:38:00,390 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 15:38:00,391 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 15:38:00,391 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [384,1056,2208]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],[5,5],[3,3], [1,1]]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 15:38:00,391 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (384, 1056, 2208)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 15:38:19,057 SSD.trainer INFO: Loading checkpoint from outputs/rdd2020_densenet161/model_002000.pth
+2021-04-18 15:39:58,114 SSD INFO: Namespace(config_file='configs/train_rdd2020_densenet_server.yaml', opts=[])
+2021-04-18 15:39:58,115 SSD INFO: Loaded configuration file configs/train_rdd2020_densenet_server.yaml
+2021-04-18 15:39:58,115 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'densenet161'
+        PRETRAINED: True
+        OUT_CHANNELS: [384,1056,2208]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[18, 18], [9, 9], [9, 9],[5,5],[3,3], [1,1]]
+INPUT:
+    IMAGE_SIZE: [300, 300]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 8000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_densenet161'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+2021-04-18 15:39:58,115 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [300, 300]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: densenet161
+    OUT_CHANNELS: (384, 1056, 2208)
+    PRETRAINED: True
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[18, 18], [9, 9], [9, 9], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 500
+OUTPUT_DIR: outputs/rdd2020_densenet161
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 8000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-18 15:40:17,824 SSD.trainer INFO: Loading checkpoint from outputs/rdd2020_densenet161/model_002000.pth
