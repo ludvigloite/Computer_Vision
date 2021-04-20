@@ -8,8 +8,7 @@ def build_transforms(cfg, is_train=True):
         transform = [
             ConvertFromInts(),
             RandomMirror(),
-            RandomSampleCrop(), #added for task 4c
-            #RandomVerticalMirror(),
+            RandomSampleCrop(), #added for task 4c            
             ToPercentCoords(),            
             Resize(cfg.INPUT.IMAGE_SIZE),
             SubtractMeans(cfg.INPUT.PIXEL_MEAN, cfg.INPUT.PIXEL_STD),
