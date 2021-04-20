@@ -1,0 +1,1 @@
+outputs/tdt4265_resnet18_600x600/model_036000.pth
