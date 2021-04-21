@@ -1,1 +1,1 @@
-outputs/rdd2020_resnet50_600x600/model_006000.pth
+outputs/rdd2020_resnet50_600x600/model_008000.pth
