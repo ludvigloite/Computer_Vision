@@ -47,10 +47,10 @@ class ResNeXt50_600x600(torch.nn.Module):
         model = resnext50_32x4d(pretrained=True)      
         
         self.feature_extractor = torch.nn.Sequential(*(list(model.children())[:-2]), 
-                                                     backbone_head_layer(2048,512,2,1), 
-                                                     backbone_head_layer(512,512,2,1), 
-                                                     backbone_head_layer(512,512,2,1), 
-                                                     backbone_head_layer(512,512,2,0,True))
+                                                     backbone_head_layer(2048,1024,2,1), 
+                                                     backbone_head_layer(1024,1024,2,1), 
+                                                     backbone_head_layer(1024,1024,2,1), 
+                                                     backbone_head_layer(1024,1024,2,0,True))
         print("layers:", self.feature_extractor)
         #print(torch.nn.Sequential(*(list(resnext_model.children()))))
         
