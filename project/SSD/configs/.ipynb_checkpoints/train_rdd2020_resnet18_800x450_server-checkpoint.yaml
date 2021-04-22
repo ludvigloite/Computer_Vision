@@ -22,7 +22,7 @@ SOLVER:
     GAMMA: 0.1
     BATCH_SIZE: 16
     LR: 1e-3
-OUTPUT_DIR: 'outputs/rdd2020_resnet18_800x450_v2_server'
+OUTPUT_DIR: 'outputs/rdd2020_resnet18_800x450_changedsizes_pxlstd'
 DATASET_DIR: "/work/datasets"
 EVAL_STEP: 2000
 MODEL_SAVE_STEP:  1000
