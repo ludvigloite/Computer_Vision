@@ -1,0 +1,1 @@
+outputs/rdd2020_resnet18_800x450_v2_server/model_006000.pth
