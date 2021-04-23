@@ -23,6 +23,6 @@ SOLVER:
     BATCH_SIZE: 16
     LR: 1e-3
 OUTPUT_DIR: 'outputs/tdt4265_resnet18_800x450'
-DATASET_DIR: "/work/datasets"
+DATASET_DIR: "datasets"
 EVAL_STEP: 2000
 MODEL_SAVE_STEP:  2000

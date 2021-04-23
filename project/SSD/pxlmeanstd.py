@@ -1,12 +1,12 @@
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from train import get_parser
 from ssd.config.defaults import cfg
 from ssd.data.build import make_data_loader
-from vizer.draw import draw_boxes
+#from vizer.draw import draw_boxes
 np.random.seed(0)
 
-config_path = "configs/train_tdt4265_resnet18_800x450_pxl1.yaml" # yaml file for RDD2020
+config_path = "configs/train_tdt4265_resnet18_800x450.yaml" # yaml file for RDD2020
 cfg.merge_from_file(config_path)
 cfg.freeze()
 
