@@ -1,0 +1,87 @@
+2021-04-23 12:00:19,174 SSD INFO: Namespace(config_file='configs/train_rdd2020_resnet18_600x600_standard.yaml', opts=[])
+2021-04-23 12:00:19,174 SSD INFO: Loaded configuration file configs/train_rdd2020_resnet18_600x600_standard.yaml
+2021-04-23 12:00:19,174 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 8
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_resnet18_600x600_bz8'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP: 20000
+
+2021-04-23 12:00:19,174 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 20000
+OUTPUT_DIR: outputs/rdd2020_resnet18_600x600_bz8
+SOLVER:
+  BATCH_SIZE: 8
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-23 12:00:24,085 SSD.trainer INFO: No checkpoint found.
+2021-04-23 12:00:24,175 SSD.trainer INFO: Start training ...
+2021-04-23 12:00:46,643 SSD.trainer INFO: iter: 000010, lr: 0.00100, total_loss: 28.010 (28.010), reg_loss: 4.867 (4.867), cls_loss: 23.143 (23.143), time: 1.989 (1.989), eta: 2 days, 18:18:25, mem: 6013M
+2021-04-23 12:00:51,744 SSD.trainer INFO: iter: 000020, lr: 0.00100, total_loss: 16.615 (22.313), reg_loss: 4.016 (4.441), cls_loss: 12.599 (17.871), time: 0.510 (1.250), eta: 1 day, 17:39:02, mem: 6013M
+2021-04-23 12:00:56,950 SSD.trainer INFO: iter: 000030, lr: 0.00100, total_loss: 17.235 (20.620), reg_loss: 3.726 (4.203), cls_loss: 13.509 (16.417), time: 0.521 (1.007), eta: 1 day, 9:32:49, mem: 6013M
+2021-04-23 12:01:02,049 SSD.trainer INFO: iter: 000040, lr: 0.00100, total_loss: 14.048 (18.977), reg_loss: 3.418 (4.007), cls_loss: 10.630 (14.970), time: 0.510 (0.882), eta: 1 day, 5:24:21, mem: 6013M
+2021-04-23 12:01:07,129 SSD.trainer INFO: iter: 000050, lr: 0.00100, total_loss: 12.203 (17.622), reg_loss: 3.593 (3.924), cls_loss: 8.610 (13.698), time: 0.508 (0.808), eta: 1 day, 2:54:29, mem: 6013M
+2021-04-23 12:01:12,198 SSD.trainer INFO: iter: 000060, lr: 0.00100, total_loss: 13.992 (17.017), reg_loss: 3.888 (3.918), cls_loss: 10.105 (13.099), time: 0.507 (0.757), eta: 1 day, 1:14:10, mem: 6013M
+2021-04-23 12:01:17,287 SSD.trainer INFO: iter: 000070, lr: 0.00100, total_loss: 10.899 (16.143), reg_loss: 3.570 (3.868), cls_loss: 7.329 (12.275), time: 0.509 (0.722), eta: 1 day, 0:03:05, mem: 6013M
+2021-04-23 12:01:22,329 SSD.trainer INFO: iter: 000080, lr: 0.00100, total_loss: 10.616 (15.452), reg_loss: 3.818 (3.862), cls_loss: 6.798 (11.590), time: 0.504 (0.695), eta: 23:08:34, mem: 6013M
+2021-04-23 12:01:27,420 SSD.trainer INFO: iter: 000090, lr: 0.00100, total_loss: 9.794 (14.824), reg_loss: 3.667 (3.840), cls_loss: 6.127 (10.983), time: 0.509 (0.674), eta: 22:27:13, mem: 6013M
