@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from numpy import random
 from torchvision.transforms import functional
-import random
+from .bbox_util import *
 
 
 
@@ -323,10 +323,10 @@ class RandomRotate(object):
         else:
             self.angle = (-self.angle, self.angle)
             
-    def __call__(self, img, bboxes):
+    def __call__(self, img, bboxes, classes):
 
-        if random.randrange(0,9,1) < 3:
-            return img, bboxes
+        if random.randint(10) < 3:
+            return img, bboxes, classes
     
         angle = random.uniform(*self.angle)
     
@@ -357,4 +357,4 @@ class RandomRotate(object):
     
         bboxes = clip_box(bboxes, [0,0,w, h], 0.25)
     
-        return img, bboxes
+        return img, bboxes, classes
