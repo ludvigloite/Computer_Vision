@@ -51,11 +51,12 @@ class Inception(torch.nn.Module):
             torch.nn.BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
             )
         
-        self.feature_extractor = torch.nn.Sequential(*(list(model.children())[:-3]))
-                                                     #backbone_head_layer(512,512,2,1), 
-                                                     #backbone_head_layer(512,512,2,1), 
-                                                     #backbone_head_layer(512,1024,2,1),
-                                                     #hck_lr)
+        self.feature_extractor = torch.nn.Sequential(*(list(model.children())[:-3]), 
+                                                    backbone_head_layer(2048,512,2,1), 
+                                                    backbone_head_layer(512,512,2,1), 
+                                                    backbone_head_layer(512,1024,2,1), 
+                                                    hck_lr)
+        
         print("layers:", self.feature_extractor)
         #print(torch.nn.Sequential(*(list(resnext_model.children()))))
         
@@ -132,6 +133,21 @@ class Inception(torch.nn.Module):
         
         
         features = self.feature_extractor[17](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        features_out.append(features)
+        
+        features = self.feature_extractor[18](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        features_out.append(features)
+        
+        features = self.feature_extractor[19](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        features_out.append(features)
+        
+        features = self.feature_extractor[20](features)  
         if print_bool:
             print("features shape: " ,features.shape)   
         features_out.append(features)

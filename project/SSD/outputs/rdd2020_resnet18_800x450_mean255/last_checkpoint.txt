@@ -1,1 +1,1 @@
-outputs/rdd2020_resnet18_800x450_mean255/model_008000.pth
+outputs/rdd2020_resnet18_800x450_mean255/model_010000.pth
