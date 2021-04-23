@@ -7,6 +7,8 @@ from ssd.modeling.backbone.resnet18_800x450 import ResNet18_800x450
 from ssd.modeling.backbone.resnet101 import ResNet101
 from ssd.modeling.backbone.resnet18_600x600 import ResNet18_600x600
 from ssd.modeling.backbone.resnet50_600x600 import ResNet50_600x600
+from ssd.modeling.backbone.resnext50_600x600 import ResNeXt50_600x600
+from ssd.modeling.backbone.inception import Inception
 from ssd.modeling.box_head.box_head import SSDBoxHead
 from ssd.utils.model_zoo import load_state_dict_from_url
 from ssd import torch_utils
@@ -49,6 +51,12 @@ def build_backbone(cfg):
     if backbone_name == "resNet18":
         model = models.resnet18(cfg)
         return model
+    if backbone_name == "resnet50_600x600":
+	    model = ResNet50_600x600(cfg)
+	    return model
+    if backbone_name == "resneXt50_600x600":
+	    model = ResNeXt50_600x600(cfg)
+	    return model
     if backbone_name == "resnet18_600x600":
         model = ResNet18_600x600(cfg)
         return model
@@ -63,6 +71,9 @@ def build_backbone(cfg):
         return model
     if backbone_name == "resnet101":
         model = ResNet101(cfg)
+        return model
+    if backbone_name == "inception":
+        model = Inception(cfg)
         return model
     if backbone_name == "vgg":
         model = VGG(cfg)

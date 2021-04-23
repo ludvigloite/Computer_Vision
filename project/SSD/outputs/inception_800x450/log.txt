@@ -1,0 +1,405 @@
+2021-04-23 08:56:59,244 SSD INFO: Namespace(config_file='configs/train_rdd2020_inception_800x450.yaml', opts=[])
+2021-04-23 08:56:59,244 SSD INFO: Loaded configuration file configs/train_rdd2020_inception_800x450.yaml
+2021-04-23 08:56:59,244 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'inception'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[50, 29],[25,15], [13,8],[7,4],[4,2], [3,1]] #[[29, 50],[15,25], [8,13],[4,7],[2,4], [1,3]]
+        STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]  #[[28, 9], [54, 18], [100, 35], [200, 65], [400, 113], [800, 150]] 
+        MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+        MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+INPUT:
+    IMAGE_SIZE: [800, 450]
+    PIXEL_MEAN: [121.281,121.741,116.179] #[0.486,0.456,0.406]
+    PIXEL_STD: [0.284,0.264,0.255] #[0.229,0.224,0.225]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/inception_800x450'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
+2021-04-23 08:56:59,244 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [800, 450]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: inception
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[50, 29], [25, 15], [13, 8], [7, 4], [4, 2], [3, 1]]
+    MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+    MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+    STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/inception_800x450
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-23 08:57:10,027 SSD.trainer INFO: No checkpoint found.
+2021-04-23 08:57:10,079 SSD.trainer INFO: Start training ...
+2021-04-23 08:58:51,960 SSD INFO: Namespace(config_file='configs/train_rdd2020_inception_800x450.yaml', opts=[])
+2021-04-23 08:58:51,960 SSD INFO: Loaded configuration file configs/train_rdd2020_inception_800x450.yaml
+2021-04-23 08:58:51,960 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'inception'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[50, 29],[25,15], [13,8],[7,4],[4,2], [3,1]] #[[29, 50],[15,25], [8,13],[4,7],[2,4], [1,3]]
+        STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]  #[[28, 9], [54, 18], [100, 35], [200, 65], [400, 113], [800, 150]] 
+        MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+        MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+INPUT:
+    IMAGE_SIZE: [800, 450]
+    PIXEL_MEAN: [121.281,121.741,116.179] #[0.486,0.456,0.406]
+    PIXEL_STD: [0.284,0.264,0.255] #[0.229,0.224,0.225]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/inception_800x450'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
+2021-04-23 08:58:51,961 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [800, 450]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: inception
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[50, 29], [25, 15], [13, 8], [7, 4], [4, 2], [3, 1]]
+    MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+    MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+    STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/inception_800x450
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-23 08:58:59,598 SSD.trainer INFO: No checkpoint found.
+2021-04-23 08:58:59,673 SSD.trainer INFO: Start training ...
+2021-04-23 09:01:55,366 SSD INFO: Namespace(config_file='configs/train_rdd2020_inception_800x450.yaml', opts=[])
+2021-04-23 09:01:55,367 SSD INFO: Loaded configuration file configs/train_rdd2020_inception_800x450.yaml
+2021-04-23 09:01:55,367 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'inception'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[50, 29],[25,15], [13,8],[7,4],[4,2], [3,1]] #[[29, 50],[15,25], [8,13],[4,7],[2,4], [1,3]]
+        STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]  #[[28, 9], [54, 18], [100, 35], [200, 65], [400, 113], [800, 150]] 
+        MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+        MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+INPUT:
+    IMAGE_SIZE: [800, 450]
+    PIXEL_MEAN: [121.281,121.741,116.179] #[0.486,0.456,0.406]
+    PIXEL_STD: [0.284,0.264,0.255] #[0.229,0.224,0.225]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/inception_800x450'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
+2021-04-23 09:01:55,367 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [800, 450]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: inception
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[50, 29], [25, 15], [13, 8], [7, 4], [4, 2], [3, 1]]
+    MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+    MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+    STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/inception_800x450
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-23 09:02:02,519 SSD.trainer INFO: No checkpoint found.
+2021-04-23 09:02:02,574 SSD.trainer INFO: Start training ...
+2021-04-23 09:03:43,899 SSD INFO: Namespace(config_file='configs/train_rdd2020_inception_800x450.yaml', opts=[])
+2021-04-23 09:03:43,899 SSD INFO: Loaded configuration file configs/train_rdd2020_inception_800x450.yaml
+2021-04-23 09:03:43,899 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'inception'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[50, 29],[25,15], [13,8],[7,4],[4,2], [3,1]] #[[29, 50],[15,25], [8,13],[4,7],[2,4], [1,3]]
+        STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]  #[[28, 9], [54, 18], [100, 35], [200, 65], [400, 113], [800, 150]] 
+        MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+        MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+INPUT:
+    IMAGE_SIZE: [800, 450]
+    PIXEL_MEAN: [121.281,121.741,116.179] #[0.486,0.456,0.406]
+    PIXEL_STD: [0.284,0.264,0.255] #[0.229,0.224,0.225]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/inception_800x450'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
+2021-04-23 09:03:43,900 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [800, 450]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: inception
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[50, 29], [25, 15], [13, 8], [7, 4], [4, 2], [3, 1]]
+    MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+    MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+    STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/inception_800x450
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-23 09:03:51,034 SSD.trainer INFO: No checkpoint found.
+2021-04-23 09:03:51,047 SSD.trainer INFO: Start training ...
+2021-04-23 09:05:10,013 SSD INFO: Namespace(config_file='configs/train_rdd2020_inception_800x450.yaml', opts=[])
+2021-04-23 09:05:10,013 SSD INFO: Loaded configuration file configs/train_rdd2020_inception_800x450.yaml
+2021-04-23 09:05:10,013 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'inception'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[50, 29],[25,15], [13,8],[7,4],[4,2], [3,1]] #[[29, 50],[15,25], [8,13],[4,7],[2,4], [1,3]]
+        STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]  #[[28, 9], [54, 18], [100, 35], [200, 65], [400, 113], [800, 150]] 
+        MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+        MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+INPUT:
+    IMAGE_SIZE: [800, 450]
+    PIXEL_MEAN: [121.281,121.741,116.179] #[0.486,0.456,0.406]
+    PIXEL_STD: [0.284,0.264,0.255] #[0.229,0.224,0.225]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 10
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/inception_800x450'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
+2021-04-23 09:05:10,013 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [800, 450]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: inception
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[50, 29], [25, 15], [13, 8], [7, 4], [4, 2], [3, 1]]
+    MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+    MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+    STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/inception_800x450
+SOLVER:
+  BATCH_SIZE: 10
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-23 09:05:18,609 SSD.trainer INFO: No checkpoint found.
+2021-04-23 09:05:18,623 SSD.trainer INFO: Start training ...

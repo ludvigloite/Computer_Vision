@@ -1,8 +1,6 @@
 import torch
 
-from torchvision.models import resnet18
-from torchvision.models import resnext50_32x4d as resnext
-from torchvision.models import resnet
+from torchvision.models import inception_v3
 
 def backbone_head_layer(channels_in, channels_out, strd, pad, last_layer=False):
     if not last_layer:
@@ -10,7 +8,6 @@ def backbone_head_layer(channels_in, channels_out, strd, pad, last_layer=False):
                 torch.nn.Conv2d(channels_in, channels_out, kernel_size=(3, 3), stride=(strd, strd), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True),
                 torch.nn.ReLU(inplace=True),
-                #torch.nn.Dropout(p=0.1),
                 torch.nn.Conv2d(channels_out, channels_out, kernel_size=(3, 3), stride=(1, 1), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
             )
@@ -19,14 +16,13 @@ def backbone_head_layer(channels_in, channels_out, strd, pad, last_layer=False):
                 torch.nn.Conv2d(channels_in, channels_out, kernel_size=(3, 3), stride=(strd, strd), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True),
                 torch.nn.ReLU(inplace=True),
-                #torch.nn.Dropout(p=0.1),
                 torch.nn.Conv2d(channels_out, channels_out, kernel_size=(1, 1), stride=(1, 1), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
             )
     
     return lr
 
-class ResNext50_800x450(torch.nn.Module):
+class Inception(torch.nn.Module):
     """
     This is a basic backbone for SSD.
     The feature extractor outputs a list of 6 feature maps, with the sizes:
@@ -45,8 +41,8 @@ class ResNext50_800x450(torch.nn.Module):
         image_channels = cfg.MODEL.BACKBONE.INPUT_CHANNELS
         self.output_feature_shape = cfg.MODEL.PRIORS.FEATURE_MAPS
         
-        
-        model = resnet18(pretrained=True)
+              
+        model = inception_v3(pretrained=True)
         hck_lr = torch.nn.Sequential(
             torch.nn.Conv2d(1024, 1024, kernel_size=(2, 2), stride=(1, 1), padding=(0, 0), bias=False),
             torch.nn.BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True),
@@ -55,11 +51,11 @@ class ResNext50_800x450(torch.nn.Module):
             torch.nn.BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
             )
         
-        self.feature_extractor = torch.nn.Sequential(*(list(model.children())[:-2]), 
-                                                     backbone_head_layer(512,512,2,1), 
-                                                     backbone_head_layer(512,512,2,1), 
-                                                     backbone_head_layer(512,1024,2,1),
-                                                     hck_lr)
+        self.feature_extractor = torch.nn.Sequential(*(list(model.children())[:-3]))
+                                                     #backbone_head_layer(512,512,2,1), 
+                                                     #backbone_head_layer(512,512,2,1), 
+                                                     #backbone_head_layer(512,1024,2,1),
+                                                     #hck_lr)
         print("layers:", self.feature_extractor)
         #print(torch.nn.Sequential(*(list(resnext_model.children()))))
         
@@ -74,7 +70,7 @@ class ResNext50_800x450(torch.nn.Module):
         """
         features_out = []
         
-        output_nr = [1,5,]
+        output_nr = [6,7,8,9,10,11,12,13,14,15,16,17]
 
         print_bool = False
         
@@ -85,29 +81,57 @@ class ResNext50_800x450(torch.nn.Module):
         features = self.feature_extractor[3](features)
         features = self.feature_extractor[4](features)        
         features = self.feature_extractor[5](features)
-        #features_out.append(features)
+        
         features = self.feature_extractor[6](features)
         if print_bool:
             print("features shape: " ,features.shape)
-        features_out.append(features)
+        
         features = self.feature_extractor[7](features)
-        print("features shape: " ,features.shape)
-        features_out.append(features)
+        if print_bool:
+            print("features shape: " ,features.shape)
+        
         
         # extra feature maps (5x5, 3x3 and 1x1)
         features = self.feature_extractor[8](features) 
         if print_bool:
             print("features shape: " ,features.shape)       
-        features_out.append(features)        
+        
         features = self.feature_extractor[9](features)   
         if print_bool:
             print("features shape: " ,features.shape)     
-        features_out.append(features)        
+        
         features = self.feature_extractor[10](features)   
         if print_bool:  
             print("features shape: " ,features.shape)
-        features_out.append(features)
+        
         features = self.feature_extractor[11](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        
+        features = self.feature_extractor[12](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        
+        features = self.feature_extractor[13](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        
+        
+        features = self.feature_extractor[14](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        features_out.append(features)
+        
+        #features = self.feature_extractor[15](features)  
+        #if print_bool:
+            #print("features shape: " ,features.shape)   
+        #features_out.append(features)
+        features = self.feature_extractor[16](features)  
+        if print_bool:
+            print("features shape: " ,features.shape)   
+        
+        
+        features = self.feature_extractor[17](features)  
         if print_bool:
             print("features shape: " ,features.shape)   
         features_out.append(features)
