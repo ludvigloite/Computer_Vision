@@ -325,7 +325,7 @@ class RandomRotate(object):
             
     def __call__(self, img, bboxes, classes):
 
-        if random.randint(10) < 3:
+        if random.randint(10) < 6:
             return img, bboxes, classes
     
         angle = random.uniform(*self.angle)
@@ -400,7 +400,7 @@ class RandomShear(object):
         
     def __call__(self, img, bboxes, classes):
         
-        if random.randint(10) < 3:
+        if random.randint(10) < 6:
             return img, bboxes, classes
     
         shear_factor = random.uniform(*self.shear_factor)
