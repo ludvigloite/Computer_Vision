@@ -131,10 +131,10 @@ def download_images():
 if __name__ == "__main__":
     # Download labels
     request_wrapper = RequestWrapper()
-    if dataset_path.is_dir():
-        print("Removing old dataset in:", dataset_path.absolute())
-        shutil.rmtree(dataset_path)
-    dataset_path.mkdir(exist_ok=True, parents=True)
-    download_images()
+    #if dataset_path.is_dir():
+    #    print("Removing old dataset in:", dataset_path.absolute())
+    #    shutil.rmtree(dataset_path)
+    #dataset_path.mkdir(exist_ok=True, parents=True)
+    #download_images()
     download_labels(request_wrapper)
-    print("Dataset extracted to:", dataset_path)
+    #print("Dataset extracted to:", dataset_path)

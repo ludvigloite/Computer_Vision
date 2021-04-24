@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 from numpy import random
 from torchvision.transforms import functional
+from .bbox_util import *
 
 
 
@@ -284,3 +285,182 @@ class RandomVerticalMirror(object):
             boxes = boxes.copy()
             boxes[:, 1::2] = height - boxes[:, 3::-2]
         return image, boxes, classes
+
+class RandomRotate(object):
+    """Randomly rotates an image    
+    
+    
+    Bounding boxes which have an area of less than 25% in the remaining in the 
+    transformed image is dropped. The resolution is maintained, and the remaining
+    area if any is filled by black color.
+    
+    Parameters
+    ----------
+    angle: float or tuple(float)
+        if **float**, the image is rotated by a factor drawn 
+        randomly from a range (-`angle`, `angle`). If **tuple**,
+        the `angle` is drawn randomly from values specified by the 
+        tuple
+        
+    Returns
+    -------
+    
+    numpy.ndaaray
+        Rotated image in the numpy format of shape `HxWxC`
+    
+    numpy.ndarray
+        Tranformed bounding box co-ordinates of the format `n x 4` where n is 
+        number of bounding boxes and 4 represents `x1,y1,x2,y2` of the box
+        
+    """
+
+    def __init__(self, angle = 10):
+        self.angle = angle
+        
+        if type(self.angle) == tuple:
+            assert len(self.angle) == 2, "Invalid range"  
+            
+        else:
+            self.angle = (-self.angle, self.angle)
+            
+    def __call__(self, img, bboxes, classes):
+
+        if random.randint(10) < 6:
+            return img, bboxes, classes
+    
+        angle = random.uniform(*self.angle)
+    
+        w,h = img.shape[1], img.shape[0]
+        cx, cy = w//2, h//2
+    
+        img = rotate_im(img, angle)
+    
+        corners = get_corners(bboxes)
+    
+        corners = np.hstack((corners, bboxes[:,4:]))
+    
+    
+        corners[:,:8] = rotate_box(corners[:,:8], angle, cx, cy, h, w)
+    
+        new_bbox = get_enclosing_box(corners)
+    
+    
+        scale_factor_x = img.shape[1] / w
+    
+        scale_factor_y = img.shape[0] / h
+    
+        img = cv2.resize(img, (w,h))
+    
+        new_bbox[:,:4] /= [scale_factor_x, scale_factor_y, scale_factor_x, scale_factor_y] 
+    
+        bboxes  = new_bbox
+    
+        bboxes = clip_box(bboxes, [0,0,w, h], 0.25)
+    
+        return img, bboxes, classes
+
+    
+class RandomShear(object):
+    """Randomly shears an image in horizontal direction   
+    
+    
+    Bounding boxes which have an area of less than 25% in the remaining in the 
+    transformed image is dropped. The resolution is maintained, and the remaining
+    area if any is filled by black color.
+    
+    Parameters
+    ----------
+    shear_factor: float or tuple(float)
+        if **float**, the image is sheared horizontally by a factor drawn 
+        randomly from a range (-`shear_factor`, `shear_factor`). If **tuple**,
+        the `shear_factor` is drawn randomly from values specified by the 
+        tuple
+        
+    Returns
+    -------
+    
+    numpy.ndaaray
+        Sheared image in the numpy format of shape `HxWxC`
+    
+    numpy.ndarray
+        Tranformed bounding box co-ordinates of the format `n x 4` where n is 
+        number of bounding boxes and 4 represents `x1,y1,x2,y2` of the box
+        
+    """
+
+    def __init__(self, shear_factor = 0.2):
+        self.shear_factor = shear_factor
+        
+        if type(self.shear_factor) == tuple:
+            assert len(self.shear_factor) == 2, "Invalid range for scaling factor"   
+        else:
+            self.shear_factor = (-self.shear_factor, self.shear_factor)
+        
+        shear_factor = random.uniform(*self.shear_factor)
+        
+    def __call__(self, img, bboxes, classes):
+        
+        if random.randint(10) < 6:
+            return img, bboxes, classes
+    
+        shear_factor = random.uniform(*self.shear_factor)
+    
+        w,h = img.shape[1], img.shape[0]
+    
+        if shear_factor < 0:
+            img, bboxes = HorizontalFlip()(img, bboxes)
+    
+        M = np.array([[1, abs(shear_factor), 0],[0,1,0]])
+    
+        nW =  img.shape[1] + abs(shear_factor*img.shape[0])
+    
+        bboxes[:,[0,2]] += ((bboxes[:,[1,3]]) * abs(shear_factor) ).astype(int) 
+    
+    
+        img = cv2.warpAffine(img, M, (int(nW), img.shape[0]))
+    
+        if shear_factor < 0:
+        	img, bboxes = HorizontalFlip()(img, bboxes)
+    
+        img = cv2.resize(img, (w,h))
+    
+        scale_factor_x = nW / w
+    
+        bboxes[:,:4] /= [scale_factor_x, 1, scale_factor_x, 1] 
+    
+    
+        return img, bboxes, classes
+    
+
+class HorizontalFlip(object):
+
+    """Randomly horizontally flips the Image with the probability *p*
+    Parameters
+    ----------
+    p: float
+        The probability with which the image is flipped
+    Returns
+    -------
+    numpy.ndaaray
+        Flipped image in the numpy format of shape `HxWxC`
+    numpy.ndarray
+        Tranformed bounding box co-ordinates of the format `n x 4` where n is
+        number of bounding boxes and 4 represents `x1,y1,x2,y2` of the box
+    """
+
+    def __init__(self):
+        pass
+
+    def __call__(self, img, bboxes):
+        img_center = np.array(img.shape[:2])[::-1]/2
+        img_center = np.hstack((img_center, img_center))
+
+        img = img[:, ::-1, :]
+        bboxes[:, [0, 2]] += 2*(img_center[[0, 2]] - bboxes[:, [0, 2]])
+
+        box_w = abs(bboxes[:, 0] - bboxes[:, 2])
+
+        bboxes[:, 0] -= box_w
+        bboxes[:, 2] += box_w
+
+        return img, bboxes
