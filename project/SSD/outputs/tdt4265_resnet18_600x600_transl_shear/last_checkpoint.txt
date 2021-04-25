@@ -1,0 +1,1 @@
+outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth

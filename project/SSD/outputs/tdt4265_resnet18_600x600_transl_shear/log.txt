@@ -1,0 +1,578 @@
+2021-04-24 15:22:14,486 SSD INFO: Namespace(config_file='configs/train_tdt4265_resnet18_600x600_transl_shear.yaml', opts=[])
+2021-04-24 15:22:14,487 SSD INFO: Loaded configuration file configs/train_tdt4265_resnet18_600x600_transl_shear.yaml
+2021-04-24 15:22:14,487 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+        MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+        MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  2000
+
+2021-04-24 15:22:14,487 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+    MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 2000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600_transl_shear
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 15:22:18,428 SSD.trainer INFO: No checkpoint found.
+2021-04-24 15:22:20,855 SSD.trainer INFO: Start training ...
+2021-04-24 15:24:55,850 SSD INFO: Namespace(config_file='configs/train_tdt4265_resnet18_600x600_transl_shear.yaml', opts=[])
+2021-04-24 15:24:55,850 SSD INFO: Loaded configuration file configs/train_tdt4265_resnet18_600x600_transl_shear.yaml
+2021-04-24 15:24:55,850 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+        MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+        MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  2000
+
+2021-04-24 15:24:55,850 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+    MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 2000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600_transl_shear
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 15:24:59,600 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.txt
+2021-04-24 15:25:39,733 SSD INFO: Namespace(config_file='configs/train_tdt4265_resnet18_600x600_transl_shear.yaml', opts=[])
+2021-04-24 15:25:39,733 SSD INFO: Loaded configuration file configs/train_tdt4265_resnet18_600x600_transl_shear.yaml
+2021-04-24 15:25:39,734 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+        MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+        MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  2000
+
+2021-04-24 15:25:39,734 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+    MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 2000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600_transl_shear
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 15:25:43,252 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:25:43,688 SSD.trainer INFO: Loading optimizer from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:25:46,048 SSD.trainer INFO: Start training ...
+2021-04-24 15:28:42,361 SSD INFO: Namespace(config_file='configs/train_tdt4265_resnet18_600x600_transl_shear.yaml', opts=[])
+2021-04-24 15:28:42,361 SSD INFO: Loaded configuration file configs/train_tdt4265_resnet18_600x600_transl_shear.yaml
+2021-04-24 15:28:42,361 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+        MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+        MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  2000
+
+2021-04-24 15:28:42,361 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+    MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 2000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600_transl_shear
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 15:28:46,055 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:28:46,487 SSD.trainer INFO: Loading optimizer from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:28:48,908 SSD.trainer INFO: Start training ...
+2021-04-24 15:33:11,404 SSD INFO: Namespace(config_file='configs/train_tdt4265_resnet18_600x600_transl_shear.yaml', opts=[])
+2021-04-24 15:33:11,404 SSD INFO: Loaded configuration file configs/train_tdt4265_resnet18_600x600_transl_shear.yaml
+2021-04-24 15:33:11,405 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+        MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+        MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  2000
+
+2021-04-24 15:33:11,405 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+    MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 2000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600_transl_shear
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 15:33:15,026 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:33:15,441 SSD.trainer INFO: Loading optimizer from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:33:17,816 SSD.trainer INFO: Start training ...
+2021-04-24 15:34:47,559 SSD INFO: Namespace(config_file='configs/train_tdt4265_resnet18_600x600_transl_shear.yaml', opts=[])
+2021-04-24 15:34:47,559 SSD INFO: Loaded configuration file configs/train_tdt4265_resnet18_600x600_transl_shear.yaml
+2021-04-24 15:34:47,559 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+        MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+        MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  2000
+
+2021-04-24 15:34:47,559 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+    MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 2000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600_transl_shear
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 15:34:51,324 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:34:51,796 SSD.trainer INFO: Loading optimizer from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:34:54,092 SSD.trainer INFO: Start training ...
+2021-04-24 15:45:06,607 SSD INFO: Namespace(config_file='configs/train_tdt4265_resnet18_600x600_transl_shear.yaml', opts=[])
+2021-04-24 15:45:06,607 SSD INFO: Loaded configuration file configs/train_tdt4265_resnet18_600x600_transl_shear.yaml
+2021-04-24 15:45:06,607 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+        MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+        MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  2000
+
+2021-04-24 15:45:06,607 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [121.281, 121.741, 116.179]
+  PIXEL_STD: [0.284, 0.264, 0.255]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[120, 120], [222, 222], [324, 324], [426, 426], [528, 528], [630, 630]]
+    MIN_SIZES: [[40, 40], [100, 100], [222, 222], [324, 324], [426, 426], [528, 528]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 2000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600_transl_shear
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 15:45:12,493 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:45:12,651 SSD.trainer INFO: Loading optimizer from outputs/tdt4265_resnet18_600x600_transl_shear/model_058000.pth
+2021-04-24 15:45:14,828 SSD.trainer INFO: Start training ...

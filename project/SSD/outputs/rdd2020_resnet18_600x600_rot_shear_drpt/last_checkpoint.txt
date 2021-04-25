@@ -1,0 +1,1 @@
+outputs/rdd2020_resnet18_600x600_rot_shear_drpt/model_final.pth
