@@ -10,6 +10,7 @@ def backbone_head_layer(channels_in, channels_out, strd, pad, last_layer=False):
                 torch.nn.Conv2d(channels_in, channels_out, kernel_size=(3, 3), stride=(strd, strd), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True),
                 torch.nn.ReLU(inplace=True),
+                torch.nn.Dropout(p=0.1), #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 torch.nn.Conv2d(channels_out, channels_out, kernel_size=(3, 3), stride=(1, 1), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
             )
@@ -18,6 +19,7 @@ def backbone_head_layer(channels_in, channels_out, strd, pad, last_layer=False):
                 torch.nn.Conv2d(channels_in, channels_out, kernel_size=(3, 3), stride=(strd, strd), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True),
                 torch.nn.ReLU(inplace=True),
+                torch.nn.Dropout(p=0.1), #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
                 torch.nn.Conv2d(channels_out, channels_out, kernel_size=(1, 1), stride=(1, 1), padding=(pad, pad), bias=False),
                 torch.nn.BatchNorm2d(channels_out, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
             )

@@ -22,7 +22,7 @@ SOLVER:
     GAMMA: 0.1
     BATCH_SIZE: 16
     LR: 1e-3
-OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_rot_shear'
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600_transl_shear'
 DATASET_DIR: "datasets"
 EVAL_STEP: 2000
 MODEL_SAVE_STEP:  2000
