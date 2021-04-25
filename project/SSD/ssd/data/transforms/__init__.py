@@ -9,6 +9,7 @@ def build_transforms(cfg, is_train=True):
             ConvertFromInts(),
             RandomMirror(),
             RandomSampleCrop(),         
+            #RandomRotate(30),
             RandomRotate(10),
             #RandomTranslate(),
             RandomShear(),
