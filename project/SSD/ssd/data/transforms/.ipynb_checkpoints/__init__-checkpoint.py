@@ -10,6 +10,7 @@ def build_transforms(cfg, is_train=True):
             RandomMirror(),
             RandomSampleCrop(),         
             RandomRotate(30),
+            #RandomTranslate(),
             RandomShear(),
             ToPercentCoords(),            
             Resize(cfg.INPUT.IMAGE_SIZE),

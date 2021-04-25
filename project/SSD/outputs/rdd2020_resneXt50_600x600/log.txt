@@ -2022,3 +2022,80 @@ D40             : 0.3680
 2021-04-21 23:47:29,242 SSD.trainer INFO: iter: 012130, lr: 0.00100, total_loss: 4.474 (4.270), reg_loss: 1.754 (1.616), cls_loss: 2.720 (2.655), time: 2.315 (2.658), eta: 3 days, 7:38:16, mem: 13440M
 2021-04-21 23:47:52,394 SSD.trainer INFO: iter: 012140, lr: 0.00100, total_loss: 4.589 (4.271), reg_loss: 1.815 (1.616), cls_loss: 2.775 (2.655), time: 2.315 (2.657), eta: 3 days, 7:36:20, mem: 13440M
 2021-04-21 23:48:15,572 SSD.trainer INFO: iter: 012150, lr: 0.00100, total_loss: 4.358 (4.271), reg_loss: 1.627 (1.616), cls_loss: 2.731 (2.655), time: 2.318 (2.656), eta: 3 days, 7:34:25, mem: 13440M
+2021-04-24 18:32:44,881 SSD INFO: Namespace(N_images=100, ckpt=None, config_file='configs/train_rdd2020_server_resneXt50_600x600.yaml', opts=[])
+2021-04-24 18:32:44,881 SSD INFO: Loaded configuration file configs/train_rdd2020_server_resneXt50_600x600.yaml
+2021-04-24 18:32:44,882 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resneXt50_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [1024,2048,512,512,512,512]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_resneXt50_600x600'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 1000
+MODEL_SAVE_STEP:  1000
+
+2021-04-24 18:32:44,882 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('rdd2020_val',)
+  TRAIN: ('rdd2020_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 1000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resneXt50_600x600
+    OUT_CHANNELS: (1024, 2048, 512, 512, 512, 512)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/rdd2020_resneXt50_600x600
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 1
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-24 18:32:56,849 SSD.inference INFO: Loading checkpoint from outputs/rdd2020_resneXt50_600x600/model_012000.pth
