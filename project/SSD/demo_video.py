@@ -59,7 +59,7 @@ def main():
         "output_path", type=str,
         help="Output path to save video with detections")
     parser.add_argument("--ckpt", type=str, default=None, help="Trained weights.")
-    parser.add_argument("--score_threshold", type=float, default=0.7)
+    parser.add_argument("--score_threshold", type=float, default=0.3)
     parser.add_argument("--dataset_type", default="tdt4265", type=str, help='Specify dataset type. Currently support voc and coco.')
 
     args = parser.parse_args()
