@@ -1,0 +1,28 @@
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_800x450'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[50, 29],[25,15], [13,8],[7,4],[4,2], [3,1]] 
+        STRIDES: [[16, 16], [32, 30], [62, 57], [115, 113], [200, 225], [267, 450]]  
+        MIN_SIZES: [[53, 30], [133, 75], [296, 166], [432, 243], [568, 319], [704, 396]]
+        MAX_SIZES: [[160, 90], [296, 166], [432, 243], [568, 319], [704, 396], [840, 473]]
+INPUT:
+    IMAGE_SIZE: [800, 450]
+    PIXEL_MEAN: [121.281,121.741,116.179]
+    PIXEL_STD: [0.284,0.264,0.255]
+DATASETS:
+    TRAIN: ("rdd2020_train",)
+    TEST: ("rdd2020_val",)
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/rdd2020_resnet18_800x450'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
