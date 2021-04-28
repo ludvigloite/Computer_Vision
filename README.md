@@ -11,19 +11,15 @@ Group 200
 
 :white_check_mark:  Assignment 4
 
-:x:  Final Project  (Deadline 25.04.21)
+:white_check_mark:  Final Project  (Deadline 25.04.21)
 
-:x:  Final Presentation (Deadline 26.04.21 or 27.04.21)
+:white_check_mark:  Final Presentation (Deadline 26.04.21 or 27.04.21)
 
 :x: Educational Video Challenge (Deadline 03.05.21)
 
 ## Annotated tasks
 Finished: 300, 308, 414, 464, 466, 
 Began: 287
-
-## Code
-
-python train.py  configs/train_rdd2020_server.yaml 
 
 
 ## Other
