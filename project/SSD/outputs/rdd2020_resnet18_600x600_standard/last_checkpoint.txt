@@ -1,0 +1,1 @@
+outputs/rdd2020_resnet18_600x600_standard/model_010000.pth

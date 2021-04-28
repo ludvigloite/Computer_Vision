@@ -1,0 +1,162 @@
+2021-04-20 12:35:06,196 SSD INFO: Namespace(config_file='configs/train_tdt4265_server_resnet18_600x600.yaml', opts=[])
+2021-04-20 12:35:06,196 SSD INFO: Loaded configuration file configs/train_tdt4265_server_resnet18_600x600.yaml
+2021-04-20 12:35:06,196 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val", )
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600'
+DATASET_DIR: "/work/datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
+2021-04-20 12:35:06,196 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: /work/datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-20 12:35:12,495 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600/model_031000.pth
+2021-04-20 12:35:13,324 SSD.trainer INFO: Loading optimizer from outputs/tdt4265_resnet18_600x600/model_031000.pth
+2021-04-20 12:37:36,070 SSD INFO: Namespace(config_file='configs/train_tdt4265_server_resnet18_600x600.yaml', opts=[])
+2021-04-20 12:37:36,070 SSD INFO: Loaded configuration file configs/train_tdt4265_server_resnet18_600x600.yaml
+2021-04-20 12:37:36,070 SSD INFO: 
+MODEL:
+    NUM_CLASSES: 5
+    BACKBONE:
+        NAME: 'resnet18_600x600'
+        PRETRAINED: False
+        OUT_CHANNELS: [256,512,512,512,1024,1024]
+        INPUT_CHANNELS: 3
+    PRIORS:
+        FEATURE_MAPS: [[38, 38],[19,19], [10,10],[5,5],[3,3], [1,1]]
+        STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]] #[[8, 8], [16, 16], [32, 32], [64, 64], [100, 100], [300, 300]]
+INPUT:
+    IMAGE_SIZE: [600, 600]
+DATASETS:
+    TRAIN: ("tdt4265_train",)
+    TEST: ("tdt4265_val", )
+SOLVER:
+    MAX_ITER: 120000
+    GAMMA: 0.1
+    BATCH_SIZE: 16
+    LR: 1e-3
+OUTPUT_DIR: 'outputs/tdt4265_resnet18_600x600'
+DATASET_DIR: "datasets"
+EVAL_STEP: 2000
+MODEL_SAVE_STEP:  1000
+2021-04-20 12:37:36,070 SSD INFO: Running with config:
+DATASETS:
+  TEST: ('tdt4265_val',)
+  TRAIN: ('tdt4265_train',)
+DATASET_DIR: datasets
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+EVAL_STEP: 2000
+INPUT:
+  IMAGE_SIZE: [600, 600]
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [1, 1, 1]
+LOG_STEP: 10
+MODEL:
+  BACKBONE:
+    INPUT_CHANNELS: 3
+    NAME: resnet18_600x600
+    OUT_CHANNELS: (256, 512, 512, 512, 1024, 1024)
+    PRETRAINED: False
+  CENTER_VARIANCE: 0.1
+  NEG_POS_RATIO: 3
+  NUM_CLASSES: 5
+  PRIORS:
+    ASPECT_RATIOS: [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
+    BOXES_PER_LOCATION: [4, 6, 6, 6, 4, 4]
+    CLIP: True
+    FEATURE_MAPS: [[38, 38], [19, 19], [10, 10], [5, 5], [3, 3], [1, 1]]
+    MAX_SIZES: [[60, 60], [111, 111], [162, 162], [213, 213], [264, 264], [315, 315]]
+    MIN_SIZES: [[30, 30], [60, 60], [111, 111], [162, 162], [213, 213], [264, 264]]
+    STRIDES: [[16, 16], [32, 32], [60, 60], [120, 120], [200, 200], [600, 600]]
+  SIZE_VARIANCE: 0.2
+  THRESHOLD: 0.5
+MODEL_SAVE_STEP: 1000
+OUTPUT_DIR: outputs/tdt4265_resnet18_600x600
+SOLVER:
+  BATCH_SIZE: 16
+  GAMMA: 0.1
+  LR: 0.001
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0005
+TEST:
+  BATCH_SIZE: 10
+  CONFIDENCE_THRESHOLD: 0.01
+  MAX_PER_CLASS: -1
+  MAX_PER_IMAGE: 100
+  NMS_THRESHOLD: 0.45
+2021-04-20 12:37:41,483 SSD.trainer INFO: Loading checkpoint from outputs/tdt4265_resnet18_600x600/model_031000.pth
+2021-04-20 12:37:41,805 SSD.trainer INFO: Loading optimizer from outputs/tdt4265_resnet18_600x600/model_031000.pth
+2021-04-20 12:37:45,836 SSD.trainer INFO: Start training ...
+2021-04-20 12:37:59,893 SSD.trainer INFO: iter: 031010, lr: 0.00100, total_loss: 5.622 (5.622), reg_loss: 2.161 (2.161), cls_loss: 3.460 (3.460), time: 1.248 (1.248), eta: 1 day, 6:51:18, mem: 7503M
+2021-04-20 12:38:03,601 SSD.trainer INFO: iter: 031020, lr: 0.00100, total_loss: 5.191 (5.407), reg_loss: 1.894 (2.027), cls_loss: 3.298 (3.379), time: 0.371 (0.810), eta: 20:00:31, mem: 7503M
+2021-04-20 12:38:07,383 SSD.trainer INFO: iter: 031030, lr: 0.00100, total_loss: 5.110 (5.308), reg_loss: 1.904 (1.986), cls_loss: 3.206 (3.321), time: 0.378 (0.666), eta: 16:27:10, mem: 7503M
+2021-04-20 12:38:11,099 SSD.trainer INFO: iter: 031040, lr: 0.00100, total_loss: 4.986 (5.227), reg_loss: 1.950 (1.977), cls_loss: 3.036 (3.250), time: 0.372 (0.592), eta: 14:38:03, mem: 7503M
+2021-04-20 12:38:15,410 SSD.trainer INFO: iter: 031050, lr: 0.00100, total_loss: 4.891 (5.160), reg_loss: 1.841 (1.950), cls_loss: 3.050 (3.210), time: 0.431 (0.560), eta: 13:50:11, mem: 7503M
+2021-04-20 12:38:19,498 SSD.trainer INFO: iter: 031060, lr: 0.00100, total_loss: 5.122 (5.154), reg_loss: 1.940 (1.948), cls_loss: 3.182 (3.205), time: 0.409 (0.535), eta: 13:12:44, mem: 7503M
+2021-04-20 12:38:23,342 SSD.trainer INFO: iter: 031070, lr: 0.00100, total_loss: 5.206 (5.161), reg_loss: 1.985 (1.954), cls_loss: 3.221 (3.208), time: 0.384 (0.513), eta: 12:40:48, mem: 7503M

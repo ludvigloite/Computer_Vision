@@ -13,6 +13,9 @@ project/SSD/ssd/modeling/box_head/__pycache__/*
 project/SSD/ssd/utils/__pycache__/*
 */__pycache__/*
 *.pth
+*.json
+*.swp
+project/SSD/ssd/utils/.ipynb_checkpoints/*
 
 project/SSD/datasets/*
 outputs/*

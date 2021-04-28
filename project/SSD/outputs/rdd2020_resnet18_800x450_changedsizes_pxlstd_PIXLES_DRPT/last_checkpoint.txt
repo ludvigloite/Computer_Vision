@@ -1,0 +1,1 @@
+outputs/rdd2020_resnet18_800x450_changedsizes_pxlstd_PIXLES_DRPT/model_011000.pth

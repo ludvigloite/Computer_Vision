@@ -1,0 +1,1 @@
+outputs/rdd2020_resnext50_800x450_server_meanstd/model_002000.pth
