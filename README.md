@@ -3,23 +3,19 @@
 Group 200
 
 ## Status
-:white_check_mark:  Assignment 1
+:white_check_mark:  Assignment 1 7.92/8
 
-:white_check_mark:  Assignment 2
+:white_check_mark:  Assignment 2 7.66/8
 
-:white_check_mark:  Assignment 3
+:white_check_mark:  Assignment 3 7.92/8
 
-:white_check_mark:  Assignment 4
+:white_check_mark:  Assignment 4 8/8
 
-:white_check_mark:  Final Project  (Deadline 25.04.21)
+:white_check_mark:  Final Project 28/28
 
-:white_check_mark:  Final Presentation (Deadline 26.04.21 or 27.04.21)
+:white_check_mark:  Final Presentation 21.67/22
 
-:x: Educational Video Challenge (Deadline 03.05.21)
-
-## Annotated tasks
-Finished: 300, 308, 414, 464, 466, 
-Began: 287
+:white_check_mark: Educational Video Challenge NaN
 
 
 ## Other
