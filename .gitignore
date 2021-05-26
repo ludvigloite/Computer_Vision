@@ -1,4 +1,3 @@
-
 project/SSD/ssd/__pycache__/*
 project/SSD/ssd/data/__pycache__/*
 project/SSD/ssd/data/datasets/__pycache__/*
@@ -11,6 +10,8 @@ project/SSD/ssd/modeling/__pycache__/*
 project/SSD/ssd/modeling/backbone/__pycache__/*
 project/SSD/ssd/modeling/box_head/__pycache__/*
 project/SSD/ssd/utils/__pycache__/*
+
+
 */__pycache__/*
 *.pth
 *.json
@@ -19,3 +20,6 @@ project/SSD/ssd/utils/.ipynb_checkpoints/*
 
 project/SSD/datasets/*
 outputs/*
+
+.ipynb_checkpoints/*
+.vscode/*
