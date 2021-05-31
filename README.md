@@ -20,9 +20,10 @@ Our final solution is presented in *Final_Presentation.pdf*.
 
 :white_check_mark:  Final Presentation - 21.67/22
 
-:white_check_mark: Educational Video Challenge - Not Yet Scored
+:white_check_mark: Educational Video - 17/18
 
-Total Score: X
+Total Score: 98.17/100
+
 Grade: A 
 
 
