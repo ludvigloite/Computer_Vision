@@ -22,9 +22,6 @@ Our final solution is presented in *Final_Presentation.pdf*.
 
 :white_check_mark: Educational Video - 17/18
 
-Total Score: 98.17/100
-
-Grade: A 
 
 
 ## Other
